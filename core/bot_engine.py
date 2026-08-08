@@ -244,7 +244,10 @@ class AsyncMusicfulBot:
             "style": style,
             "title": title,
             "instrumental": 0,
+            "weirdness": 0.50,
+            "style_influence": 0.50,
             "billing_cycle": 3,
+            "MP3T": "D"
         }
         r = await self.session.post(
             "https://aimusic-api.topmediai.com/musicful/v2/advanced/text-to-song",

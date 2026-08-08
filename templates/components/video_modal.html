@@ -11,28 +11,28 @@
         <!-- Step: Image Upload -->
         <div id="videoStep1">
             <div class="grid grid-cols-2 gap-4 mb-6">
-                <button id="aiGenerateBtn" onclick="generateAiCover()" class="bg-zinc-900 border border-zinc-800 rounded-lg p-6 flex flex-col items-center justify-center gap-3 hover:bg-zinc-800 transition group">
-                    <i class="fa-solid fa-wand-magic-sparkles text-xl text-zinc-400 group-hover:text-white transition"></i>
-                    <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 group-hover:text-white transition text-center">AI Tasarım</span>
+                <button id="aiGenerateBtn" onclick="generateAiCover()" class="bg-white/[0.03] border border-white/[0.06] rounded-xl p-6 flex flex-col items-center justify-center gap-3 hover:bg-violet-500/10 hover:border-violet-500/20 hover:shadow-[0_0_15px_rgba(139,92,246,0.15)] transition-all duration-300 group">
+                    <i class="fa-solid fa-wand-magic-sparkles text-xl text-zinc-400 group-hover:text-violet-400 transition-colors"></i>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 group-hover:text-white transition-colors text-center">AI Tasarım</span>
                 </button>
-                <div class="bg-zinc-950 border-2 border-dashed border-zinc-800 rounded-lg p-6 flex flex-col items-center justify-center gap-3 hover:bg-zinc-900 transition cursor-pointer group" id="imgDropzone">
+                <div class="bg-white/[0.01] border-2 border-dashed border-white/[0.08] rounded-xl p-6 flex flex-col items-center justify-center gap-3 hover:border-violet-500/30 hover:bg-violet-500/[0.02] transition-all duration-500 cursor-pointer group" id="imgDropzone">
                     <input type="file" id="imgInput" accept="image/*" class="hidden">
                     <div id="imgDropContent" class="text-center">
-                        <i class="fa-solid fa-image text-xl text-zinc-600 group-hover:text-zinc-400 transition"></i>
+                        <i class="fa-solid fa-image text-xl text-zinc-600 group-hover:text-violet-400 transition-colors"></i>
                         <div class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 mt-1">Görsel Yükle</div>
                     </div>
                 </div>
             </div>
 
-            <div id="aiGenerating" class="hidden my-6 text-center py-4 bg-zinc-900 border border-zinc-800 rounded-lg">
-                <i class="fa-solid fa-spinner fa-spin text-zinc-500 mb-2"></i>
+            <div id="aiGenerating" class="hidden my-6 text-center py-5 bg-[#0c0c14] border border-white/[0.06] rounded-xl">
+                <i class="fa-solid fa-spinner fa-spin text-violet-400/60 mb-2"></i>
                 <div class="text-[10px] font-bold uppercase tracking-widest text-zinc-400">AI Tasarlıyor...</div>
             </div>
 
             <div id="imgPreviewWrapper" class="hidden mt-4 relative group">
-                <img id="imgPreview" class="w-full max-h-48 object-contain rounded-lg border border-zinc-800">
-                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all rounded-lg">
-                    <button onclick="resetCoverSelection()" class="bg-zinc-900 border border-zinc-700 text-white px-4 py-2 rounded-md text-xs font-bold transition">KALDIR</button>
+                <img id="imgPreview" class="w-full max-h-48 object-contain rounded-xl border border-white/[0.06]">
+                <div class="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 flex items-center justify-center transition-all rounded-xl">
+                    <button onclick="resetCoverSelection()" class="bg-white/[0.05] border border-white/[0.1] text-white px-4 py-2 rounded-lg text-xs font-bold transition hover:bg-white/10">KALDIR</button>
                 </div>
             </div>
             <div id="imgInfo" class="hidden mt-3 flex items-center justify-between text-xs text-zinc-500">
@@ -47,12 +47,12 @@
         <!-- Step: Processing -->
         <div id="videoStep2" class="hidden">
             <div class="flex flex-col items-center py-6">
-                <div class="w-16 h-16 bg-zinc-900 border border-zinc-800 rounded-lg flex items-center justify-center mb-4">
-                    <i class="fa-solid fa-spinner fa-spin text-xl text-white"></i>
+                <div class="w-16 h-16 bg-[#0c0c14] border border-white/[0.06] rounded-xl flex items-center justify-center mb-4">
+                    <i class="fa-solid fa-spinner fa-spin text-xl text-violet-400"></i>
                 </div>
                 <div id="videoProgressText" class="text-sm font-medium mb-3">Video oluşturuluyor...</div>
-                <div class="w-full bg-zinc-900 border border-zinc-800 rounded-full h-2 overflow-hidden">
-                    <div id="videoProgress" class="bg-white h-full rounded-full transition-all duration-500" style="width:100%"></div>
+                <div class="w-full bg-[#0f0f16] border border-white/[0.04] rounded-full h-2 overflow-hidden">
+                    <div id="videoProgress" class="progress-gradient h-full rounded-full transition-all duration-500" style="width:100%"></div>
                 </div>
                 <div class="text-[10px] text-zinc-500 font-bold uppercase tracking-widest mt-4">Lütfen bekleyin...</div>
             </div>
@@ -61,8 +61,8 @@
         <!-- Step: Done -->
         <div id="videoStep3" class="hidden">
             <div class="flex flex-col items-center py-4">
-                <div class="w-14 h-14 bg-zinc-900 border border-zinc-800 rounded-lg flex items-center justify-center mb-4">
-                    <i class="fa-solid fa-check text-xl text-white"></i>
+                <div class="w-14 h-14 bg-[#0c0c14] border border-white/[0.06] rounded-xl flex items-center justify-center mb-4">
+                    <i class="fa-solid fa-check text-xl text-emerald-400"></i>
                 </div>
                 <div class="text-sm font-bold tracking-tight mb-4">Videonuz Hazır!</div>
                 <a id="videoDownloadLink" href="#" download class="shadcn-button-primary w-full py-3 text-sm flex items-center justify-center gap-3 mb-6">
@@ -70,12 +70,12 @@
                 </a>
 
                 <!-- SEO Generator -->
-                <div class="w-full border-t border-zinc-800 pt-6 mt-4">
+                <div class="w-full border-t border-white/[0.04] pt-6 mt-4">
                     <button id="seoBtn" onclick="generateSEO()" class="shadcn-button-secondary py-3 text-xs w-full flex items-center justify-center gap-2">
                         <i class="fa-solid fa-bolt text-[10px]"></i> SEO Önerisi Al
                     </button>
                     <div id="seoLoading" class="hidden text-center py-4">
-                        <i class="fa-solid fa-spinner fa-spin text-zinc-500 text-xs mb-1"></i>
+                        <i class="fa-solid fa-spinner fa-spin text-violet-400/60 text-xs mb-1"></i>
                         <div class="text-[10px] font-bold uppercase tracking-widest text-zinc-500">Analiz Ediliyor...</div>
                     </div>
                     
@@ -103,10 +103,10 @@
         <!-- Error -->
         <div id="videoError" class="hidden">
             <div class="flex flex-col items-center py-4">
-                <div class="w-16 h-16 bg-red-500/10 border border-red-500/20 rounded-lg flex items-center justify-center mb-4">
-                    <i class="fa-solid fa-triangle-exclamation text-red-500"></i>
+                <div class="w-16 h-16 bg-rose-500/5 border border-rose-500/10 rounded-xl flex items-center justify-center mb-4">
+                    <i class="fa-solid fa-triangle-exclamation text-rose-400"></i>
                 </div>
-                <div id="videoErrorMsg" class="text-sm text-red-500 text-center mb-6"></div>
+                <div id="videoErrorMsg" class="text-sm text-rose-400 text-center mb-6"></div>
                 <button onclick="resetVideoModal()" class="shadcn-button-secondary px-6 py-2 text-sm">Tekrar Dene</button>
             </div>
         </div>
@@ -115,10 +115,11 @@
 
 <!-- Cover Title Confirm Modal -->
 <div id="coverConfirmModal" class="modal-backdrop hidden" style="z-index:10001;">
-    <div class="shadcn-card p-6 w-[90%] max-w-md shadow-2xl">
+    <div class="shadcn-card p-6 w-[90%] max-w-md shadow-2xl relative overflow-hidden bg-[#0c0c14]/95 backdrop-blur-xl border border-white/[0.06] rounded-2xl">
+        <div class="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-violet-500/40 to-transparent"></div>
         <div class="flex items-center justify-between mb-6">
             <div>
-                <h4 class="text-sm font-bold uppercase tracking-widest text-white">Görsel Oluştur</h4>
+                <h4 class="text-xs font-bold uppercase tracking-[0.2em] text-white">Görsel Oluştur</h4>
             </div>
             <button onclick="closeCoverConfirmModal()" class="text-zinc-500 hover:text-white">
                 <i class="fa-solid fa-xmark text-sm"></i>

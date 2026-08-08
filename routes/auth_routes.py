@@ -194,7 +194,23 @@ def api_accounts_list():
             flat = []
             for g, accs in data.items():
                 for a in accs:
-                    flat.append(a)
+                    credits = float(a.get("credits", 0) or 0)
+                    invites = int(a.get("total_invites", 0) or 0)
+                    signup_bonus = 250 if g != "UNKNOWN" else 0
+                    invite_bonus = invites * 250
+                    base_credits = 10
+                    if g == "UNKNOWN" and credits > 10 and invites == 0:
+                        base_credits = credits
+                    
+                    earned = base_credits + signup_bonus + invite_bonus
+                    spent = max(0.0, earned - credits)
+                    songs_count = int(spent // 10)
+                    
+                    a_copy = dict(a)
+                    a_copy["spent"] = spent
+                    a_copy["songs_count"] = songs_count
+                    a_copy["parent_group"] = g
+                    flat.append(a_copy)
             flat.sort(key=lambda x: float(x.get("credits", 0) or 0), reverse=True)
             return jsonify({"accounts": flat})
         except:
@@ -256,3 +272,82 @@ def api_accounts_switch_manual():
         return jsonify({"ok": True, "credits": actual_credits})
     
     return jsonify({"error": "Login basarisiz."}), 400
+
+bulk_refresh_status = {
+    "is_running": False,
+    "current": 0,
+    "total": 0,
+    "error": None
+}
+
+@auth_bp.route("/api/accounts/refresh-bulk", methods=["POST"])
+def api_accounts_refresh_bulk():
+    global bulk_refresh_status
+    if bulk_refresh_status["is_running"]:
+        return jsonify({"ok": False, "error": "Toplu güncelleme zaten çalışıyor."}), 400
+        
+    import threading
+    def run_bulk_refresh():
+        global bulk_refresh_status
+        bulk_refresh_status["is_running"] = True
+        bulk_refresh_status["error"] = None
+        
+        try:
+            from core.account_manager import MusicfulBot
+            from core.config import ACCOUNTS_FILE, safe_read_json, safe_write_json
+            import os
+            
+            if not os.path.exists(ACCOUNTS_FILE):
+                bulk_refresh_status["is_running"] = False
+                return
+                
+            db = safe_read_json(ACCOUNTS_FILE)
+            if not db:
+                bulk_refresh_status["is_running"] = False
+                return
+                
+            accounts_to_check = []
+            for g, accs in db.items():
+                for a in accs:
+                    accounts_to_check.append((g, a))
+                    
+            bulk_refresh_status["total"] = len(accounts_to_check)
+            bulk_refresh_status["current"] = 0
+            
+            bot = MusicfulBot()
+            
+            for g, a in accounts_to_check:
+                if not bulk_refresh_status["is_running"]:
+                    break
+                    
+                email = a.get("email")
+                password = a.get("password")
+                
+                if password:
+                    try:
+                        login_res = bot.login_api(email, password)
+                        if login_res.get("code") == 200:
+                            token = login_res.get("data", {}).get("token")
+                            actual_credits = bot.get_credits(token)
+                            if actual_credits is not None:
+                                a["credits"] = actual_credits
+                                a["token"] = token
+                    except Exception as e:
+                        print(f"Bulk refresh error for {email}: {e}")
+                        
+                bulk_refresh_status["current"] += 1
+                safe_write_json(ACCOUNTS_FILE, db)
+                
+        except Exception as e:
+            bulk_refresh_status["error"] = str(e)
+        finally:
+            bulk_refresh_status["is_running"] = False
+
+    t = threading.Thread(target=run_bulk_refresh, daemon=True)
+    t.start()
+    return jsonify({"ok": True})
+
+@auth_bp.route("/api/accounts/refresh-status", methods=["GET"])
+def api_accounts_refresh_status():
+    global bulk_refresh_status
+    return jsonify(bulk_refresh_status)

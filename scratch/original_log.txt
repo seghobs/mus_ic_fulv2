@@ -1,0 +1,4018 @@
+<USER_REQUEST>
+================================================================================
+SEÇİLEN TRAFİK AKIŞLARI (TOPLAM: 56 İSTEK)
+ZAMAN SIRALAMASI: Kronolojik (İlk Yakalanan En Üstte)
+================================================================================
+
+[ İSTEK #1 (LOG ID: 0) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:44:29
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 23.50.131.212
+  HEDEF     : HEAD https://www.musicful.ai/musicful/_nuxt/CsRlQltf.js
+
+  >>> [REQUEST FOR İSTEK #1 (LOG ID: 0)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    Accept: */*
+    Accept-Encoding: gzip, deflate, br, zstd
+    Accept-Language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    Cache-Control: no-cache
+    Connection: keep-alive
+    Cookie: [MASKED_BY_LOGGER]
+    Host: www.musicful.ai
+    Pragma: no-cache
+    Referer: https://www.musicful.ai/ai-music-generator/?promotion=homepage&position=home_top_button
+    Sec-Fetch-Dest: empty
+    Sec-Fetch-Mode: cors
+    Sec-Fetch-Site: same-origin
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #1 (LOG ID: 0)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 OK
+
+  [Headers]
+    Akamai-Cache-Status: Miss from child
+    Akamai-GRN: 0.54a72917.1786092270.17ad1580
+    Alt-Svc: h3=":443"; ma=93600,h3-29=":443"; ma=93600
+    Cache-Control: public, max-age=31536000, immutable
+    Connection: keep-alive
+    Content-Encoding: gzip
+    Content-Length: 499227
+    Content-Type: text/javascript; charset=utf-8
+    Date: Fri, 07 Aug 2026 08:44:30 GMT
+    ETag: "79e1b-7umyg9vgA4lhfovhJOCO2H149XA"
+    Last-Modified: Fri, 07 Aug 2026 08:32:16 GMT
+    Server: Tengine
+    Strict-Transport-Security: max-age=15724800; includeSubDomains
+    Vary: Accept-Encoding
+    X-Frame-Options: SAMEORIGIN
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #2 (LOG ID: 5) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:44:32
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.252.43.235
+  HEDEF     : OPTIONS https://community-api.musicful.ai/common/content_check
+
+  >>> [REQUEST FOR İSTEK #2 (LOG ID: 5)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    access-control-request-headers: authorization,content-type
+    access-control-request-method: POST
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: same-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #2 (LOG ID: 5)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-headers: authorization, content-type
+    access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+    access-control-allow-origin: https://www.musicful.ai
+    allow: OPTIONS, POST
+    content-length: 0
+    content-type: text/html; charset=utf-8
+    date: Fri, 07 Aug 2026 08:44:33 GMT
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #3 (LOG ID: 6) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:44:33
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 35.190.25.25
+  HEDEF     : POST https://api-js.mixpanel.com/track/?verbose=1&ip=1&_=1786092272850
+
+  >>> [REQUEST FOR İSTEK #3 (LOG ID: 6)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    content-length: 3100
+    content-type: application/x-www-form-urlencoded
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    sec-fetch-storage-access: active
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    data=%5B%0A%20%20%20%20%7B%22event%22%3A%20%22Create_Song%22%2C%22properties%22%3A%20%7B%22%24os%22%3A%20%22Windows%22%2C%22%24browser%22%3A%20%22Chrome%22%2C%22%24current_url%22%3A%20%22https%3A%2F%2Fwww.musicful.ai%2Fai-music-generator%2F%3Fpromotion%3Dhomepage%26position%3Dhome_top_button%22%2C%22%24browser_version%22%3A%20151%2C%22%24screen_height%22%3A%201080%2C%22%24screen_width%22%3A%201920%2C%22mp_lib%22%3A%20%22web%22%2C%22%24lib_version%22%3A%20%222.58.0%22%2C%22%24insert_id%22%3A%20%220huxdhneb0besdla%22%2C%22time%22%3A%201786092272.58%2C%22distinct_id%22%3A%20%2229756796%22%2C%22%24device_id%22%3A%20%2219d831ca9d880b-0326a2587a7fbd-26061f51-1fa400-19d831ca9d880b%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%2C%22%24user_id%22%3A%20%2229756796%22%2C%22%24search_engine%22%3A%20%22google%22%2C%22MP3T%22%3A%20%22D%22%2C%22token%22%3A%20%22b2194a8641d7a742c26591473f26d100%22%2C%22mp_sent_by_lib_version%22%3A%20%222.58.0%22%7D%7D%2C%0A%20%20%20%20%7B%22event%22%3A%20%22Create_Sign%22%2C%22properties%22%3A%20%7B%22%24os%22%3A%20%22Windows%22%2C%22%24browser%22%3A%20%22Chrome%22%2C%22%24current_url%22%3A%20%22https%3A%2F%2Fwww.musicful.ai%2Fai-music-generator%2F%3Fpromotion%3Dhomepage%26position%3Dhome_top_button%22%2C%22%24browser_version%22%3A%20151%2C%22%24screen_height%22%3A%201080%2C%22%24screen_width%22%3A%201920%2C%22mp_lib%22%3A%20%22web%22%2C%22%24lib_version%22%3A%20%222.58.0%22%2C%22%24insert_id%22%3A%20%22ol6vv0pxtp5fe6sj%22%2C%22time%22%3A%201786092272.584%2C%22distinct_id%22%3A%20%2229756796%22%2C%22%24device_id%22%3A%20%2219d831ca9d880b-0326a2587a7fbd-26061f51-1fa400-19d831ca9d880b%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%2C%22%24user_id%22%3A%20%2229756796%22%2C%22%24search_engine%22%3A%20%22google%22%2C%22MP3T%22%3A%20%22D%22%2C%22Create_Sign%22%3A%20%22No%22%2C%22token%22%3A%20%22b2194a8641d7a742c26591473f26d100%22%2C%22mp_sent_by_lib_version%22%3A%20%222.58.0%22%7D%7D%2C%0A%20%20%20%20%7B%22event%22%3A%20%22Create_Buy%22%2C%22properties%22%3A%20%7B%22%24os%22%3A%20%22Windows%22%2C%22%24browser%22%3A%20%22Chrome%22%2C%22%24current_url%22%3A%20%22https%3A%2F%2Fwww.musicful.ai%2Fai-music-generator%2F%3Fpromotion%3Dhomepage%26position%3Dhome_top_button%22%2C%22%24browser_version%22%3A%20151%2C%22%24screen_height%22%3A%201080%2C%22%24screen_width%22%3A%201920%2C%22mp_lib%22%3A%20%22web%22%2C%22%24lib_version%22%3A%20%222.58.0%22%2C%22%24insert_id%22%3A%20%225zdr9qtx9qlogx5z%22%2C%22time%22%3A%201786092272.586%2C%22distinct_id%22%3A%20%2229756796%22%2C%22%24device_id%22%3A%20%2219d831ca9d880b-0326a2587a7fbd-26061f51-1fa400-19d831ca9d880b%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%2C%22%24user_id%22%3A%20%2229756796%22%2C%22%24search_engine%22%3A%20%22google%22%2C%22MP3T%22%3A%20%22D%22%2C%22Create_Buy%22%3A%20%22No%22%2C%22token%22%3A%20%22b2194a8641d7a742c26591473f26d100%22%2C%22mp_sent_by_lib_version%22%3A%20%222.58.0%22%7D%7D%0A%5D
+
+  <<< [RESPONSE FOR İSTEK #3 (LOG ID: 6)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-credentials: true
+    access-control-allow-headers: X-Requested-With, Content-Type
+    access-control-allow-methods: GET, POST, OPTIONS
+    access-control-allow-origin: https://www.musicful.ai
+    access-control-expose-headers: X-MP-CE-Backoff
+    access-control-max-age: 1728000
+    alt-svc: clear
+    cache-control: no-cache, no-store
+    content-length: 25
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:44:34 GMT
+    server: envoy
+    strict-transport-security: max-age=604800; includeSubDomains
+    via: 1.1 google
+    x-envoy-upstream-service-time: 30
+
+  [Body]
+    {
+      "error": null,
+      "status": 1
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #4 (LOG ID: 7) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:44:33
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 35.190.25.25
+  HEDEF     : POST https://api-js.mixpanel.com/track/?verbose=1&ip=1&_=1786092272850
+
+  >>> [REQUEST FOR İSTEK #4 (LOG ID: 7)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    content-length: 2239
+    content-type: application/x-www-form-urlencoded
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    sec-fetch-storage-access: active
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    data=%5B%0A%20%20%20%20%7B%22event%22%3A%20%22AIMusicCreateClick%22%2C%22properties%22%3A%20%7B%22%24os%22%3A%20%22Windows%22%2C%22%24browser%22%3A%20%22Chrome%22%2C%22%24current_url%22%3A%20%22https%3A%2F%2Fwww.musicful.ai%2Fai-music-generator%2F%3Fpromotion%3Dhomepage%26position%3Dhome_top_button%22%2C%22%24browser_version%22%3A%20151%2C%22%24screen_height%22%3A%201080%2C%22%24screen_width%22%3A%201920%2C%22mp_lib%22%3A%20%22web%22%2C%22%24lib_version%22%3A%20%222.58.0%22%2C%22%24insert_id%22%3A%20%220x7odet4fz617l9n%22%2C%22time%22%3A%201786092272.587%2C%22distinct_id%22%3A%20%2229756796%22%2C%22%24device_id%22%3A%20%2219d831ca9d880b-0326a2587a7fbd-26061f51-1fa400-19d831ca9d880b%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%2C%22%24user_id%22%3A%20%2229756796%22%2C%22%24search_engine%22%3A%20%22google%22%2C%22MP3T%22%3A%20%22D%22%2C%22language%22%3A%20%22en%22%2C%22country%22%3A%20%22TR%22%2C%22country_level%22%3A%203%2C%22system%22%3A%20%22win%22%2C%22version%22%3A%20%22v4.4.0%22%2C%22you_x%22%3A%20%222imtuopf7k%40deltajohnsons.com%22%2C%22is_vip%22%3A%20%22VIP%22%2C%22web_browser%22%3A%20%22google%22%2C%22group%22%3A%20%220410B%22%2C%22is_signin%22%3A%20%22True%22%2C%22register_date%22%3A%20%222026-04-23T17%3A18%3A01.000Z%22%2C%22route%22%3A%20%22%2F%22%2C%22type%22%3A%20%22Create%22%2C%22source%22%3A%20%22MySong%22%2C%22plan%22%3A%20%22V3.0%22%2C%22session%22%3A%20%22Lyrics%22%2C%22style_content%22%3A%20%22Turkish%20fun%20pop%20trap%20duet%2C%20upbeat%20Zeynep%20Bastik%20style%2C%20catchy%20Reynmen%20trap%20beat%2C%20summer%20vibe%2C%20energetic%20acoustic%20guitar%2C%20808%20bass%2C%20groovy%2C%20playful%20female%20and%20male%20vocals%2C%20happy%20love%20song%2C%20dance%2C%20party%22%2C%22is_lyrics%22%3A%20%22True%22%2C%22is_lyrics_ai%22%3A%20%22False%22%2C%22gender%22%3A%20%22random%22%2C%22is_vibe%22%3A%20%22False%22%2C%22title%22%3A%20%22denemee%22%2C%22credits%22%3A%2030%2C%22is_first%22%3A%20%22False%22%2C%22lyrics_struct_source%22%3A%20%22None%22%2C%22create_time%22%3A%2094%2C%22result%22%3A%20%22Subscribe%22%2C%22token%22%3A%20%22b2194a8641d7a742c26591473f26d100%22%2C%22mp_sent_by_lib_version%22%3A%20%222.58.0%22%7D%7D%0A%5D
+
+  <<< [RESPONSE FOR İSTEK #4 (LOG ID: 7)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-credentials: true
+    access-control-allow-headers: X-Requested-With, Content-Type
+    access-control-allow-methods: GET, POST, OPTIONS
+    access-control-allow-origin: https://www.musicful.ai
+    access-control-expose-headers: X-MP-CE-Backoff
+    access-control-max-age: 1728000
+    alt-svc: clear
+    cache-control: no-cache, no-store
+    content-length: 25
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:44:34 GMT
+    server: envoy
+    strict-transport-security: max-age=604800; includeSubDomains
+    via: 1.1 google
+    x-envoy-upstream-service-time: 43
+
+  [Body]
+    {
+      "error": null,
+      "status": 1
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #5 (LOG ID: 8) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:44:33
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.252.43.235
+  HEDEF     : POST https://community-api.musicful.ai/common/content_check
+
+  >>> [REQUEST FOR İSTEK #5 (LOG ID: 8)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: application/json, text/plain, */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    authorization: [MASKED_BY_LOGGER]
+    content-length: 1354
+    content-type: application/json
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: same-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    {
+      "check_type": 1,
+      "content": {
+        "image": [],
+        "text": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar,Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party,denemee"
+      }
+    }
+
+  <<< [RESPONSE FOR İSTEK #5 (LOG ID: 8)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-origin: https://www.musicful.ai
+    content-length: 63
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:44:34 GMT
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+
+  [Body]
+    {
+      "data": {},
+      "message": "Success",
+      "status": 200,
+      "time": 1786092274
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #6 (LOG ID: 9) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:44:33
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 23.50.131.212
+  HEDEF     : GET https://www.musicful.ai/musicful/_nuxt/DG5dbZxQ.js
+
+  >>> [REQUEST FOR İSTEK #6 (LOG ID: 9)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    Accept: */*
+    Accept-Encoding: gzip, deflate, br, zstd
+    Accept-Language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    Connection: keep-alive
+    Cookie: [MASKED_BY_LOGGER]
+    Host: www.musicful.ai
+    Origin: https://www.musicful.ai
+    Referer: https://www.musicful.ai/musicful/_nuxt/D1LCk-8p.js
+    Sec-Fetch-Dest: script
+    Sec-Fetch-Mode: cors
+    Sec-Fetch-Site: same-origin
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #6 (LOG ID: 9)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 OK
+
+  [Headers]
+    Akamai-Cache-Status: Miss from child
+    Akamai-GRN: 0.54a72917.1786092274.17ad15b9
+    Cache-Control: public, max-age=31536000, immutable
+    Connection: keep-alive
+    Content-Encoding: gzip
+    Content-Length: 331
+    Content-Type: text/javascript; charset=utf-8
+    Date: Fri, 07 Aug 2026 08:44:34 GMT
+    ETag: W/"1f1-tS9ypQYGj/RchUIxqqmRcs8yitc"
+    Last-Modified: Wed, 29 Jul 2026 10:01:29 GMT
+    Server: Tengine
+    Strict-Transport-Security: max-age=15724800; includeSubDomains
+    Vary: Accept-Encoding
+    X-Frame-Options: SAMEORIGIN
+
+  [Body]
+    const a='<svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.5 12a7.5 7.5 0 1 0-7.5 7.5V21a9 9 0 1 1 0-18 9 9 0 0 1 0 18v-1.5a7.5 7.5 0 0 0 7.5-7.5z" fill-opacity=".3"/><path d="M9.218 3.44a9.001 9.001 0 0 1 11.75 7.81c.035.413-.304.75-.718.75-.415 0-.747-.337-.787-.75A7.501 7.501 0 0 0 4.5 12c0 1.378.372 2.67 1.022 3.78.209.357.139.825-.197 1.068-.335.244-.807.171-1.022-.183A9.002 9.002 0 0 1 9.218 3.44z"/></svg>';export{a as default};
+    
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #7 (LOG ID: 10) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:44:34
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : OPTIONS https://aimusic-api.topmediai.com/musicful/v2/advanced/text-to-song
+
+  >>> [REQUEST FOR İSTEK #7 (LOG ID: 10)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    access-control-request-headers: authorization,content-type,terminal
+    access-control-request-method: POST
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #7 (LOG ID: 10)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-headers: authorization, content-type, terminal
+    access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+    access-control-allow-origin: https://www.musicful.ai
+    allow: POST, OPTIONS
+    content-length: 0
+    content-type: text/html; charset=utf-8
+    date: Fri, 07 Aug 2026 08:44:35 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+    x-trace-id: edf23aa9f7a24a73
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #8 (LOG ID: 12) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:44:34
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 35.190.25.25
+  HEDEF     : POST https://api-js.mixpanel.com/track/?verbose=1&ip=1&_=1786092274480
+
+  >>> [REQUEST FOR İSTEK #8 (LOG ID: 12)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    content-length: 2242
+    content-type: application/x-www-form-urlencoded
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    sec-fetch-storage-access: active
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    data=%5B%0A%20%20%20%20%7B%22event%22%3A%20%22AIMusicCreateClick%22%2C%22properties%22%3A%20%7B%22%24os%22%3A%20%22Windows%22%2C%22%24browser%22%3A%20%22Chrome%22%2C%22%24current_url%22%3A%20%22https%3A%2F%2Fwww.musicful.ai%2Fai-music-generator%2F%3Fpromotion%3Dhomepage%26position%3Dhome_top_button%22%2C%22%24browser_version%22%3A%20151%2C%22%24screen_height%22%3A%201080%2C%22%24screen_width%22%3A%201920%2C%22mp_lib%22%3A%20%22web%22%2C%22%24lib_version%22%3A%20%222.58.0%22%2C%22%24insert_id%22%3A%20%22xie0w4mu6rkyrti8%22%2C%22time%22%3A%201786092273.22%2C%22distinct_id%22%3A%20%2229756796%22%2C%22%24device_id%22%3A%20%2219d831ca9d880b-0326a2587a7fbd-26061f51-1fa400-19d831ca9d880b%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%2C%22%24user_id%22%3A%20%2229756796%22%2C%22%24search_engine%22%3A%20%22google%22%2C%22MP3T%22%3A%20%22D%22%2C%22language%22%3A%20%22en%22%2C%22country%22%3A%20%22TR%22%2C%22country_level%22%3A%203%2C%22system%22%3A%20%22win%22%2C%22version%22%3A%20%22v4.4.0%22%2C%22you_x%22%3A%20%222imtuopf7k%40deltajohnsons.com%22%2C%22is_vip%22%3A%20%22VIP%22%2C%22web_browser%22%3A%20%22google%22%2C%22group%22%3A%20%220410B%22%2C%22is_signin%22%3A%20%22True%22%2C%22register_date%22%3A%20%222026-04-23T17%3A18%3A01.000Z%22%2C%22route%22%3A%20%22%2F%22%2C%22type%22%3A%20%22Create%22%2C%22source%22%3A%20%22MySong%22%2C%22plan%22%3A%20%22V3.0%22%2C%22session%22%3A%20%22Lyrics%22%2C%22style_content%22%3A%20%22Turkish%20fun%20pop%20trap%20duet%2C%20upbeat%20Zeynep%20Bastik%20style%2C%20catchy%20Reynmen%20trap%20beat%2C%20summer%20vibe%2C%20energetic%20acoustic%20guitar%2C%20808%20bass%2C%20groovy%2C%20playful%20female%20and%20male%20vocals%2C%20happy%20love%20song%2C%20dance%2C%20party%22%2C%22is_lyrics%22%3A%20%22True%22%2C%22is_lyrics_ai%22%3A%20%22False%22%2C%22gender%22%3A%20%22random%22%2C%22is_vibe%22%3A%20%22False%22%2C%22title%22%3A%20%22denemee%22%2C%22credits%22%3A%2030%2C%22is_first%22%3A%20%22False%22%2C%22lyrics_struct_source%22%3A%20%22None%22%2C%22create_time%22%3A%2095%2C%22result%22%3A%20%22CreateRequest%22%2C%22token%22%3A%20%22b2194a8641d7a742c26591473f26d100%22%2C%22mp_sent_by_lib_version%22%3A%20%222.58.0%22%7D%7D%0A%5D
+
+  <<< [RESPONSE FOR İSTEK #8 (LOG ID: 12)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-credentials: true
+    access-control-allow-headers: X-Requested-With, Content-Type
+    access-control-allow-methods: GET, POST, OPTIONS
+    access-control-allow-origin: https://www.musicful.ai
+    access-control-expose-headers: X-MP-CE-Backoff
+    access-control-max-age: 1728000
+    alt-svc: clear
+    cache-control: no-cache, no-store
+    content-length: 25
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:44:35 GMT
+    server: envoy
+    strict-transport-security: max-age=604800; includeSubDomains
+    via: 1.1 google
+    x-envoy-upstream-service-time: 24
+
+  [Body]
+    {
+      "error": null,
+      "status": 1
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #9 (LOG ID: 14) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:44:39
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : POST https://aimusic-api.topmediai.com/musicful/v2/advanced/text-to-song
+
+  >>> [REQUEST FOR İSTEK #9 (LOG ID: 14)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: application/json, text/plain, */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    authorization: [MASKED_BY_LOGGER]
+    content-length: 1506
+    content-type: application/json
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    terminal: web
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    {
+      "mv": "v5.5",
+      "grade": 2,
+      "area": "TR",
+      "lyrics": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+      "isAiLyrics": false,
+      "gender": "",
+      "persona_id": "",
+      "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+      "title": "denemee",
+      "instrumental": 0,
+      "weirdness": 0.71,
+      "style_influence": 0.71,
+      "billing_cycle": 3,
+      "MP3T": "D"
+    }
+
+  <<< [RESPONSE FOR İSTEK #9 (LOG ID: 14)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-origin: https://www.musicful.ai
+    content-length: 222
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:44:40 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+    x-trace-id: e457fbd4220d4344
+
+  [Body]
+    {
+      "data": {
+        "history_ids": [
+          "53465809822724102",
+          "53465809822724103"
+        ],
+        "song_ids": [
+          "53465809822724102",
+          "53465809822724103"
+        ],
+        "task_uuid": "38c7235c-923c-11f1-aa6b-00163e0ddcd7"
+      },
+      "message": "Success",
+      "status": 200,
+      "time": 1786092280
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #10 (LOG ID: 15) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:44:39
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 35.190.25.25
+  HEDEF     : POST https://api-js.mixpanel.com/track/?verbose=1&ip=1&_=1786092279839
+
+  >>> [REQUEST FOR İSTEK #10 (LOG ID: 15)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    content-length: 2177
+    content-type: application/x-www-form-urlencoded
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    sec-fetch-storage-access: active
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    data=%5B%0A%20%20%20%20%7B%22event%22%3A%20%22AIMusciCreateRequest%22%2C%22properties%22%3A%20%7B%22%24os%22%3A%20%22Windows%22%2C%22%24browser%22%3A%20%22Chrome%22%2C%22%24current_url%22%3A%20%22https%3A%2F%2Fwww.musicful.ai%2Fai-music-generator%2F%3Fpromotion%3Dhomepage%26position%3Dhome_top_button%22%2C%22%24browser_version%22%3A%20151%2C%22%24screen_height%22%3A%201080%2C%22%24screen_width%22%3A%201920%2C%22mp_lib%22%3A%20%22web%22%2C%22%24lib_version%22%3A%20%222.58.0%22%2C%22%24insert_id%22%3A%20%22605qbheadxr13rxq%22%2C%22time%22%3A%201786092279.726%2C%22distinct_id%22%3A%20%2229756796%22%2C%22%24device_id%22%3A%20%2219d831ca9d880b-0326a2587a7fbd-26061f51-1fa400-19d831ca9d880b%22%2C%22%24initial_referrer%22%3A%20%22%24direct%22%2C%22%24initial_referring_domain%22%3A%20%22%24direct%22%2C%22%24user_id%22%3A%20%2229756796%22%2C%22%24search_engine%22%3A%20%22google%22%2C%22MP3T%22%3A%20%22D%22%2C%22language%22%3A%20%22en%22%2C%22country%22%3A%20%22TR%22%2C%22country_level%22%3A%203%2C%22system%22%3A%20%22win%22%2C%22version%22%3A%20%22v4.4.0%22%2C%22you_x%22%3A%20%222imtuopf7k%40deltajohnsons.com%22%2C%22is_vip%22%3A%20%22VIP%22%2C%22web_browser%22%3A%20%22google%22%2C%22group%22%3A%20%220410B%22%2C%22is_signin%22%3A%20%22True%22%2C%22register_date%22%3A%20%222026-04-23T17%3A18%3A01.000Z%22%2C%22route%22%3A%20%22%2F%22%2C%22type%22%3A%20%22Create%22%2C%22source%22%3A%20%22MySong%22%2C%22plan%22%3A%20%22V3.0%22%2C%22session%22%3A%20%22Lyrics%22%2C%22style_content%22%3A%20%22Turkish%20fun%20pop%20trap%20duet%2C%20upbeat%20Zeynep%20Bastik%20style%2C%20catchy%20Reynmen%20trap%20beat%2C%20summer%20vibe%2C%20energetic%20acoustic%20guitar%2C%20808%20bass%2C%20groovy%2C%20playful%20female%20and%20male%20vocals%2C%20happy%20love%20song%2C%20dance%2C%20party%22%2C%22is_lyrics%22%3A%20%22True%22%2C%22is_lyrics_ai%22%3A%20%22False%22%2C%22gender%22%3A%20%22random%22%2C%22is_vibe%22%3A%20%22False%22%2C%22title%22%3A%20%22denemee%22%2C%22credits%22%3A%2030%2C%22is_first%22%3A%20%22False%22%2C%22lyrics_struct_source%22%3A%20%22None%22%2C%22token%22%3A%20%22b2194a8641d7a742c26591473f26d100%22%2C%22mp_sent_by_lib_version%22%3A%20%222.58.0%22%7D%7D%0A%5D
+
+  <<< [RESPONSE FOR İSTEK #10 (LOG ID: 15)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-credentials: true
+    access-control-allow-headers: X-Requested-With, Content-Type
+    access-control-allow-methods: GET, POST, OPTIONS
+    access-control-allow-origin: https://www.musicful.ai
+    access-control-expose-headers: X-MP-CE-Backoff
+    access-control-max-age: 1728000
+    alt-svc: clear
+    cache-control: no-cache, no-store
+    content-length: 25
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:44:40 GMT
+    server: envoy
+    strict-transport-security: max-age=604800; includeSubDomains
+    via: 1.1 google
+    x-envoy-upstream-service-time: 17
+
+  [Body]
+    {
+      "error": null,
+      "status": 1
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #11 (LOG ID: 16) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:44:39
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : OPTIONS https://aimusic-api.topmediai.com/musicful/v1/user/rights
+
+  >>> [REQUEST FOR İSTEK #11 (LOG ID: 16)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    access-control-request-headers: authorization,terminal
+    access-control-request-method: GET
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #11 (LOG ID: 16)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-headers: authorization, terminal
+    access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+    access-control-allow-origin: https://www.musicful.ai
+    allow: HEAD, OPTIONS, GET
+    content-length: 0
+    content-type: text/html; charset=utf-8
+    date: Fri, 07 Aug 2026 08:44:40 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+    x-trace-id: 2ee15a7bfc9244cb
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #12 (LOG ID: 17) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:44:40
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : OPTIONS https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #12 (LOG ID: 17)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    access-control-request-headers: authorization,terminal
+    access-control-request-method: GET
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #12 (LOG ID: 17)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-headers: authorization, terminal
+    access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+    access-control-allow-origin: https://www.musicful.ai
+    allow: HEAD, OPTIONS, GET
+    content-length: 0
+    content-type: text/html; charset=utf-8
+    date: Fri, 07 Aug 2026 08:44:41 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+    x-trace-id: cfc1369b590c4463
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #13 (LOG ID: 19) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:44:41
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : GET https://aimusic-api.topmediai.com/musicful/v1/user/rights
+
+  >>> [REQUEST FOR İSTEK #13 (LOG ID: 19)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: application/json, text/plain, */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    authorization: [MASKED_BY_LOGGER]
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    terminal: web
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #13 (LOG ID: 19)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-origin: https://www.musicful.ai
+    content-encoding: gzip
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:44:42 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Accept-Encoding, Origin
+    x-trace-id: 512d1c67c9e3439b
+
+  [Body]
+    {
+      "data": {
+        "result": {
+          "all": 2800,
+          "allow_music_video": true,
+          "billing_cycle": 3,
+          "free": 0,
+          "grade": 3,
+          "has_purchased": 0,
+          "is_vip": 1,
+          "left": 2630,
+          "new_rights": {
+            "credits": {
+              "all": 2800,
+              "allow_music_video": true,
+              "billing_cycle": 3,
+              "free": 0,
+              "grade": 3,
+              "is_vip": 1,
+              "left": 2630,
+              "sku_list": [
+                {
+                  "failure_time": 1863273600,
+                  "left": 2630,
+                  "sku_id": "1863273600-6014311"
+                }
+              ],
+              "used": 170
+            },
+            "musicful_is_new_user": true,
+            "musicful_v2_trial": {
+              "granted_at": "2026-04-23T17:18:03Z",
+              "left": 1
+            },
+            "voice_cloning": {
+              "all": 0,
+              "billing_cycle": 0,
+              "free": 0,
+              "grade": 0,
+              "is_vip": false,
+              "left": 0,
+              "rate": 0,
+              "record_save": false,
+              "sku_list": [],
+              "used": 0
+            }
+          },
+          "record_save": false,
+          "sku_list": [
+            {
+              "failure_time": 1863273600,
+              "left": 2630,
+              "sku_id": "1863273600-6014311"
+            }
+          ],
+          "tp_all": null,
+          "used": 170,
+          "user_id": "29756796"
+        }
+      },
+      "message": "Success",
+      "status": 200,
+      "time": 1786092282
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #14 (LOG ID: 22) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:44:42
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : GET https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #14 (LOG ID: 22)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: application/json, text/plain, */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    authorization: [MASKED_BY_LOGGER]
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    terminal: web
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #14 (LOG ID: 22)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-origin: https://www.musicful.ai
+    content-encoding: gzip
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:44:42 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Accept-Encoding, Origin
+    x-trace-id: c9a0be8fe5bb4a88
+
+  [Body]
+    {
+      "data": {
+        "result": [
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724102",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          },
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724103",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          }
+        ]
+      },
+      "message": "Success",
+      "status": 200,
+      "time": 1786092282
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #15 (LOG ID: 25) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:44:53
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : GET https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #15 (LOG ID: 25)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: application/json, text/plain, */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    authorization: [MASKED_BY_LOGGER]
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    terminal: web
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #15 (LOG ID: 25)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-origin: https://www.musicful.ai
+    content-encoding: gzip
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:44:54 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Accept-Encoding, Origin
+    x-trace-id: 6752b52947614d9f
+
+  [Body]
+    {
+      "data": {
+        "result": [
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724102",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          },
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724103",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          }
+        ]
+      },
+      "message": "Success",
+      "status": 200,
+      "time": 1786092294
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #16 (LOG ID: 27) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:00
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : OPTIONS https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #16 (LOG ID: 27)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    access-control-request-headers: authorization,terminal
+    access-control-request-method: GET
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #16 (LOG ID: 27)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-headers: authorization, terminal
+    access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+    access-control-allow-origin: https://www.musicful.ai
+    allow: HEAD, OPTIONS, GET
+    content-length: 0
+    content-type: text/html; charset=utf-8
+    date: Fri, 07 Aug 2026 08:45:00 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+    x-trace-id: ffe9c15819854582
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #17 (LOG ID: 29) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:01
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : GET https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #17 (LOG ID: 29)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: application/json, text/plain, */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    authorization: [MASKED_BY_LOGGER]
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    terminal: web
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #17 (LOG ID: 29)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-origin: https://www.musicful.ai
+    content-encoding: gzip
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:45:02 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Accept-Encoding, Origin
+    x-trace-id: efe61b67cd104bba
+
+  [Body]
+    {
+      "data": {
+        "result": [
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724102",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          },
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724103",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          }
+        ]
+      },
+      "message": "Success",
+      "status": 200,
+      "time": 1786092302
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #18 (LOG ID: 31) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:09
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : OPTIONS https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #18 (LOG ID: 31)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    access-control-request-headers: authorization,terminal
+    access-control-request-method: GET
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #18 (LOG ID: 31)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-headers: authorization, terminal
+    access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+    access-control-allow-origin: https://www.musicful.ai
+    allow: HEAD, OPTIONS, GET
+    content-length: 0
+    content-type: text/html; charset=utf-8
+    date: Fri, 07 Aug 2026 08:45:10 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+    x-trace-id: e0f9aaeecf094fac
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #19 (LOG ID: 32) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:12
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : GET https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #19 (LOG ID: 32)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: application/json, text/plain, */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    authorization: [MASKED_BY_LOGGER]
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    terminal: web
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #19 (LOG ID: 32)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-origin: https://www.musicful.ai
+    content-encoding: gzip
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:45:12 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Accept-Encoding, Origin
+    x-trace-id: ecbae276a0c844d5
+
+  [Body]
+    {
+      "data": {
+        "result": [
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724102",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          },
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724103",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          }
+        ]
+      },
+      "message": "Success",
+      "status": 200,
+      "time": 1786092312
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #20 (LOG ID: 33) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:19
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : OPTIONS https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #20 (LOG ID: 33)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    access-control-request-headers: authorization,terminal
+    access-control-request-method: GET
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #20 (LOG ID: 33)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-headers: authorization, terminal
+    access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+    access-control-allow-origin: https://www.musicful.ai
+    allow: OPTIONS, HEAD, GET
+    content-length: 0
+    content-type: text/html; charset=utf-8
+    date: Fri, 07 Aug 2026 08:45:20 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+    x-trace-id: d4ee8bb74e2e4df5
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #21 (LOG ID: 34) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:22
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : GET https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #21 (LOG ID: 34)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: application/json, text/plain, */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    authorization: [MASKED_BY_LOGGER]
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    terminal: web
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #21 (LOG ID: 34)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-origin: https://www.musicful.ai
+    content-encoding: gzip
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:45:23 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Accept-Encoding, Origin
+    x-trace-id: d464522ea70b4500
+
+  [Body]
+    {
+      "data": {
+        "result": [
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724102",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          },
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724103",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          }
+        ]
+      },
+      "message": "Success",
+      "status": 200,
+      "time": 1786092323
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #22 (LOG ID: 35) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:28
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 172.217.20.74
+  HEDEF     : OPTIONS https://signaler-pa.clients6.google.com/punctual/multi-watch/channel?VER=8&gsessionid=mwybXkT6tM2jrpqfI1mVodBD_4Fov4kwiBIXS3DfZc0&key=AIzaSyBWW50ghQ5qHpMg1gxHV7U9t0wHE0qIUk4&RID=rpc&SID=geCji0khufmhYIR4ZuNgPQ&AID=20&CI=0&TYPE=xmlhttp&zx=r0pjkja5yspn&t=3
+
+  >>> [REQUEST FOR İSTEK #22 (LOG ID: 35)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    access-control-request-headers: authorization,x-goog-authuser
+    access-control-request-method: GET
+    origin: https://gemini.google.com
+    priority: u=1, i
+    referer: https://gemini.google.com/
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: same-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #22 (LOG ID: 35)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-credentials: true
+    access-control-allow-headers: authorization,x-goog-authuser
+    access-control-allow-methods: GET,POST
+    access-control-allow-origin: https://gemini.google.com
+    alt-svc: h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
+    content-length: 0
+    content-type: text/html
+    date: Fri, 07 Aug 2026 08:45:28 GMT
+    server: ESF
+    vary: origin
+    x-content-type-options: nosniff
+    x-frame-options: SAMEORIGIN
+    x-xss-protection: 0
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #23 (LOG ID: 36) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:30
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : OPTIONS https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #23 (LOG ID: 36)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    access-control-request-headers: authorization,terminal
+    access-control-request-method: GET
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #23 (LOG ID: 36)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-headers: authorization, terminal
+    access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+    access-control-allow-origin: https://www.musicful.ai
+    allow: HEAD, OPTIONS, GET
+    content-length: 0
+    content-type: text/html; charset=utf-8
+    date: Fri, 07 Aug 2026 08:45:30 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+    x-trace-id: 99946b4f357a4852
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #24 (LOG ID: 38) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:32
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 23.50.131.212
+  HEDEF     : GET https://www.musicful.ai/musicful/_nuxt/B_5YZsLj.js
+
+  >>> [REQUEST FOR İSTEK #24 (LOG ID: 38)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    Accept: */*
+    Accept-Encoding: gzip, deflate, br, zstd
+    Accept-Language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    Connection: keep-alive
+    Cookie: [MASKED_BY_LOGGER]
+    Host: www.musicful.ai
+    Origin: https://www.musicful.ai
+    Referer: https://www.musicful.ai/musicful/_nuxt/D1LCk-8p.js
+    Sec-Fetch-Dest: script
+    Sec-Fetch-Mode: cors
+    Sec-Fetch-Site: same-origin
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #24 (LOG ID: 38)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 OK
+
+  [Headers]
+    Akamai-Cache-Status: Miss from child
+    Akamai-GRN: 0.54a72917.1786092333.17ad6873
+    Cache-Control: public, max-age=31536000, immutable
+    Connection: keep-alive
+    Content-Encoding: gzip
+    Content-Length: 488
+    Content-Type: text/javascript; charset=utf-8
+    Date: Fri, 07 Aug 2026 08:45:33 GMT
+    ETag: "1e8-9t3HNn7qJdXE9epZLDGgZcIFid0"
+    Last-Modified: Wed, 29 Jul 2026 10:01:30 GMT
+    Server: Tengine
+    Strict-Transport-Security: max-age=15724800; includeSubDomains
+    Vary: Accept-Encoding
+    X-Frame-Options: SAMEORIGIN
+
+  [Body]
+    const t=`<svg viewBox="0 0 16 16" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="16.000000" height="16.000000" fill="none">
+    	<rect id="Frame" width="16.000000" height="16.000000" x="0.000000" y="0.000000" />
+    	<path id="矢量 49" d="M4.36377 12.3636L4.36377 4.10144C4.36377 3.40813 4.8531 2.81119 5.53294 2.67517L8.00012 2.18152" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.330909" />
+    	<path id="矢量 50" d="M12.3638 12.3637L12.3648 8.72705" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.330909" />
+    	<path id="矢量 51" d="M4.36377 6.54545L8.00013 5.81787" stroke="currentColor" stroke-linecap="round" stroke-width="1.330909" />
+    	<path id="矢量 52" d="M10.1816 4.36365L13.818 4.36365" stroke="currentColor" stroke-linecap="round" stroke-width="1.330909" />
+    	<path id="矢量 53" d="M0 0L3.63636 0" stroke="currentColor" stroke-linecap="round" stroke-width="1.330909" transform="matrix(0,-1,1,0,12,6.18176)" />
+    	<rect id="Rectangle 34625582" width="2.909091" height="2.909091" x="1.454590" y="10.909058" rx="1.454545" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.330909" />
+    	<rect id="Rectangle 34625583" width="2.909091" height="2.909091" x="9.454590" y="10.909058" rx="1.454545" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.330909" />
+    </svg>
+    `;export{t as default};
+    
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #25 (LOG ID: 39) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:33
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 23.7.245.216
+  HEDEF     : GET https://www.musicful.ai/musicful/_nuxt/D_HUqX5R.js
+
+  >>> [REQUEST FOR İSTEK #25 (LOG ID: 39)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    Accept: */*
+    Accept-Encoding: gzip, deflate, br, zstd
+    Accept-Language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    Connection: keep-alive
+    Cookie: [MASKED_BY_LOGGER]
+    Host: www.musicful.ai
+    Origin: https://www.musicful.ai
+    Referer: https://www.musicful.ai/musicful/_nuxt/D1LCk-8p.js
+    Sec-Fetch-Dest: script
+    Sec-Fetch-Mode: cors
+    Sec-Fetch-Site: same-origin
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #25 (LOG ID: 39)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 OK
+
+  [Headers]
+    Akamai-Cache-Status: Miss from child
+    Akamai-GRN: 0.d8c70617.1786092334.59bea813
+    Alt-Svc: h3=":443"; ma=93600,h3-29=":443"; ma=93600
+    Cache-Control: public, max-age=31536000, immutable
+    Connection: keep-alive
+    Content-Encoding: gzip
+    Content-Length: 551
+    Content-Type: text/javascript; charset=utf-8
+    Date: Fri, 07 Aug 2026 08:45:34 GMT
+    ETag: "227-CuDVT2zUXUHvy9h6zBTodGJBfRM"
+    Last-Modified: Fri, 07 Aug 2026 06:36:14 GMT
+    Server: Tengine
+    Strict-Transport-Security: max-age=15724800; includeSubDomains
+    Vary: Accept-Encoding
+    X-Frame-Options: SAMEORIGIN
+
+  [Body]
+    const f='<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M19.085 11a8.085 8.085 0 1 0-16.17 0 8.085 8.085 0 0 0 16.17 0zm1.83 0c0 5.476-4.44 9.915-9.915 9.915-5.476 0-9.915-4.44-9.915-9.915 0-5.476 4.44-9.915 9.915-9.915 5.476 0 9.915 4.44 9.915 9.915z" fill="#fff"/><path d="M13.085 11c0-2.414-.328-4.562-.832-6.074-.254-.761-.535-1.312-.804-1.653-.277-.35-.435-.358-.449-.358-.014 0-.172.007-.45.358-.268.341-.55.892-.803 1.653-.504 1.512-.832 3.66-.832 6.074 0 2.414.328 4.562.832 6.074.254.761.535 1.312.804 1.653.277.35.435.358.449.358.014 0 .172-.007.45-.358.268-.341.55-.892.803-1.653.504-1.512.832-3.66.832-6.074zm1.83 0c0 2.556-.344 4.909-.926 6.653-.289.868-.653 1.636-1.102 2.206-.441.56-1.072 1.056-1.887 1.056s-1.446-.496-1.887-1.056c-.449-.57-.813-1.338-1.102-2.206-.582-1.744-.926-4.097-.926-6.653 0-2.556.344-4.909.926-6.653.289-.868.653-1.636 1.102-2.206.441-.56 1.072-1.056 1.887-1.056s1.446.496 1.887 1.056c.449.57.813 1.338 1.102 2.206.582 1.744.926 4.097.926 6.653z" fill="#fff"/><path d="M20 10.085v1.83H2v-1.83h18z" fill="#fff"/></svg>';export{f as default};
+    
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #26 (LOG ID: 40) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:33
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 23.50.131.212
+  HEDEF     : GET https://www.musicful.ai/musicful/_nuxt/DuPBhqe3.js
+
+  >>> [REQUEST FOR İSTEK #26 (LOG ID: 40)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    Accept: */*
+    Accept-Encoding: gzip, deflate, br, zstd
+    Accept-Language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    Connection: keep-alive
+    Cookie: [MASKED_BY_LOGGER]
+    Host: www.musicful.ai
+    Origin: https://www.musicful.ai
+    Referer: https://www.musicful.ai/musicful/_nuxt/D1LCk-8p.js
+    Sec-Fetch-Dest: script
+    Sec-Fetch-Mode: cors
+    Sec-Fetch-Site: same-origin
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #26 (LOG ID: 40)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 OK
+
+  [Headers]
+    Akamai-Cache-Status: Miss from child
+    Akamai-GRN: 0.54a72917.1786092334.17b0f74f
+    Cache-Control: public, max-age=31536000, immutable
+    Connection: keep-alive
+    Content-Encoding: gzip
+    Content-Length: 348
+    Content-Type: text/javascript; charset=utf-8
+    Date: Fri, 07 Aug 2026 08:45:34 GMT
+    ETag: W/"2ae-ev0TAj9lGuu6UkoocQA/4P/0u9s"
+    Last-Modified: Wed, 29 Jul 2026 10:01:29 GMT
+    Server: Tengine
+    Strict-Transport-Security: max-age=15724800; includeSubDomains
+    Vary: Accept-Encoding
+    X-Frame-Options: SAMEORIGIN
+
+  [Body]
+    const a='<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.97 13.994a.915.915 0 1 0-1.83 0v6.77a.915.915 0 1 0 1.83 0v-6.77z" fill="#fff"/><path d="M15.088 18.026a.915.915 0 0 0-1.295-1.293l-2.736 2.737-2.739-2.737a.915.915 0 1 0-1.294 1.293l3.385 3.385a.916.916 0 0 0 1.294 0l3.385-3.385zM10.14 7.995a.915.915 0 0 0 1.83 0v-6.77a.915.915 0 1 0-1.83 0v6.77z" fill="#fff"/><path d="M7.023 3.963a.916.916 0 0 0 1.295 1.293l2.737-2.737 2.738 2.737a.915.915 0 0 0 1.294-1.293L11.702.578a.915.915 0 0 0-1.294 0L7.023 3.963zm10.472 6.117a.915.915 0 0 1 0 1.83h-13a.915.915 0 1 1 0-1.83h13z" fill="#fff"/></svg>';export{a as default};
+    
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #27 (LOG ID: 41) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:33
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 23.7.245.216
+  HEDEF     : GET https://www.musicful.ai/musicful/_nuxt/BtX-t4Qf.js
+
+  >>> [REQUEST FOR İSTEK #27 (LOG ID: 41)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    Accept: */*
+    Accept-Encoding: gzip, deflate, br, zstd
+    Accept-Language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    Connection: keep-alive
+    Cookie: [MASKED_BY_LOGGER]
+    Host: www.musicful.ai
+    Origin: https://www.musicful.ai
+    Referer: https://www.musicful.ai/musicful/_nuxt/D1LCk-8p.js
+    Sec-Fetch-Dest: script
+    Sec-Fetch-Mode: cors
+    Sec-Fetch-Site: same-origin
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #27 (LOG ID: 41)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 OK
+
+  [Headers]
+    Akamai-Cache-Status: Miss from child
+    Akamai-GRN: 0.cfc70617.1786092334.d5e13a44
+    Alt-Svc: h3=":443"; ma=93600,h3-29=":443"; ma=93600
+    Cache-Control: public, max-age=31536000, immutable
+    Connection: keep-alive
+    Content-Encoding: gzip
+    Content-Length: 542
+    Content-Type: text/javascript; charset=utf-8
+    Date: Fri, 07 Aug 2026 08:45:34 GMT
+    ETag: "21e-KL6YfieBnv2+VVGbGr0FQfjhKxE"
+    Last-Modified: Wed, 29 Jul 2026 10:01:30 GMT
+    Server: Tengine
+    Strict-Transport-Security: max-age=15724800; includeSubDomains
+    Vary: Accept-Encoding
+    X-Frame-Options: SAMEORIGIN
+
+  [Body]
+    const l='<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><g clip-path="url(#clip0_95_151)" fill="#B2B2B2"><path d="M18.085 9a7.085 7.085 0 1 0-14.17 0 7.085 7.085 0 0 0 14.17 0zm1.83 0a8.915 8.915 0 1 1-17.83 0 8.915 8.915 0 0 1 17.83 0z"/><path d="M3.268 12.451a.916.916 0 0 1 1.465 1.098l-2.24 2.984 1.796.599c.23.077.421.242.53.459l.89 1.78 2.603-2.973a.915.915 0 1 1 1.377 1.204l-3.5 4a.914.914 0 0 1-1.507-.193L3.35 18.748l-2.64-.88a.916.916 0 0 1-.443-1.417l3-4zM17.451 12.268a.916.916 0 0 1 1.282.183l3 4a.915.915 0 0 1-.444 1.417l-2.64.88-1.33 2.661a.915.915 0 0 1-1.507.194l-3.5-4a.915.915 0 0 1 1.377-1.206l2.602 2.974.89-1.78.045-.08a.917.917 0 0 1 .485-.38l1.795-.598-2.238-2.984a.916.916 0 0 1 .183-1.281zM7.085 9a3.915 3.915 0 0 1 6.723-2.729.915.915 0 0 1-1.313 1.276 2.085 2.085 0 1 0 0 2.906.915.915 0 0 1 1.313 1.276A3.915 3.915 0 0 1 7.085 9z"/></g><defs><clipPath id="clip0_95_151"><path fill="#fff" d="M0 0h22v22H0z"/></clipPath></defs></svg>';export{l as default};
+    
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #28 (LOG ID: 42) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:33
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : GET https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #28 (LOG ID: 42)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: application/json, text/plain, */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    authorization: [MASKED_BY_LOGGER]
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    terminal: web
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #28 (LOG ID: 42)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-origin: https://www.musicful.ai
+    content-encoding: gzip
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:45:34 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Accept-Encoding, Origin
+    x-trace-id: fee35ed093c54cc3
+
+  [Body]
+    {
+      "data": {
+        "result": [
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724102",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          },
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724103",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          }
+        ]
+      },
+      "message": "Success",
+      "status": 200,
+      "time": 1786092334
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #29 (LOG ID: 43) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:33
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 23.7.245.216
+  HEDEF     : GET https://www.musicful.ai/musicful/_nuxt/xXq3NwbY.js
+
+  >>> [REQUEST FOR İSTEK #29 (LOG ID: 43)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    Accept: */*
+    Accept-Encoding: gzip, deflate, br, zstd
+    Accept-Language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    Connection: keep-alive
+    Cookie: [MASKED_BY_LOGGER]
+    Host: www.musicful.ai
+    Origin: https://www.musicful.ai
+    Referer: https://www.musicful.ai/musicful/_nuxt/D1LCk-8p.js
+    Sec-Fetch-Dest: script
+    Sec-Fetch-Mode: cors
+    Sec-Fetch-Site: same-origin
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #29 (LOG ID: 43)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 OK
+
+  [Headers]
+    Akamai-Cache-Status: Miss from child
+    Akamai-GRN: 0.cfc70617.1786092334.d5e13a76
+    Alt-Svc: h3=":443"; ma=93600,h3-29=":443"; ma=93600
+    Cache-Control: public, max-age=31536000, immutable
+    Connection: keep-alive
+    Content-Encoding: gzip
+    Content-Length: 686
+    Content-Type: text/javascript; charset=utf-8
+    Date: Fri, 07 Aug 2026 08:45:34 GMT
+    ETag: "2ae-T+fchaWEG+XjQsY87yTussLt9nc"
+    Last-Modified: Wed, 29 Jul 2026 10:01:39 GMT
+    Server: Tengine
+    Strict-Transport-Security: max-age=15724800; includeSubDomains
+    Vary: Accept-Encoding
+    X-Frame-Options: SAMEORIGIN
+
+  [Body]
+    const e='<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M20.837 14.266c.23.453.388.918.472 1.396.062.36.084.728.063 1.102a4.887 4.887 0 0 1-.722 2.303 4.884 4.884 0 0 1-1.723 1.69 4.834 4.834 0 0 1-2.468.658H5.541c-.508 0-.994-.072-1.457-.214a4.835 4.835 0 0 1-1.011-.445 4.887 4.887 0 0 1-1.723-1.69 4.888 4.888 0 0 1-.721-2.303c-.021-.373 0-.74.063-1.1.083-.48.24-.944.471-1.397L6.622 3.567c.256-.5.574-.936.956-1.307.276-.269.586-.503.928-.703.342-.2.698-.356 1.067-.466A4.946 4.946 0 0 1 11 .886c.496 0 .972.068 1.428.205.368.11.724.266 1.066.466.342.2.652.434.928.703.382.37.7.806.956 1.307l5.459 10.7zm-1.63.832L13.748 4.399a2.99 2.99 0 0 0-1.178-1.263 3.055 3.055 0 0 0-1.57-.42 3.057 3.057 0 0 0-2.09.803 3.1 3.1 0 0 0-.658.88L2.793 15.098c-.262.513-.383 1.02-.363 1.523.02.502.18.999.48 1.49.301.491.67.86 1.11 1.105.438.246.945.369 1.521.369H16.46c.576 0 1.083-.123 1.522-.369.438-.245.808-.614 1.109-1.105.3-.491.46-.988.48-1.49.02-.502-.101-1.01-.363-1.523zM11.915 7v5a.906.906 0 0 1-.915.915.906.906 0 0 1-.915-.915V7c0-.512.403-.915.915-.915s.915.403.915.915zm-2.23 9.327a1.332 1.332 0 1 1 2.665 0 1.332 1.332 0 0 1-2.665 0z"/></svg>';export{e as default};
+    
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #30 (LOG ID: 44) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:33
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 23.7.245.216
+  HEDEF     : GET https://www.musicful.ai/musicful/_nuxt/CsVuEg8N.js
+
+  >>> [REQUEST FOR İSTEK #30 (LOG ID: 44)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    Accept: */*
+    Accept-Encoding: gzip, deflate, br, zstd
+    Accept-Language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    Connection: keep-alive
+    Cookie: [MASKED_BY_LOGGER]
+    Host: www.musicful.ai
+    Origin: https://www.musicful.ai
+    Referer: https://www.musicful.ai/musicful/_nuxt/D1LCk-8p.js
+    Sec-Fetch-Dest: script
+    Sec-Fetch-Mode: cors
+    Sec-Fetch-Site: same-origin
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #30 (LOG ID: 44)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 OK
+
+  [Headers]
+    Akamai-Cache-Status: Miss from child
+    Akamai-GRN: 0.cfc70617.1786092334.d5e13a1e
+    Alt-Svc: h3=":443"; ma=93600,h3-29=":443"; ma=93600
+    Cache-Control: public, max-age=31536000, immutable
+    Connection: keep-alive
+    Content-Encoding: gzip
+    Content-Length: 399
+    Content-Type: text/javascript; charset=utf-8
+    Date: Fri, 07 Aug 2026 08:45:34 GMT
+    ETag: W/"2c1-LCWETIppJtTa5AeJxAZVEEQgaEE"
+    Last-Modified: Fri, 07 Aug 2026 08:32:10 GMT
+    Server: Tengine
+    Strict-Transport-Security: max-age=15724800; includeSubDomains
+    Vary: Accept-Encoding
+    X-Frame-Options: SAMEORIGIN
+
+  [Body]
+    const c='<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.021 2.085c.9 0 1.75.415 2.302 1.125l.654.842c.017.02.042.033.068.033H17A2.915 2.915 0 0 1 19.915 7v10A2.915 2.915 0 0 1 17 19.915H5A2.915 2.915 0 0 1 2.085 17V5A2.915 2.915 0 0 1 5 2.085h5.021zM5 3.915c-.6 0-1.085.486-1.085 1.085v12c0 .6.486 1.085 1.085 1.085h12c.6 0 1.085-.486 1.085-1.085V7c0-.6-.486-1.085-1.085-1.085h-3.955c-.591 0-1.149-.273-1.512-.74l-.655-.841a1.085 1.085 0 0 0-.857-.419H5zm6 4.17c.505 0 .915.41.915.915v2.085H14a.915.915 0 0 1 0 1.83h-2.085V15a.915.915 0 0 1-1.83 0v-2.085H8a.915.915 0 0 1 0-1.83h2.085V9c0-.505.41-.915.915-.915z"/></svg>';export{c as default};
+    
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #31 (LOG ID: 45) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:33
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 23.7.245.216
+  HEDEF     : GET https://www.musicful.ai/musicful/_nuxt/CT5cCNvu.js
+
+  >>> [REQUEST FOR İSTEK #31 (LOG ID: 45)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    Accept: */*
+    Accept-Encoding: gzip, deflate, br, zstd
+    Accept-Language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    Connection: keep-alive
+    Cookie: [MASKED_BY_LOGGER]
+    Host: www.musicful.ai
+    Origin: https://www.musicful.ai
+    Referer: https://www.musicful.ai/musicful/_nuxt/D1LCk-8p.js
+    Sec-Fetch-Dest: script
+    Sec-Fetch-Mode: cors
+    Sec-Fetch-Site: same-origin
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #31 (LOG ID: 45)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 OK
+
+  [Headers]
+    Akamai-Cache-Status: Miss from child
+    Akamai-GRN: 0.d8c70617.1786092334.59bea82e
+    Alt-Svc: h3=":443"; ma=93600,h3-29=":443"; ma=93600
+    Cache-Control: public, max-age=31536000, immutable
+    Connection: keep-alive
+    Content-Encoding: gzip
+    Content-Length: 368
+    Content-Type: text/javascript; charset=utf-8
+    Date: Fri, 07 Aug 2026 08:45:34 GMT
+    ETag: W/"269-gp1ZJrRzE56cjlNaCI0SBNsbXWQ"
+    Last-Modified: Fri, 07 Aug 2026 08:32:10 GMT
+    Server: Tengine
+    Strict-Transport-Security: max-age=15724800; includeSubDomains
+    Vary: Accept-Encoding
+    X-Frame-Options: SAMEORIGIN
+
+  [Body]
+    const l='<svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M10.563 2.585a.915.915 0 0 1 0 1.83H4.415v13.173l13.17.056V11.5a.915.915 0 0 1 1.83 0v7.063a.915.915 0 0 1-.919.915l-15-.063a.915.915 0 0 1-.911-.915v-15c0-.505.41-.915.915-.915h7.063z" fill="#fff"/><path d="M16.423 1.79a.916.916 0 0 1 1.225.063l2.5 2.5a.916.916 0 0 1 0 1.295l-8 8a.918.918 0 0 1-.397.232l-3.5 1a.915.915 0 0 1-1.153-1.03l.5-3 .034-.138a.915.915 0 0 1 .22-.36l8.5-8.5.07-.062zm-7.07 9.65l-.213 1.282 1.879-.536L18.205 5 17 3.795l-7.646 7.646z" fill="#fff"/></svg>';export{l as default};
+    
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #32 (LOG ID: 47) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:40
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : OPTIONS https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #32 (LOG ID: 47)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    access-control-request-headers: authorization,terminal
+    access-control-request-method: GET
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #32 (LOG ID: 47)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-headers: authorization, terminal
+    access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+    access-control-allow-origin: https://www.musicful.ai
+    allow: GET, HEAD, OPTIONS
+    content-length: 0
+    content-type: text/html; charset=utf-8
+    date: Fri, 07 Aug 2026 08:45:40 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+    x-trace-id: b8e8349f48d94b38
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #33 (LOG ID: 48) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:42
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : GET https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #33 (LOG ID: 48)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: application/json, text/plain, */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    authorization: [MASKED_BY_LOGGER]
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    terminal: web
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #33 (LOG ID: 48)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-origin: https://www.musicful.ai
+    content-encoding: gzip
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:45:43 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Accept-Encoding, Origin
+    x-trace-id: 9f733e9fcd6d47a6
+
+  [Body]
+    {
+      "data": {
+        "result": [
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724102",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          },
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724103",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          }
+        ]
+      },
+      "message": "Success",
+      "status": 200,
+      "time": 1786092343
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #34 (LOG ID: 50) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:50
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : OPTIONS https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #34 (LOG ID: 50)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    access-control-request-headers: authorization,terminal
+    access-control-request-method: GET
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #34 (LOG ID: 50)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-headers: authorization, terminal
+    access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+    access-control-allow-origin: https://www.musicful.ai
+    allow: GET, OPTIONS, HEAD
+    content-length: 0
+    content-type: text/html; charset=utf-8
+    date: Fri, 07 Aug 2026 08:45:50 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+    x-trace-id: bab284108ecb4c2c
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #35 (LOG ID: 51) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:51
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : GET https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #35 (LOG ID: 51)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: application/json, text/plain, */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    authorization: [MASKED_BY_LOGGER]
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    terminal: web
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #35 (LOG ID: 51)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-origin: https://www.musicful.ai
+    content-encoding: gzip
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:45:52 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Accept-Encoding, Origin
+    x-trace-id: c8f141f10fcf4dcc
+
+  [Body]
+    {
+      "data": {
+        "result": [
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724102",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          },
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724103",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          }
+        ]
+      },
+      "message": "Success",
+      "status": 200,
+      "time": 1786092352
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #36 (LOG ID: 53) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:45:59
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : OPTIONS https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #36 (LOG ID: 53)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    access-control-request-headers: authorization,terminal
+    access-control-request-method: GET
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #36 (LOG ID: 53)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-headers: authorization, terminal
+    access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+    access-control-allow-origin: https://www.musicful.ai
+    allow: HEAD, OPTIONS, GET
+    content-length: 0
+    content-type: text/html; charset=utf-8
+    date: Fri, 07 Aug 2026 08:46:00 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+    x-trace-id: 4a7486df61d94415
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #37 (LOG ID: 56) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:46:02
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : GET https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #37 (LOG ID: 56)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: application/json, text/plain, */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    authorization: [MASKED_BY_LOGGER]
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    terminal: web
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #37 (LOG ID: 56)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-origin: https://www.musicful.ai
+    content-encoding: gzip
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:46:03 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Accept-Encoding, Origin
+    x-trace-id: b29dfe03da8840a7
+
+  [Body]
+    {
+      "data": {
+        "result": [
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724102",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          },
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724103",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          }
+        ]
+      },
+      "message": "Success",
+      "status": 200,
+      "time": 1786092363
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #38 (LOG ID: 57) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:46:09
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : OPTIONS https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #38 (LOG ID: 57)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    access-control-request-headers: authorization,terminal
+    access-control-request-method: GET
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #38 (LOG ID: 57)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-headers: authorization, terminal
+    access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+    access-control-allow-origin: https://www.musicful.ai
+    allow: GET, OPTIONS, HEAD
+    content-length: 0
+    content-type: text/html; charset=utf-8
+    date: Fri, 07 Aug 2026 08:46:10 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+    x-trace-id: 2b829212382d4847
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #39 (LOG ID: 58) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:46:11
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : GET https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #39 (LOG ID: 58)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: application/json, text/plain, */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    authorization: [MASKED_BY_LOGGER]
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    terminal: web
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #39 (LOG ID: 58)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-origin: https://www.musicful.ai
+    content-encoding: gzip
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:46:12 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Accept-Encoding, Origin
+    x-trace-id: dcc4aff846f84370
+
+  [Body]
+    {
+      "data": {
+        "result": [
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724102",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          },
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724103",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          }
+        ]
+      },
+      "message": "Success",
+      "status": 200,
+      "time": 1786092372
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #40 (LOG ID: 59) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:46:20
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : OPTIONS https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #40 (LOG ID: 59)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    access-control-request-headers: authorization,terminal
+    access-control-request-method: GET
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #40 (LOG ID: 59)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-headers: authorization, terminal
+    access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+    access-control-allow-origin: https://www.musicful.ai
+    allow: OPTIONS, HEAD, GET
+    content-length: 0
+    content-type: text/html; charset=utf-8
+    date: Fri, 07 Aug 2026 08:46:21 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+    x-trace-id: 19bcdde968714f7f
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #41 (LOG ID: 60) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:46:22
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 23.7.245.216
+  HEDEF     : HEAD https://www.musicful.ai/musicful/_nuxt/CsRlQltf.js
+
+  >>> [REQUEST FOR İSTEK #41 (LOG ID: 60)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    Accept: */*
+    Accept-Encoding: gzip, deflate, br, zstd
+    Accept-Language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    Cache-Control: no-cache
+    Connection: keep-alive
+    Cookie: [MASKED_BY_LOGGER]
+    Host: www.musicful.ai
+    Pragma: no-cache
+    Referer: https://www.musicful.ai/ai-music-generator/?promotion=homepage&position=home_top_button
+    Sec-Fetch-Dest: empty
+    Sec-Fetch-Mode: cors
+    Sec-Fetch-Site: same-origin
+    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #41 (LOG ID: 60)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 OK
+
+  [Headers]
+    Akamai-Cache-Status: Hit from child
+    Akamai-GRN: 0.d8c70617.1786092383.59beaa9e
+    Cache-Control: public, max-age=31536000, immutable
+    Connection: keep-alive
+    Content-Encoding: gzip
+    Content-Length: 499227
+    Content-Type: text/javascript; charset=utf-8
+    Date: Fri, 07 Aug 2026 08:46:23 GMT
+    ETag: "79e1b-7umyg9vgA4lhfovhJOCO2H149XA"
+    Last-Modified: Fri, 07 Aug 2026 08:32:16 GMT
+    Server: Tengine
+    Strict-Transport-Security: max-age=15724800; includeSubDomains
+    Vary: Accept-Encoding
+    X-Frame-Options: SAMEORIGIN
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #42 (LOG ID: 64) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:46:23
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : GET https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #42 (LOG ID: 64)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: application/json, text/plain, */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    authorization: [MASKED_BY_LOGGER]
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    terminal: web
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #42 (LOG ID: 64)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-origin: https://www.musicful.ai
+    content-encoding: gzip
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:46:24 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Accept-Encoding, Origin
+    x-trace-id: 21c6a536357a4156
+
+  [Body]
+    {
+      "data": {
+        "result": [
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724102",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          },
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724103",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          }
+        ]
+      },
+      "message": "Success",
+      "status": 200,
+      "time": 1786092384
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #43 (LOG ID: 65) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:46:30
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : OPTIONS https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #43 (LOG ID: 65)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    access-control-request-headers: authorization,terminal
+    access-control-request-method: GET
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #43 (LOG ID: 65)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-headers: authorization, terminal
+    access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+    access-control-allow-origin: https://www.musicful.ai
+    allow: OPTIONS, HEAD, GET
+    content-length: 0
+    content-type: text/html; charset=utf-8
+    date: Fri, 07 Aug 2026 08:46:31 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+    x-trace-id: ce82faa258254138
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #44 (LOG ID: 66) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:46:31
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : GET https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #44 (LOG ID: 66)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: application/json, text/plain, */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    authorization: [MASKED_BY_LOGGER]
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    terminal: web
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #44 (LOG ID: 66)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-origin: https://www.musicful.ai
+    content-encoding: gzip
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:46:32 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Accept-Encoding, Origin
+    x-trace-id: 07ce1dc0cd50453f
+
+  [Body]
+    {
+      "data": {
+        "result": [
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724102",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          },
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": null,
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": null,
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724103",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": null,
+            "sensitive_content": null,
+            "song_id": null,
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 4,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          }
+        ]
+      },
+      "message": "Success",
+      "status": 200,
+      "time": 1786092392
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #45 (LOG ID: 67) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:46:40
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : OPTIONS https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #45 (LOG ID: 67)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    access-control-request-headers: authorization,terminal
+    access-control-request-method: GET
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #45 (LOG ID: 67)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-headers: authorization, terminal
+    access-control-allow-methods: DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT
+    access-control-allow-origin: https://www.musicful.ai
+    allow: HEAD, OPTIONS, GET
+    content-length: 0
+    content-type: text/html; charset=utf-8
+    date: Fri, 07 Aug 2026 08:46:41 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Origin
+    x-trace-id: 9aa11f7a56284bb8
+
+  [Body]
+    İçerik (gövde) yok.
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #46 (LOG ID: 69) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:46:42
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 47.254.5.154
+  HEDEF     : GET https://aimusic-api.topmediai.com/musicful/v2/task/results?ids=53465809822724102,53465809822724103
+
+  >>> [REQUEST FOR İSTEK #46 (LOG ID: 69)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: application/json, text/plain, */*
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    authorization: [MASKED_BY_LOGGER]
+    origin: https://www.musicful.ai
+    priority: u=1, i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: empty
+    sec-fetch-mode: cors
+    sec-fetch-site: cross-site
+    terminal: web
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #46 (LOG ID: 69)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    access-control-allow-origin: https://www.musicful.ai
+    content-encoding: gzip
+    content-type: application/json
+    date: Fri, 07 Aug 2026 08:46:43 GMT
+    set-cookie: [MASKED_BY_LOGGER]
+    strict-transport-security: max-age=15724800; includeSubDomains
+    vary: Accept-Encoding, Origin
+    x-trace-id: 1c8bf33325714014
+
+  [Body]
+    {
+      "data": {
+        "result": [
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": "jZkSvaJaFfi3sZ0F7TTJI1wCgGIdA6Vb0rqJ5mnlKRvQLsEd3fPi7xmFn2QLOym8kMI7vNPuSVHNG2vQOoGxCQ==",
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": "em9bPfhUBM8P+rQS2tYrTRuDwl69hLo1lkV1iGKezeToJhaDMyNCPF2LJggwRwgjDYaECbQdl6D5Nl4wxt3Nzo+LeXVexvk301pg3/K0Xf0ez+nv5lplZTfY4Wgi+48l",
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724102",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": 5,
+            "sensitive_content": null,
+            "song_id": "3d0ef22a-8af3-464f-af6e-9c4d7e1f8ad9",
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 2,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          },
+          {
+            "add_audio_information_mappings": null,
+            "audio_url": "0//UbatF4grLI0BnGQOqSBQLrej+ji/UvDlJae2GLSccstP2/Z5CgIe2UXHMROGqI2EdbjLawuXoO7sUb2fWnDTNiOzkS1sBBzIxfP8xJAE=",
+            "author": null,
+            "check_status": 0,
+            "comment_numbers": 0,
+            "cover_information": null,
+            "cover_status": 0,
+            "cover_url": "em9bPfhUBM8P+rQS2tYrTRuDwl69hLo1lkV1iGKezeSmvAp+ea5SFd7ZDNQyte9piOaLr01fAm/9CdlZQScaDUJzSLVCrWsyTWI9DU+um91DzPDZHNTlsxfuYYdyvMHM",
+            "display_style": null,
+            "duration": -1,
+            "extend_information": null,
+            "extend_status": 0,
+            "fail_code": null,
+            "favorite_numbers": 0,
+            "id": "53465809822724103",
+            "inspiration_information": null,
+            "inspiration_status": 0,
+            "is_concat": 0,
+            "is_cover": 0,
+            "is_cover_self": 0,
+            "is_favorite": null,
+            "is_infringement": 0,
+            "is_instrumental": 0,
+            "is_other_extend": 0,
+            "is_pinned": null,
+            "is_played": null,
+            "is_public": 0,
+            "is_replace_section": 0,
+            "is_replacement": 0,
+            "is_upload": 0,
+            "lrc_url": null,
+            "lyric": "[Intro - Energetic Acoustic Guitar & Groovy Trap Beat]\n(Zeynep - Gülümseyerek)\nAhahaha, yine mi sen?\nO zaman başlasın! Yeah!\n\n[Verse 1 - Female Vocal (Zeynep style - Kıpır kıpır, eğlenceli ve ritmik)]\nSabahın köründe aklıma düştün yine\nBu nasıl bir enerji, bu nasıl bir neşe?\nKahvemi koydum, şarkımızı açtım son ses\nSeninle her günüm sanki bitmeyen bir heves!\nBana öyle bakınca duruyor bütün dünya\nGerçek misin sen, yoksa tatlı bir rüya?\n\n[Verse 2 - Male Vocal (Reynmen style - Enerjik pop-trap, akıcı)]\nYeah! Geldim işte, sahil yolu, camlar açık\nSeni görünce kafam oluyor hafif kırık!\nGülüşün güneş gibi, yakıyor her tarafı\nSeninle yazdım ben bu en güzel tarafı!\nYok bende öyle kasıntı, gizli saklı\nSeni sevmeyen kafayı yemiş, aklı yasaklı!\n\n[Pre-Chorus - Both / Duet (Tempo yükselir, alkış ritimleri)]\n(Zeynep) Tut elimden, hiç bırakma ne olursun!\n(Reynmen) Kalbim anca senin yanınla huzur bulsun!\n(Birlikte) Say 1, 2, 3... Şimdi patlasın!\n\n[Chorus - Powerful Upbeat Duet (Tam dans etmelik, baslar ",
+            "mashup_information": null,
+            "mashup_status": 0,
+            "medal_info": null,
+            "merged_video_url": null,
+            "mv": "v5.5",
+            "persona_id": null,
+            "persona_information": null,
+            "play_numbers": 0,
+            "profile_photo": "",
+            "reference_information": null,
+            "remaster_information": null,
+            "replace_section_information": null,
+            "reuse_status": 0,
+            "sample_information": null,
+            "sample_status": 0,
+            "scheme": 5,
+            "sensitive_content": null,
+            "song_id": "8251f9b6-35fd-410d-a6fd-a6711c01ede1",
+            "song_part": null,
+            "soundtrack_information": false,
+            "source_video_url": null,
+            "status": 2,
+            "style": "Turkish fun pop trap duet, upbeat Zeynep Bastik style, catchy Reynmen trap beat, summer vibe, energetic acoustic guitar, 808 bass, groovy, playful female and male vocals, happy love song, dance, party",
+            "timing_information": null,
+            "title": "denemee"
+          }
+        ]
+      },
+      "message": "Success",
+      "status": 200,
+      "time": 1786092403
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #47 (LOG ID: 73) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:46:43
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 43.109.40.193
+  HEDEF     : GET https://files.topmediai.com/aimusic/9955536/fa72a5a5-deea-4be1-a27a-2db54a088926-image.png?x-oss-process=image/resize,w_180/quality,q_90/format,webp
+
+  >>> [REQUEST FOR İSTEK #47 (LOG ID: 73)] >>> >>> >>> >>> >>> >>> >>> >>> >>> >>>
+  [Headers]
+    accept: image/avif,image/webp,image/apng,image/svg+xml,image/*,*/*;q=0.8
+    accept-encoding: gzip, deflate, br, zstd
+    accept-language: tr-TR,tr;q=0.9,en-US;q=0.8,en;q=0.7,de;q=0.6
+    priority: i
+    referer: https://www.musicful.ai/
+    sec-ch-ua: "Not=A?Brand";v="99", "Google Chrome";v="151", "Chromium";v="151"
+    sec-ch-ua-mobile: ?0
+    sec-ch-ua-platform: "Windows"
+    sec-fetch-dest: image
+    sec-fetch-mode: no-cors
+    sec-fetch-site: cross-site
+    sec-fetch-storage-access: active
+    user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/151.0.0.0 Safari/537.36
+
+  [Body]
+    İçerik (gövde) yok.
+
+  <<< [RESPONSE FOR İSTEK #47 (LOG ID: 73)] <<< <<< <<< <<< <<< <<< <<< <<< <<< <<<
+  [Status]
+    200 
+
+  [Headers]
+    ali-swift-global-savetime: 1786092404
+    content-disposition: attachment;filename=Mi duelo-image.png
+    content-length: 6816
+    content-type: image/webp
+    date: Fri, 07 Aug 2026 08:46:44 GMT
+    eagleid: 2b6d28a817860924038581465e
+    etag: "ED742B4F2BAEDAA8C476A2992C9AF73C"
+    last-modified: Tue, 01 Oct 2024 17:41:54 GMT
+    server: Tengine
+    timing-allow-origin: *
+    vary: Origin
+    via: ens-cache9.l2de4[202,202,200-0,M], ens-cache36.l2de4[211,0], ens-cache5.tr4[246,246,200-0,M], ens-cache20.tr4[250,0]
+    x-cache: MISS TCP_MISS dirn:-2:-2
+    x-oss-cdn-auth: success
+    x-oss-hash-crc64ecma: 16831143950657159029
+    x-oss-object-type: Normal
+    x-oss-request-id: 6A759B74C071B233390E52E0
+    x-oss-server-time: 26
+    x-oss-storage-class: Standard
+    x-swift-cachetime: 0
+    x-swift-savetime: Fri, 07 Aug 2026 08:46:44 GMT
+
+  [Body]
+    [gRPC/Protobuf Çözümlendi]
+    {
+      "10": "RkbCmBoAAFdFQlBWUDggwowaAADDsGwAwp0BKsK0AMK0AD7DjVLCm0zCp8KkwqIiNsK6DcKww7AZwolpAMOWwq/CtsO/DcO/wg==",
+      "5642428980462640": 9190654482515805000
+    }
+
+--------------------------------------------------------------------------------
+
+[ İSTEK #48 (LOG ID: 74) ] --------------------------------------------------------------------
+  ZAMAN     : 07.08.2026 11:46:43
+  BAĞLANTI  : İSTEMCİ 127.0.0.1 -> SUNUCU 23.7.245.135
+  HEDEF     : GET https://images.musicful.ai/musicfulen/assets/common/song-ready.svg
+
+  >>> [REQUEST FOR İSTEK #48 (LOG ID: 74)
+<truncated 40395 bytes>
+
+NOTE: The output was truncated because it was too long. Use a more targeted query or a smaller range to get the information you need.

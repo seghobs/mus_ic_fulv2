@@ -9,9 +9,10 @@
             </div>
 
             <div class="flex items-center gap-2 mb-4">
-                <button onclick="switchTab('tokens')" id="tabTokens" class="flex-1 py-2 text-xs font-bold bg-zinc-800 text-white rounded transition">Aktif Tokenlar</button>
-                <button onclick="switchTab('accounts')" id="tabAccounts" class="flex-1 py-2 text-xs font-bold bg-zinc-900 text-zinc-500 rounded transition">Hesaplar</button>
-                <button onclick="switchTab('bot')" id="tabBot" class="flex-1 py-2 text-xs font-bold bg-zinc-900 text-zinc-500 rounded transition">Hesap Üretici</button>
+                <button onclick="switchTab('tokens')" id="tabTokens" class="flex-1 py-2 text-[10px] font-black rounded-lg tab-active transition-all duration-300">Tokenlar</button>
+                <button onclick="switchTab('accounts')" id="tabAccounts" class="flex-1 py-2 text-[10px] font-bold bg-[#0c0c14] border border-white/[0.04] text-zinc-500 hover:text-white hover:border-violet-500/20 rounded-lg transition-all duration-300">Hesaplar</button>
+                <button onclick="switchTab('bot')" id="tabBot" class="flex-1 py-2 text-[10px] font-bold bg-[#0c0c14] border border-white/[0.04] text-zinc-500 hover:text-white hover:border-violet-500/20 rounded-lg transition-all duration-300">Üretici</button>
+                <button onclick="switchTab('analysis')" id="tabAnalysis" class="flex-1 py-2 text-[10px] font-bold bg-[#0c0c14] border border-white/[0.04] text-zinc-500 hover:text-white hover:border-violet-500/20 rounded-lg transition-all duration-300">Analizler</button>
             </div>
 
             <!-- Tab: Tokens -->
@@ -21,14 +22,35 @@
 
             <!-- Tab: Accounts -->
             <div id="viewAccounts" class="hidden space-y-4">
-                <div class="flex items-center justify-between mb-2">
+                <div class="flex items-center justify-between mb-2 gap-2">
                     <div class="text-xs text-zinc-500">Sistemdeki tüm kayıtlı hesaplar.</div>
-                    <select id="accountsSort" onchange="applyAccountSort()" class="bg-zinc-900 border border-zinc-800 text-zinc-400 text-[10px] font-bold rounded px-2 py-1 outline-none cursor-pointer">
-                        <option value="credits_desc">Kredi (En Yüksek)</option>
-                        <option value="credits_asc">Kredi (En Düşük)</option>
-                        <option value="newest">Tarih (En Yeni)</option>
-                        <option value="oldest">Tarih (En Eski)</option>
-                    </select>
+                    <div class="flex items-center gap-2">
+                        <button onclick="startBulkRefresh()" class="bg-zinc-900 border border-zinc-800 hover:border-violet-500/30 text-zinc-400 hover:text-white text-[10px] font-bold rounded px-2 py-1 transition flex items-center gap-1">
+                            <i class="fa-solid fa-arrows-rotate text-[8px]"></i> Kredileri Güncelle
+                        </button>
+                        <select id="accountsSort" onchange="applyAccountSort()" class="bg-zinc-900 border border-zinc-800 text-zinc-400 text-[10px] font-bold rounded px-2 py-1 outline-none cursor-pointer">
+                            <option value="credits_desc">Kredi (En Yüksek)</option>
+                            <option value="credits_asc">Kredi (En Düşük)</option>
+                            <option value="spent_desc">Harcanan Kredi (En Yüksek)</option>
+                            <option value="spent_asc">Harcanan Kredi (En Düşük)</option>
+                            <option value="songs_desc">Şarkı Üretimi (En Yüksek)</option>
+                            <option value="newest">Tarih (En Yeni)</option>
+                            <option value="oldest">Tarih (En Eski)</option>
+                        </select>
+                    </div>
+                </div>
+                <!-- Bulk Refresh Progress Bar -->
+                <div id="bulkRefreshProgress" class="hidden bg-zinc-950/50 border border-zinc-900 rounded-lg p-3">
+                    <div class="flex justify-between items-center text-[9px] font-bold text-zinc-400 mb-1.5">
+                        <span class="flex items-center gap-2">
+                            <i class="fa-solid fa-spinner fa-spin text-violet-400"></i>
+                            Krediler Güncelleniyor...
+                        </span>
+                        <span id="bulkProgressText">0 / 0</span>
+                    </div>
+                    <div class="w-full bg-zinc-900 rounded-full h-1.5">
+                        <div id="bulkProgressBar" class="bg-violet-500 h-1.5 rounded-full transition-all duration-300" style="width:0%"></div>
+                    </div>
                 </div>
                 <div id="accountsList" class="space-y-2 max-h-96 overflow-y-auto pr-1"></div>
             </div>
@@ -71,6 +93,25 @@
                     </div>
                     <div class="mt-4 bg-black/50 border border-zinc-800 rounded p-3 text-[10px] font-mono text-zinc-400 h-32 overflow-y-auto" id="botConsole">
                         Hazır...
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tab: Analysis -->
+            <div id="viewAnalysis" class="hidden space-y-5 max-h-[420px] overflow-y-auto pr-1">
+                <!-- Dashboard Cards -->
+                <div class="grid grid-cols-2 gap-3" id="analysisStats">
+                    <!-- Stats will be populated by JS -->
+                </div>
+                
+                <!-- Referral Tree Container -->
+                <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4">
+                    <h4 class="text-xs font-black text-white uppercase tracking-widest mb-4 flex items-center gap-2">
+                        <i class="fa-solid fa-sitemap text-violet-400 text-[10px]"></i>
+                        Referans Soyağacı
+                    </h4>
+                    <div id="referralTree" class="space-y-2 text-xs font-mono text-zinc-400 select-none max-h-60 overflow-y-auto pr-1">
+                        <!-- Tree will be populated by JS -->
                     </div>
                 </div>
             </div>

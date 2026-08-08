@@ -1,7 +1,7 @@
 <div id="quickSearchModal" class="modal-backdrop hidden transition-all duration-300">
-    <div class="modal-card w-full max-w-2xl bg-zinc-950 border border-zinc-800 shadow-2xl p-0 overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="quickSearchCard">
+    <div class="modal-card w-full max-w-2xl bg-[#0c0c14] border border-white/[0.06] shadow-2xl p-0 overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="quickSearchCard">
         <!-- Header -->
-        <div class="px-6 py-4 border-b border-zinc-900 flex items-center gap-3">
+        <div class="px-6 py-4 border-b border-white/[0.04] flex items-center gap-3">
             <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center">
                 <i class="fa-brands fa-youtube text-white"></i>
             </div>
@@ -9,7 +9,7 @@
                 <input type="text" id="qsInput" class="w-full bg-transparent border-none text-white text-lg font-medium focus:ring-0 placeholder-zinc-700" placeholder="Hızlı YouTube araması..." autocomplete="off">
             </div>
             <div class="flex items-center gap-2">
-                <span class="text-[10px] font-bold text-zinc-600 bg-zinc-900 px-1.5 py-0.5 rounded border border-zinc-800">ESC</span>
+                <span class="text-[10px] font-bold text-zinc-500 bg-white/[0.03] px-1.5 py-0.5 rounded border border-white/[0.06]">ESC</span>
                 <button onclick="clearQuickSearch(); closeQuickSearch();" class="text-zinc-500 hover:text-white transition p-1">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
@@ -25,7 +25,7 @@
         </div>
 
         <!-- Footer -->
-        <div class="px-6 py-3 bg-zinc-900/30 border-t border-zinc-900 flex items-center justify-between text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
+        <div class="px-6 py-3 bg-white/[0.01] border-t border-white/[0.04] flex items-center justify-between text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
             <div class="flex items-center gap-4">
                 <span class="flex items-center gap-1.5"><i class="fa-solid fa-arrow-turn-down rotate-90 text-[8px]"></i> Seç</span>
                 <span class="flex items-center gap-1.5"><i class="fa-solid fa-arrow-up text-[8px]"></i><i class="fa-solid fa-arrow-down text-[8px]"></i> Gezin</span>
@@ -38,42 +38,4 @@
 <style>
     #quickSearchModal.visible { display: flex !important; opacity: 1; }
     #quickSearchModal.visible #quickSearchCard { transform: scale(1); opacity: 1; }
-    
-    .qs-item {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 10px;
-        border-radius: 8px;
-        cursor: pointer;
-        transition: all 0.2s;
-        border: 1px solid transparent;
-    }
-    .qs-item:hover, .qs-item.selected {
-        background-color: #18181b;
-        border-color: #27272a;
-    }
-    .qs-item:hover .qs-play, .qs-item.selected .qs-play {
-        opacity: 1;
-        transform: scale(1);
-    }
-    .qs-thumb {
-        width: 80px;
-        height: 45px;
-        border-radius: 4px;
-        object-fit: cover;
-        background-color: #09090b;
-    }
-    .qs-play {
-        position: absolute;
-        inset: 0;
-        background-color: rgba(0,0,0,0.4);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        opacity: 0;
-        transform: scale(0.8);
-        transition: all 0.2s;
-        border-radius: 4px;
-    }
 </style>

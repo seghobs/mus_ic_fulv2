@@ -5,14 +5,11 @@ temp_delete_me
 nul
 bearer.json
 clien_secret.json
-tokens.json
 youtube_token.json
 .env
 geminiresim.py
 refactor_html.py
 test_youtube.py
-calistir.bat
-calistir.py
 project_scan.md
 static/covers/
 static/videos/

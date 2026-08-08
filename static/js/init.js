@@ -1,4 +1,5 @@
 window.addEventListener('load', () => { 
+    if(typeof loadAppSettings === 'function') loadAppSettings();
     if(typeof loadActiveTasks === 'function') loadActiveTasks();
     if(typeof loadRights === 'function') loadRights(); 
     if(typeof setupDropzone === 'function') setupDropzone(); 

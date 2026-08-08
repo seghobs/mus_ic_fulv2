@@ -70,6 +70,18 @@ def save_drafts():
     write_json(DRAFTS_FILE, request.json)
     return jsonify({"ok": True})
 
+# --- SETTINGS ---
+SETTINGS_FILE = os.path.join(DATA_DIR, 'settings.json')
+
+@data_bp.route('/api/settings', methods=['GET'])
+def get_settings():
+    return jsonify(read_json(SETTINGS_FILE, {"weirdness": 0.50, "style_influence": 0.50}))
+
+@data_bp.route('/api/settings', methods=['POST'])
+def save_settings():
+    write_json(SETTINGS_FILE, request.json)
+    return jsonify({"ok": True})
+
 # --- TASKS (QUEUE) ---
 @data_bp.route('/api/active-tasks', methods=['GET'])
 def get_active_tasks():

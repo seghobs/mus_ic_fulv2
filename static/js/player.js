@@ -118,11 +118,12 @@ function fpClose() {
 function stopYtPlayer() { fpClose(); }
 
 // --- Player Core ---
-function playSong(src, title) {
+function playSong(src, title, coverUrl = null) {
     if(fpAudio) { fpAudio.pause(); fpAudio.src = ''; }
     fpAudio = new Audio();
     fpAudio.preload = 'auto';
     fpAudio.src = src;
+    fpAudio.coverUrl = coverUrl;
     fpCurrentId = src;
     
     // Ses düzeyini localStorage'dan yükle
@@ -151,7 +152,19 @@ function playSong(src, title) {
     const iconEl = document.getElementById('fpPlayIcon');
     if(iconEl) iconEl.className = 'fa-solid fa-spinner fa-spin';
     
-    document.getElementById('fpArt')?.classList.remove('playing');
+    const artEl = document.getElementById('fpArt');
+    if (artEl) {
+        artEl.classList.remove('playing');
+        if (coverUrl) {
+            artEl.style.backgroundImage = `url(${coverUrl})`;
+            artEl.style.backgroundSize = 'cover';
+            artEl.style.backgroundPosition = 'center';
+            artEl.innerHTML = '';
+        } else {
+            artEl.style.backgroundImage = 'none';
+            artEl.innerHTML = '<i class="fa-solid fa-music"></i>';
+        }
+    }
     document.getElementById('footerPlayer')?.classList.add('active');
     document.body.classList.add('footer-open');
 
@@ -169,11 +182,13 @@ function playSong(src, title) {
 }
 
 function playYtVideo(videoId, title) {
-    playSong('/api/yt-play/' + videoId, title);
+    playSong('/api/yt-play/' + videoId, title, `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`);
 }
 
 function playLocalSong(songId, title) {
-    playSong('/api/download/' + songId, title);
+    const song = typeof knownSongs !== 'undefined' ? knownSongs[songId] : null;
+    const coverUrl = song ? song.cover_url : null;
+    playSong('/api/download/' + songId, title, coverUrl);
 }
 
 function savePlayerState() {
@@ -183,6 +198,7 @@ function savePlayerState() {
             src: fpAudio.src,
             currentId: fpCurrentId,
             title: document.getElementById('fpTitle')?.textContent || '',
+            coverUrl: fpAudio.coverUrl || '',
             currentTime: fpAudio.currentTime,
             paused: fpAudio.paused,
             timestamp: Date.now()
@@ -213,11 +229,13 @@ function fpBind() {
         if(icon) icon.className = 'fa-solid fa-pause';
         if(art) art.classList.add('playing');
         savePlayerState();
+        if(typeof syncLibraryPlayButtons === 'function') syncLibraryPlayButtons();
     };
     fpAudio.onpause = () => {
         if(icon) icon.className = 'fa-solid fa-play';
         if(art) art.classList.remove('playing');
         savePlayerState();
+        if(typeof syncLibraryPlayButtons === 'function') syncLibraryPlayButtons();
     };
     fpAudio.onended = () => {
         if(icon) icon.className = 'fa-solid fa-play';
@@ -227,6 +245,7 @@ function fpBind() {
         
         try { localStorage.removeItem('fp_state'); } catch(e) {}
         
+        if(typeof syncLibraryPlayButtons === 'function') syncLibraryPlayButtons();
         if (typeof playNextLibrarySong === 'function') {
             playNextLibrarySong();
         }
@@ -399,7 +418,21 @@ function restorePlayerState() {
             fpAudio = new Audio();
             fpAudio.preload = 'auto';
             fpAudio.src = stateObj.src;
+            fpAudio.coverUrl = stateObj.coverUrl || '';
             fpCurrentId = stateObj.currentId || stateObj.src;
+            
+            const artEl = document.getElementById('fpArt');
+            if (artEl) {
+                if (fpAudio.coverUrl) {
+                    artEl.style.backgroundImage = `url(${fpAudio.coverUrl})`;
+                    artEl.style.backgroundSize = 'cover';
+                    artEl.style.backgroundPosition = 'center';
+                    artEl.innerHTML = '';
+                } else {
+                    artEl.style.backgroundImage = 'none';
+                    artEl.innerHTML = '<i class="fa-solid fa-music"></i>';
+                }
+            }
             
             let savedVol = localStorage.getItem('global_volume');
             if (savedVol !== null) {

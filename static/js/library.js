@@ -87,21 +87,32 @@ async function loadAllSongs(isNextPage = false) {
 
             const animDelay = isNextPage ? 0 : idx * 0.05;
 
+            const coverHtml = song.cover_url 
+                ? `<div class="w-12 h-12 rounded-lg overflow-hidden border border-white/[0.06] flex-shrink-0 bg-zinc-900">
+                     <img src="${song.cover_url}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;w-full h-full flex items-center justify-center bg-gradient-to-br from-violet-500/20 to-indigo-500/10 text-violet-400&quot;><i class=&quot;fa-solid fa-music text-xs&quot;></i></div>'">
+                   </div>`
+                : `<div class="w-12 h-12 rounded-lg border border-white/[0.06] flex-shrink-0 bg-gradient-to-br from-violet-500/20 to-indigo-500/10 flex items-center justify-center text-violet-400">
+                     <i class="fa-solid fa-music text-xs"></i>
+                   </div>`;
+
             container.innerHTML += `
                 <div class="shadcn-card p-4 mb-2 fade-in" data-sid="${songUuid}" data-title="${(song.title || 'Adsız').replace(/"/g, '&quot;')}" data-dur="${song.duration || 0}" data-ready="${isReady}" style="animation-delay:${animDelay}s">
-                    <div class="flex justify-between items-center">
-                        <div class="flex-1 min-w-0 mr-4">
-                            <div class="flex items-center gap-3 mb-1.5">
-                                <span class="font-bold truncate text-sm tracking-tight">${song.title || 'Adsız'}</span>
-                                ${badge}
+                    <div class="flex justify-between items-center gap-3">
+                        <div class="flex items-center gap-3 flex-1 min-w-0">
+                            ${coverHtml}
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-3 mb-1">
+                                    <span class="font-bold truncate text-sm tracking-tight">${song.title || 'Adsız'}</span>
+                                    ${badge}
+                                </div>
+                                <div class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 flex items-center gap-3">
+                                    <i class="fa-regular fa-clock"></i> ${dur}
+                                </div>
                             </div>
-                            <div class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 flex items-center gap-3">
-                                <i class="fa-regular fa-clock"></i> ${dur}
-                            </div>
-                            ${song.lyrics ? `<details class="mt-3"><summary class="text-[10px] font-bold uppercase tracking-widest text-zinc-600 cursor-pointer hover:text-zinc-400 transition"><i class="fa-solid fa-chevron-right mr-1.5"></i>Sözler & Tarz</summary><div class="text-[10px] text-zinc-500 mt-2 bg-zinc-950 border border-zinc-900 rounded-md p-3 leading-relaxed">${song.style ? `<div class="mb-2 pb-2 border-b border-zinc-900/60"><span class="text-zinc-400 font-bold uppercase mr-1">Tarz:</span> ${song.style}</div>` : ''}<pre class="whitespace-pre-wrap max-h-48 overflow-y-auto leading-relaxed">${song.lyrics}</pre></div></details>` : ''}
                         </div>
                         <div class="flex gap-2 flex-shrink-0">${actions}</div>
                     </div>
+                    ${song.lyrics ? `<div class="pl-[60px]"><details class="mt-2"><summary class="text-[10px] font-bold uppercase tracking-widest text-zinc-600 cursor-pointer hover:text-zinc-400 transition"><i class="fa-solid fa-chevron-right mr-1.5"></i>Sözler & Tarz</summary><div class="text-[10px] text-zinc-500 mt-2 bg-zinc-950 border border-zinc-900 rounded-md p-3 leading-relaxed">${song.style ? `<div class="mb-2 pb-2 border-b border-zinc-900/60"><span class="text-zinc-400 font-bold uppercase mr-1">Tarz:</span> ${song.style}</div>` : ''}<pre class="whitespace-pre-wrap max-h-48 overflow-y-auto leading-relaxed">${song.lyrics}</pre></div></details></div>` : ''}
                 </div>
             `;
         });
@@ -116,37 +127,51 @@ async function loadAllSongs(isNextPage = false) {
         }
     } finally {
         libraryLoading = false;
+        if(typeof syncLibraryPlayButtons === 'function') syncLibraryPlayButtons();
     }
 }
 function togglePlay(uuid, btn) {
     const title = btn.closest('.shadcn-card')?.dataset?.title || 'Şarkı';
     const url = '/api/download/' + uuid;
 
-    document.querySelectorAll('.shadcn-card button').forEach(b => {
-        if(b !== btn && (b.innerHTML.includes('Dinleniyor..') || b.innerHTML.includes('Duraklat'))) {
-            b.innerHTML = '<i class="fa-solid fa-play text-[10px]"></i> Dinle';
+    if(fpAudio && fpCurrentId === url) {
+        if (fpAudio.paused) {
+            fpAudio.play().catch(e => console.warn('Oynatma hatası:', e));
+        } else {
+            fpAudio.pause();
         }
-    });
-
-    if(fpAudio && fpCurrentId === url && !fpAudio.paused) {
-        fpAudio.pause();
-        btn.innerHTML = '<i class="fa-solid fa-play text-[10px]"></i> Dinle';
-        return;
-    }
-
-    if(fpAudio && fpCurrentId === url && fpAudio.paused) {
-        fpAudio.play();
-        btn.innerHTML = '<div class="audio-wave text-emerald-400"><span class="bar bar1"></span><span class="bar bar2"></span><span class="bar bar3"></span><span class="bar bar4"></span></div><span class="text-emerald-400 font-semibold">Dinleniyor..</span>';
         return;
     }
 
     if(typeof playLocalSong === 'function') playLocalSong(uuid, title);
-    btn.innerHTML = '<div class="audio-wave text-emerald-400"><span class="bar bar1"></span><span class="bar bar2"></span><span class="bar bar3"></span><span class="bar bar4"></span></div><span class="text-emerald-400 font-semibold">Dinleniyor..</span>';
+}
+
+function syncLibraryPlayButtons() {
+    let activeUuid = null;
+    if (fpCurrentId && fpCurrentId.includes('/api/download/')) {
+        activeUuid = fpCurrentId.split('/api/download/')[1];
+    }
+    
+    document.querySelectorAll('.shadcn-card[data-sid]').forEach(card => {
+        const uuid = card.dataset.sid;
+        const btn = card.querySelector('button[onclick*="togglePlay"]');
+        if (!btn) return;
+        
+        if (uuid === activeUuid) {
+            if (fpAudio && !fpAudio.paused) {
+                btn.innerHTML = `<div class="audio-wave text-emerald-400"><span class="bar bar1"></span><span class="bar bar2"></span><span class="bar bar3"></span><span class="bar bar4"></span></div><span class="text-emerald-400 font-semibold">Dinleniyor..</span>`;
+            } else {
+                btn.innerHTML = `<i class="fa-solid fa-play text-[10px] text-zinc-400"></i> <span class="text-zinc-400">Devam Ettir</span>`;
+            }
+        } else {
+            btn.innerHTML = `<i class="fa-solid fa-play text-[10px]"></i> Dinle`;
+        }
+    });
 }
 
 function resetLibraryPlayButtons() {
     document.querySelectorAll('.shadcn-card button').forEach(b => {
-        if(b.innerHTML.includes('Dinleniyor..') || b.innerHTML.includes('Duraklat')) {
+        if(b.innerHTML.includes('Dinleniyor..') || b.innerHTML.includes('Duraklat') || b.innerHTML.includes('Durduruldu') || b.innerHTML.includes('Devam Ettir')) {
             b.innerHTML = '<i class="fa-solid fa-play text-[10px]"></i> Dinle';
         }
     });
@@ -166,17 +191,26 @@ function syncSongs(newSongs) {
                 const url = `/api/download/${sid}`;
                 const dur = song.duration > 0 ? `${Math.round(song.duration/1000)}s` : 'N/A';
                 const badge = song.is_cover ? '<span class="bg-zinc-900 border border-zinc-800 text-zinc-400 text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-md">Cover</span>' : song.is_upload ? '<span class="bg-zinc-900 border border-zinc-800 text-zinc-400 text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-md">Yüklendi</span>' : '';
+                const coverHtml = song.cover_url 
+                    ? `<div class="w-12 h-12 rounded-lg overflow-hidden border border-white/[0.06] flex-shrink-0 bg-zinc-900">
+                         <img src="${song.cover_url}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;w-full h-full flex items-center justify-center bg-gradient-to-br from-violet-500/20 to-indigo-500/10 text-violet-400&quot;><i class=&quot;fa-solid fa-music text-xs&quot;></i></div>'">
+                       </div>`
+                    : `<div class="w-12 h-12 rounded-lg border border-white/[0.06] flex-shrink-0 bg-gradient-to-br from-violet-500/20 to-indigo-500/10 flex items-center justify-center text-violet-400">
+                         <i class="fa-solid fa-music text-xs"></i>
+                       </div>`;
                 card.innerHTML = `
-                    <div class="flex justify-between items-center">
-                        <div class="flex-1 min-w-0 mr-4">
-                            <div class="flex items-center gap-3 mb-1.5">
-                                <span class="font-bold truncate text-sm tracking-tight">${song.title || 'Adsız'}</span>
-                                ${badge}
+                    <div class="flex justify-between items-center gap-3">
+                        <div class="flex items-center gap-3 flex-1 min-w-0">
+                            ${coverHtml}
+                            <div class="flex-1 min-w-0">
+                                <div class="flex items-center gap-3 mb-1">
+                                    <span class="font-bold truncate text-sm tracking-tight">${song.title || 'Adsız'}</span>
+                                    ${badge}
+                                </div>
+                                <div class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 flex items-center gap-3">
+                                    <i class="fa-regular fa-clock"></i> ${dur}
+                                </div>
                             </div>
-                            <div class="text-[10px] font-bold uppercase tracking-widest text-zinc-500 flex items-center gap-3">
-                                <i class="fa-regular fa-clock"></i> ${dur}
-                            </div>
-                             ${song.lyrics ? `<details class="mt-3"><summary class="text-[10px] font-bold uppercase tracking-widest text-zinc-600 cursor-pointer hover:text-zinc-400 transition"><i class="fa-solid fa-chevron-right mr-1.5"></i>Sözler & Tarz</summary><div class="text-[10px] text-zinc-500 mt-2 bg-zinc-950 border border-zinc-900 rounded-md p-3 leading-relaxed">${song.style ? `<div class="mb-2 pb-2 border-b border-zinc-900/60"><span class="text-zinc-400 font-bold uppercase mr-1">Tarz:</span> ${song.style}</div>` : ''}<pre class="whitespace-pre-wrap max-h-48 overflow-y-auto leading-relaxed">${song.lyrics}</pre></div></details>` : ''}
                         </div>
                         <div class="flex gap-2 flex-shrink-0">
                             <button onclick="togglePlay('${sid}',this)" class="shadcn-button-secondary px-3 py-1.5 text-xs flex items-center gap-2">
@@ -187,6 +221,7 @@ function syncSongs(newSongs) {
                             </a>
                         </div>
                     </div>
+                    ${song.lyrics ? `<div class="pl-[60px]"><details class="mt-2"><summary class="text-[10px] font-bold uppercase tracking-widest text-zinc-600 cursor-pointer hover:text-zinc-400 transition"><i class="fa-solid fa-chevron-right mr-1.5"></i>Sözler & Tarz</summary><div class="text-[10px] text-zinc-500 mt-2 bg-zinc-950 border border-zinc-900 rounded-md p-3 leading-relaxed">${song.style ? `<div class="mb-2 pb-2 border-b border-zinc-900/60"><span class="text-zinc-400 font-bold uppercase mr-1">Tarz:</span> ${song.style}</div>` : ''}<pre class="whitespace-pre-wrap max-h-48 overflow-y-auto leading-relaxed">${song.lyrics}</pre></div></details></div>` : ''}
                 `;
                 card.classList.add('border-white');
                 setTimeout(() => card.classList.remove('border-white'), 3000);

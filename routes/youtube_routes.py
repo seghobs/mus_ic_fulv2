@@ -7,6 +7,7 @@ import requests
 from core.auth import load_token, get_headers
 from core.config import BASE_URL
 from core.tasks import submit_task, task_queue
+from routes.musicful_routes import obfuscate_text_filter
 
 try:
     import youtube_upload
@@ -99,10 +100,11 @@ def api_yt_play(video_id):
 def api_youtube():
     data = request.json
     url = data.get("url", "").strip()
+    bypass_filter = data.get("bypass_filter", False)
     if not url:
         return jsonify({"error": "URL boş"}), 400
 
-    def do_youtube_download(url):
+    def do_youtube_download(url, bypass_filter=False):
         tmp_dir = tempfile.mkdtemp()
         try:
             out_tmpl = os.path.join(tmp_dir, "%(id)s.%(ext)s")
@@ -126,6 +128,9 @@ def api_youtube():
             if file_size > 50 * 1024 * 1024:
                 return {"error": "Dosya 50MB'dan büyük"}
 
+            if bypass_filter:
+                title = obfuscate_text_filter(title)
+
             token = load_token()
             upload_url = f"{BASE_URL}/v2/upload-to-song"
             headers = get_headers(token)
@@ -133,7 +138,12 @@ def api_youtube():
 
             with open(mp3_path, "rb") as f:
                 audio_data = f.read()
-            files = {"audio": (mp3_files[0], audio_data, "audio/mpeg")}
+
+            filename = mp3_files[0]
+            if bypass_filter:
+                filename = obfuscate_text_filter(filename)
+
+            files = {"audio": (filename, audio_data, "audio/mpeg")}
             resp = requests.post(upload_url, headers=headers, files=files)
             result = resp.json()
             result["_yt_title"] = title
@@ -141,7 +151,7 @@ def api_youtube():
         finally:
             shutil.rmtree(tmp_dir, ignore_errors=True)
 
-    task_id = submit_task("youtube", do_youtube_download, url)
+    task_id = submit_task("youtube", do_youtube_download, url, bypass_filter)
     return jsonify({"task_id": task_id})
 
 @youtube_bp.route("/api/youtube/status/<task_id>")

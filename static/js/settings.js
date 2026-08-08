@@ -37,16 +37,32 @@ function closeSettings() {
     setTimeout(() => {
         modal.classList.add('hidden');
     }, 300);
+
+    if(window.botPollInterval) {
+        clearInterval(window.botPollInterval);
+        window.botPollInterval = null;
+    }
+    if(typeof browserPollInterval !== 'undefined' && browserPollInterval) {
+        clearInterval(browserPollInterval);
+        browserPollInterval = null;
+    }
+    if(window.bulkRefreshInterval) {
+        clearInterval(window.bulkRefreshInterval);
+        window.bulkRefreshInterval = null;
+    }
 }
 
 function switchTab(tabName) {
-    const tabs = ['Tokens', 'Accounts', 'Bot'];
+    const tabs = ['Tokens', 'Accounts', 'Bot', 'Analysis'];
     
     tabs.forEach(t => {
         const view = document.getElementById('view' + t);
         if (view) view.classList.add('hidden');
         const btn = document.getElementById('tab' + t);
-        if (btn) btn.className = 'flex-1 py-2 text-xs font-bold bg-zinc-900 text-zinc-500 rounded transition';
+        if (btn) {
+            btn.className = 'flex-1 py-2 text-[10px] font-bold bg-[#0c0c14] border border-white/[0.04] text-zinc-500 hover:text-white hover:border-violet-500/20 rounded-lg transition-all duration-300';
+            btn.classList.remove('tab-active');
+        }
     });
 
     const activeView = document.getElementById('view' + tabName.charAt(0).toUpperCase() + tabName.slice(1));
@@ -65,7 +81,11 @@ function switchTab(tabName) {
     }
     
     if (activeTab) {
-        activeTab.className = 'flex-1 py-2 text-xs font-bold bg-zinc-800 text-white rounded shadow-lg transition';
+        activeTab.className = 'flex-1 py-2 text-[10px] font-black rounded-lg tab-active transition-all duration-300';
+    }
+
+    if (tabName === 'analysis') {
+        renderAnalysisTab();
     }
 }
 
@@ -92,6 +112,12 @@ function applyAccountSort() {
         sorted.sort((a, b) => parseFloat(b.credits || 0) - parseFloat(a.credits || 0));
     } else if(sortType === 'credits_asc') {
         sorted.sort((a, b) => parseFloat(a.credits || 0) - parseFloat(b.credits || 0));
+    } else if(sortType === 'spent_desc') {
+        sorted.sort((a, b) => parseFloat(b.spent || 0) - parseFloat(a.spent || 0));
+    } else if(sortType === 'spent_asc') {
+        sorted.sort((a, b) => parseFloat(a.spent || 0) - parseFloat(b.spent || 0));
+    } else if(sortType === 'songs_desc') {
+        sorted.sort((a, b) => parseInt(b.songs_count || 0) - parseInt(a.songs_count || 0));
     } else if(sortType === 'newest') {
         sorted.sort((a, b) => new Date(b.timestamp || 0) - new Date(a.timestamp || 0));
     } else if(sortType === 'oldest') {
@@ -108,6 +134,7 @@ function applyAccountSort() {
                 </div>
                 <div class="text-right">
                     <div class="text-xs font-black text-emerald-400">${a.credits || 0} Kredi</div>
+                    <div class="text-[9px] text-zinc-500 font-bold">${Math.round(a.spent || 0)} Harcanan | ${a.songs_count || 0} Şarkı</div>
                     <div class="text-[9px] text-zinc-600">${a.timestamp || '-'}</div>
                 </div>
             </div>
@@ -442,4 +469,121 @@ async function deleteToken(id) {
     await fetch('/api/tokens/'+id, {method:'DELETE'});
     loadTokens();
     if(typeof loadRights === 'function') loadRights();
+}
+
+async function startBulkRefresh() {
+    if (window.bulkRefreshInterval) return;
+    try {
+        const resp = await fetch('/api/accounts/refresh-bulk', { method: 'POST' });
+        const data = await resp.json();
+        if (data.error) {
+            alert(data.error);
+            return;
+        }
+        
+        document.getElementById('bulkRefreshProgress').classList.remove('hidden');
+        window.bulkRefreshInterval = setInterval(pollBulkRefreshStatus, 2000);
+        pollBulkRefreshStatus();
+    } catch(e) {
+        alert('Hata: ' + e.message);
+    }
+}
+
+async function pollBulkRefreshStatus() {
+    try {
+        const resp = await fetch('/api/accounts/refresh-status');
+        const data = await resp.json();
+        
+        if (data.is_running) {
+            document.getElementById('bulkRefreshProgress').classList.remove('hidden');
+            const progressPercent = data.total > 0 ? Math.round((data.current / data.total) * 100) : 0;
+            document.getElementById('bulkProgressText').textContent = `${data.current} / ${data.total}`;
+            document.getElementById('bulkProgressBar').style.width = `${progressPercent}%`;
+        } else {
+            clearInterval(window.bulkRefreshInterval);
+            window.bulkRefreshInterval = null;
+            document.getElementById('bulkRefreshProgress').classList.add('hidden');
+            loadAllAccountsList();
+            if (data.error) {
+                alert("Toplu güncelleme hatası: " + data.error);
+            }
+        }
+    } catch(e) {
+        // network blip
+    }
+}
+
+function renderAnalysisTab() {
+    const statsContainer = document.getElementById('analysisStats');
+    if (!statsContainer) return;
+
+    let totalCredits = 0;
+    let totalSpent = 0;
+    let totalSongs = 0;
+    let totalAccounts = allAccountsData.length;
+
+    allAccountsData.forEach(a => {
+        totalCredits += parseFloat(a.credits || 0);
+        totalSpent += parseFloat(a.spent || 0);
+        totalSongs += parseInt(a.songs_count || 0);
+    });
+
+    statsContainer.innerHTML = `
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col justify-between">
+            <span class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">Sistemdeki Toplam Kredi</span>
+            <span class="text-xl font-black text-emerald-400 mt-2">${Math.round(totalCredits)} Kredi</span>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col justify-between">
+            <span class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">Harcanan Toplam Kredi</span>
+            <span class="text-xl font-black text-amber-500 mt-2">${Math.round(totalSpent)} Kredi</span>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col justify-between">
+            <span class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">Toplam Üretilen Şarkı</span>
+            <span class="text-xl font-black text-violet-400 mt-2">${totalSongs} Şarkı</span>
+        </div>
+        <div class="bg-zinc-900 border border-zinc-800 rounded-xl p-4 flex flex-col justify-between">
+            <span class="text-[9px] font-bold text-zinc-500 uppercase tracking-widest">Kayıtlı Toplam Hesap</span>
+            <span class="text-xl font-black text-white mt-2">${totalAccounts} Hesap</span>
+        </div>
+    `;
+
+    buildReferralTree();
+}
+
+function buildReferralTree() {
+    const treeContainer = document.getElementById('referralTree');
+    if (!treeContainer) return;
+
+    const groups = {};
+    allAccountsData.forEach(a => {
+        const parent = a.parent_group || "UNKNOWN";
+        if (!groups[parent]) groups[parent] = [];
+        groups[parent].push(a);
+    });
+
+    function renderNode(inviteCode, depth = 0) {
+        const children = groups[inviteCode] || [];
+        if (inviteCode !== "UNKNOWN" && children.length === 0) return '';
+
+        let html = '';
+        children.forEach(child => {
+            const childInvite = child.new_invite_code;
+            const childHasChildren = groups[childInvite] && groups[childInvite].length > 0;
+            
+            const indent = '&nbsp;'.repeat(depth * 4);
+            const branchIcon = childHasChildren ? '📂' : '📄';
+            
+            html += `<div class="py-1 hover:text-white transition-colors">
+                <span>${indent}${branchIcon} <strong>${child.email}</strong> (${child.credits} Kr | ${child.songs_count} Şarkı)</span>
+            </div>`;
+            
+            if (childHasChildren) {
+                html += renderNode(childInvite, depth + 1);
+            }
+        });
+        return html;
+    }
+
+    const treeHtml = renderNode("UNKNOWN", 0);
+    treeContainer.innerHTML = treeHtml || '<div class="text-zinc-600 italic">Henüz referans ilişkisi bulunamadı.</div>';
 }

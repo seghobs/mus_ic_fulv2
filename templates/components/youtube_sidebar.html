@@ -1,24 +1,24 @@
-<div id="ytVideosSidebar" class="fixed left-4 top-36 bottom-2 z-50 flex flex-col transition-all duration-500 ease-in-out -translate-x-[calc(100%+1rem)] md:w-56 w-72 md:left-4 left-0 md:rounded-lg rounded-none bg-zinc-950 border-r md:border border-zinc-800 shadow-2xl overflow-hidden">
+<div id="ytVideosSidebar" class="fixed left-4 top-36 bottom-2 z-50 flex flex-col transition-all duration-500 ease-in-out -translate-x-[calc(100%+1rem)] md:w-56 w-72 md:left-4 left-0 md:rounded-lg rounded-none bg-[#0a0a0f]/95 backdrop-blur-xl border-r md:border border-white/[0.06] shadow-2xl overflow-hidden">
         <div class="flex-1 overflow-y-auto custom-scrollbar flex flex-col">
-            <div class="yt-sidebar-header border-b border-zinc-800 bg-zinc-950 px-6 py-4 flex items-center justify-between">
+            <div class="yt-sidebar-header border-b border-white/[0.04] bg-[#0c0c14]/50 px-6 py-4 flex items-center justify-between">
                 <div class="flex items-center gap-2">
-                    <span class="font-bold text-xs uppercase tracking-widest text-white">Videolarım</span>
+                    <span class="font-bold text-[10px] uppercase tracking-[0.2em] text-white">Videolarım</span>
                 </div>
                 <button onclick="toggleYtVideosSidebar()" class="text-zinc-500 hover:text-white transition">
                     <i class="fa-solid fa-xmark text-sm"></i>
                 </button>
             </div>
-            <div class="yt-sidebar-filters px-6 py-4 border-b border-zinc-800 flex gap-2 overflow-x-auto no-scrollbar">
-                <button onclick="filterYtVideos('views_desc')" class="yt-filter-btn px-3 py-1.5 rounded-md bg-white text-black text-[10px] font-bold uppercase tracking-tight flex items-center gap-2" data-filter="views_desc">
+            <div class="yt-sidebar-filters px-6 py-4 border-b border-white/[0.04] flex gap-2 overflow-x-auto no-scrollbar">
+                <button onclick="filterYtVideos('views_desc')" class="yt-filter-btn px-3 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest flex items-center gap-2" data-filter="views_desc">
                     Çok İzlenen
                 </button>
-                <button onclick="filterYtVideos('date_desc')" class="yt-filter-btn px-3 py-1.5 rounded-md bg-zinc-900 border border-zinc-800 text-zinc-400 text-[10px] font-bold uppercase tracking-tight flex items-center gap-2" data-filter="date_desc">
+                <button onclick="filterYtVideos('date_desc')" class="yt-filter-btn px-3 py-1.5 rounded-lg text-[9px] font-black uppercase tracking-widest flex items-center gap-2" data-filter="date_desc">
                     En Yeni
                 </button>
             </div>
             <div id="ytVideosList" class="yt-sidebar-list">
                 <div class="flex items-center justify-center py-12">
-                    <i class="fa-solid fa-spinner fa-spin text-zinc-700 mr-2 text-xs"></i>
+                    <i class="fa-solid fa-spinner fa-spin text-violet-400/50 mr-2 text-xs"></i>
                     <span class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest">Yükleniyor...</span>
                 </div>
             </div>

@@ -36,8 +36,9 @@ def api_create_video():
     audio_path = os.path.join(task_dir, "audio.mp3")
     output_path = os.path.join(VIDEO_OUTPUT, f"{video_id}.mp4")
 
-    mp3_url = f"{FILES_URL}/{audio_id}/{audio_id}.mp3"
-    resp = requests.get(mp3_url, timeout=120)
+    from routes.musicful_routes import get_song_url
+    mp3_url = get_song_url(audio_id)
+    resp = requests.get(mp3_url, timeout=120, verify=False)
     if resp.status_code != 200:
         shutil.rmtree(task_dir, ignore_errors=True)
         return jsonify({"error": "Şarkı indirilemedi"}), 400

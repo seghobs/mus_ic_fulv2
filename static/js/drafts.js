@@ -96,9 +96,40 @@ function resumeDraft(id, type) {
     
     if (type === 'cover') {
         state.audioId = draft.audioId || state.audioId;
+        state.mode = draft.mode || 'cover';
         if(draft.songTitle) document.getElementById('songTitle').value = draft.songTitle;
         if(draft.songStyle) document.getElementById('songStyle').value = draft.songStyle;
         if(draft.songLyrics) document.getElementById('songLyrics').value = draft.songLyrics;
+        
+        if(draft.weirdness !== undefined) {
+            state.weirdness = draft.weirdness;
+            const wInput = document.getElementById('songWeirdness');
+            if(wInput) wInput.value = draft.weirdness;
+            const wVal = document.getElementById('weirdnessVal');
+            if(wVal) wVal.textContent = parseFloat(draft.weirdness).toFixed(2);
+        } else {
+            state.weirdness = 0.50;
+            const wInput = document.getElementById('songWeirdness');
+            if(wInput) wInput.value = 0.50;
+            const wVal = document.getElementById('weirdnessVal');
+            if(wVal) wVal.textContent = "0.50";
+        }
+
+        if(draft.styleInfluence !== undefined) {
+            state.styleInfluence = draft.styleInfluence;
+            const sInput = document.getElementById('songStyleInfluence');
+            if(sInput) sInput.value = draft.styleInfluence;
+            const sVal = document.getElementById('styleInfluenceVal');
+            if(sVal) sVal.textContent = parseFloat(draft.styleInfluence).toFixed(2);
+        } else {
+            state.styleInfluence = 0.50;
+            const sInput = document.getElementById('songStyleInfluence');
+            if(sInput) sInput.value = 0.50;
+            const sVal = document.getElementById('styleInfluenceVal');
+            if(sVal) sVal.textContent = "0.50";
+        }
+
+        if(typeof setMode === 'function') setMode(state.mode);
         goToStep(2);
         toggleDraftsPanel();
     } else if (type === 'video') {

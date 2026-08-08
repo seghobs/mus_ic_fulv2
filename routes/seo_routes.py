@@ -146,3 +146,21 @@ def api_youtube_upload():
                         "yt_url": f"https://www.youtube.com/watch?v={yt_video_id}"})
     except Exception as e:
         return jsonify({"ok": False, "error": str(e)}), 500
+
+@seo_bp.route("/api/generate-lyrics", methods=["POST"])
+def api_generate_lyrics():
+    import services.gemini_lyrics as gemini_lyrics
+    try:
+        data = request.get_json(silent=True) or {}
+        topic = data.get("topic", "")
+        style_input = data.get("style", "")
+        if not topic:
+            return jsonify({"error": "Konu alanı zorunludur."}), 400
+        
+        result = gemini_lyrics.generate_lyrics(topic, style_input)
+        return jsonify({"ok": True, "result": result})
+    except Exception as e:
+        err = str(e)
+        if "503" in err or "UNAVAILABLE" in err or "high demand" in err:
+            err = "Google Gemini sunucuları şu anda çok yoğun. Lütfen 1 dakika sonra tekrar deneyin."
+        return jsonify({"error": err}), 500

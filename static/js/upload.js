@@ -107,6 +107,12 @@ async function uploadFile(file) {
 
     const formData = new FormData();
     formData.append('audio', file);
+    const bypassCover = document.getElementById('bypassCoverFilter');
+    if (bypassCover && bypassCover.checked) {
+        formData.append('bypass_filter', 'true');
+        const bypassLyrics = document.getElementById('bypassFilter');
+        if (bypassLyrics) bypassLyrics.checked = true;
+    }
 
     const xhr = new XMLHttpRequest();
     xhr.open('POST', '/api/upload', true);
