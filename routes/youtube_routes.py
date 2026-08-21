@@ -69,30 +69,23 @@ def api_yt_search():
 
 @youtube_bp.route("/api/yt-play/<video_id>")
 def api_yt_play(video_id):
-    tmp_dir = tempfile.mkdtemp()
+    from flask import redirect
     try:
-        out_tmpl = os.path.join(tmp_dir, "audio.%(ext)s")
         ydl_opts = {
             "format": "bestaudio/best",
-            "outtmpl": out_tmpl,
-            "postprocessors": [{"key": "FFmpegExtractAudio", "preferredcodec": "mp3", "preferredquality": "128"}],
             "quiet": True,
             "no_warnings": True,
         }
         url = f"https://www.youtube.com/watch?v={video_id}"
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            ydl.download([url])
-
-        mp3_files = [f for f in os.listdir(tmp_dir) if f.endswith(".mp3")]
-        if not mp3_files:
-            return jsonify({"error": "Dönüştürülemedi"}), 500
-
-        mp3_path = os.path.join(tmp_dir, mp3_files[0])
-        resp = send_file(mp3_path, mimetype="audio/mpeg", as_attachment=False, download_name=f"{video_id}.mp3")
-        resp.call_on_close(lambda: shutil.rmtree(tmp_dir, ignore_errors=True))
-        return resp
+            info = ydl.extract_info(url, download=False)
+            audio_url = info.get("url")
+            
+        if not audio_url:
+            return jsonify({"error": "Akış adresi bulunamadı"}), 404
+            
+        return redirect(audio_url)
     except Exception as e:
-        shutil.rmtree(tmp_dir, ignore_errors=True)
         return jsonify({"error": str(e)}), 500
 
 
