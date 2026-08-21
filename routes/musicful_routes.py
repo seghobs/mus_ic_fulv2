@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request, send_file
-from curl_cffi import requests as crequests
+import requests as std_requests
 import io
 import time
 import re
@@ -25,33 +25,33 @@ class MockTimeoutResponse:
 class CurlCffiWrapper:
     @staticmethod
     def get(url, *args, **kwargs):
-        if "topmediai.com" in url or "musicful.ai" in url:
-            kwargs.setdefault("impersonate", "chrome")
+        if "impersonate" in kwargs:
+            del kwargs["impersonate"]
         kwargs.setdefault("timeout", 25)
         try:
-            return crequests.get(url, *args, **kwargs)
+            return std_requests.get(url, *args, **kwargs)
         except Exception as e:
             print(f"[CurlCffiWrapper GET Error] {url}: {e}")
             return MockTimeoutResponse(f"Bağlantı hatası: {e}")
 
     @staticmethod
     def post(url, *args, **kwargs):
-        if "topmediai.com" in url or "musicful.ai" in url:
-            kwargs.setdefault("impersonate", "chrome")
+        if "impersonate" in kwargs:
+            del kwargs["impersonate"]
         kwargs.setdefault("timeout", 25)
         try:
-            return crequests.post(url, *args, **kwargs)
+            return std_requests.post(url, *args, **kwargs)
         except Exception as e:
             print(f"[CurlCffiWrapper POST Error] {url}: {e}")
             return MockTimeoutResponse(f"Bağlantı hatası: {e}")
 
     @staticmethod
     def head(url, *args, **kwargs):
-        if "topmediai.com" in url or "musicful.ai" in url:
-            kwargs.setdefault("impersonate", "chrome")
+        if "impersonate" in kwargs:
+            del kwargs["impersonate"]
         kwargs.setdefault("timeout", 25)
         try:
-            return crequests.head(url, *args, **kwargs)
+            return std_requests.head(url, *args, **kwargs)
         except Exception as e:
             print(f"[CurlCffiWrapper HEAD Error] {url}: {e}")
             return MockTimeoutResponse(f"Bağlantı hatası: {e}")
