@@ -1,5 +1,4 @@
 from flask import Blueprint, jsonify, request, send_file
-import requests as std_requests
 import io
 import time
 import re
@@ -11,52 +10,7 @@ import base64
 from Crypto.Cipher import AES
 from Crypto.Util.Padding import unpad
 import urllib3
-
-class MockTimeoutResponse:
-    def __init__(self, error_msg):
-        self.status_code = 504
-        self._msg = error_msg
-        self.content = json.dumps({"error": error_msg, "status": 504, "code": 504, "data": {}}, ensure_ascii=False).encode("utf-8")
-        self.text = json.dumps({"error": error_msg, "status": 504, "code": 504, "data": {}}, ensure_ascii=False)
-        
-    def json(self):
-        return {"error": self._msg, "status": 504, "code": 504, "data": {}}
-
-class CurlCffiWrapper:
-    @staticmethod
-    def get(url, *args, **kwargs):
-        if "impersonate" in kwargs:
-            del kwargs["impersonate"]
-        kwargs.setdefault("timeout", 25)
-        try:
-            return std_requests.get(url, *args, **kwargs)
-        except Exception as e:
-            print(f"[CurlCffiWrapper GET Error] {url}: {e}")
-            return MockTimeoutResponse(f"Bağlantı hatası: {e}")
-
-    @staticmethod
-    def post(url, *args, **kwargs):
-        if "impersonate" in kwargs:
-            del kwargs["impersonate"]
-        kwargs.setdefault("timeout", 25)
-        try:
-            return std_requests.post(url, *args, **kwargs)
-        except Exception as e:
-            print(f"[CurlCffiWrapper POST Error] {url}: {e}")
-            return MockTimeoutResponse(f"Bağlantı hatası: {e}")
-
-    @staticmethod
-    def head(url, *args, **kwargs):
-        if "impersonate" in kwargs:
-            del kwargs["impersonate"]
-        kwargs.setdefault("timeout", 25)
-        try:
-            return std_requests.head(url, *args, **kwargs)
-        except Exception as e:
-            print(f"[CurlCffiWrapper HEAD Error] {url}: {e}")
-            return MockTimeoutResponse(f"Bağlantı hatası: {e}")
-
-requests = CurlCffiWrapper
+from core.aiohttp_client import AiohttpSyncClient as requests
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
 

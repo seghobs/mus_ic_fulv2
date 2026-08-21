@@ -3,7 +3,7 @@ import tempfile
 import yt_dlp
 import os
 import shutil
-import requests
+from core.aiohttp_client import AiohttpSyncClient as requests
 from core.auth import load_token, get_headers
 from core.config import BASE_URL
 from core.tasks import submit_task, task_queue

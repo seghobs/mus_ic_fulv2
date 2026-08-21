@@ -2,7 +2,7 @@ from flask import Blueprint, jsonify, request, send_file
 import os
 import uuid
 import shutil
-import requests
+from core.aiohttp_client import AiohttpSyncClient as requests
 import subprocess
 from core.config import VIDEO_TEMP, VIDEO_OUTPUT, COVERS_OUTPUT, FILES_URL
 from core.tasks import submit_task, task_queue

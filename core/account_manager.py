@@ -1,14 +1,21 @@
 import os
 import json
 import hashlib
-import requests as crequests
 from .config import TOKENS_FILE, ACCOUNTS_FILE, safe_read_json, safe_write_json
 
 DRISION_ACCOUNTS_FILE = ACCOUNTS_FILE
 
+class AiohttpSyncSession:
+    def get(self, url, **kwargs):
+        from core.aiohttp_client import AiohttpSyncClient
+        return AiohttpSyncClient.get(url, **kwargs)
+    def post(self, url, **kwargs):
+        from core.aiohttp_client import AiohttpSyncClient
+        return AiohttpSyncClient.post(url, **kwargs)
+
 class MusicfulBot:
     def __init__(self):
-        self.session = crequests.Session()
+        self.session = AiohttpSyncSession()
         self.headers = {
             "origin": "https://www.musicful.ai",
             "referer": "https://www.musicful.ai/",
