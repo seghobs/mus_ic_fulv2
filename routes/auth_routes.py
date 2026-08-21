@@ -110,6 +110,83 @@ def api_tokens_toggle(tok_id):
     return jsonify({"error": "Token bulunamadı"}), 404
 
 
+@auth_bp.route("/api/tokens/relogin/<tok_id>", methods=["POST"])
+def api_tokens_relogin(tok_id):
+    import os
+    import json
+    from core.config import ACCOUNTS_FILE
+    
+    data = request.json or {}
+    password = data.get("password")
+    
+    tokens = _read_tokens()
+    target_token = None
+    for t in tokens:
+        if t["id"] == tok_id:
+            target_token = t
+            break
+            
+    if not target_token:
+        return jsonify({"error": "Token bulunamadı"}), 404
+        
+    email = target_token.get("name", "")
+    
+    # If password is not provided, look it up in accounts.json
+    if not password:
+        if os.path.exists(ACCOUNTS_FILE):
+            with open(ACCOUNTS_FILE, "r", encoding="utf-8") as f:
+                try:
+                    acc_data = json.load(f)
+                    for c, accs in acc_data.items():
+                        for a in accs:
+                            if a.get("email") == email:
+                                password = a.get("password")
+                                break
+                        if password:
+                            break
+                except Exception as e:
+                    print(f"Error reading accounts.json in relogin lookup: {e}")
+                    
+    if not password:
+        return jsonify({"need_password": True, "email": email})
+        
+    from core.account_manager import MusicfulBot
+    bot = MusicfulBot()
+    
+    login_res = bot.login_api(email, password)
+    if login_res.get("code") == 200:
+        new_token = login_res.get("data", {}).get("token")
+        actual_credits = bot.get_credits(new_token)
+        
+        # Update tokens.json
+        target_token["token"] = new_token
+        target_token["active"] = True
+        _write_tokens(tokens)
+        
+        # Update accounts.json
+        if os.path.exists(ACCOUNTS_FILE):
+            try:
+                with open(ACCOUNTS_FILE, "r", encoding="utf-8") as f:
+                    acc_data = json.load(f)
+                updated = False
+                for c, accs in acc_data.items():
+                    for a in accs:
+                        if a.get("email") == email:
+                            a["token"] = new_token
+                            if actual_credits is not None:
+                                a["credits"] = actual_credits
+                            updated = True
+                if updated:
+                    with open(ACCOUNTS_FILE, "w", encoding="utf-8") as f:
+                        json.dump(acc_data, f, indent=4)
+            except Exception as e:
+                print(f"Error updating accounts.json in relogin: {e}")
+                
+        return jsonify({"ok": True, "credits": actual_credits})
+        
+    return jsonify({"error": f"Giriş başarısız: {login_res.get('msg', 'Bilinmeyen hata')}"}), 400
+
+
 @auth_bp.route("/api/tokens/drision-sync", methods=["POST"])
 def api_tokens_drision_sync():
     from core.account_manager import switch_to_next_account

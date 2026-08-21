@@ -402,6 +402,9 @@ async function loadTokens() {
                             </div>
                         </div>
                         <div class="flex gap-2 flex-shrink-0">
+                            <button onclick="reloginToken(this, '${t.id}', '${t.name}')" class="w-9 h-9 rounded-lg border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 flex items-center justify-center transition" title="Yeniden Giriş Yap">
+                                <i class="fa-solid fa-right-to-bracket text-xs text-zinc-500 hover:text-white"></i>
+                            </button>
                             <button onclick="toggleToken('${t.id}')" class="w-9 h-9 rounded-lg border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 flex items-center justify-center transition" title="${isActive ? 'Pasif Yap' : 'Aktif Yap'}">
                                 <i class="fa-solid fa-power-off text-xs ${isActive ? 'text-white' : 'text-zinc-600'}"></i>
                             </button>
@@ -586,4 +589,53 @@ function buildReferralTree() {
 
     const treeHtml = renderNode("UNKNOWN", 0);
     treeContainer.innerHTML = treeHtml || '<div class="text-zinc-600 italic">Henüz referans ilişkisi bulunamadı.</div>';
+}
+
+async function reloginToken(btn, id, email) {
+    const origHtml = btn.innerHTML;
+    btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-xs text-violet-400"></i>';
+    btn.disabled = true;
+    
+    try {
+        let resp = await fetch('/api/tokens/relogin/' + id, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify({})
+        });
+        let data = await resp.json();
+        
+        if (data.need_password) {
+            const password = prompt(`${email} hesabı sistemde kayıtlı değil veya şifresi bulunamadı. Lütfen şifresini girin:`);
+            if (!password) {
+                btn.innerHTML = origHtml;
+                btn.disabled = false;
+                return;
+            }
+            
+            btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin text-xs text-violet-400"></i>';
+            btn.disabled = true;
+            
+            resp = await fetch('/api/tokens/relogin/' + id, {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({password})
+            });
+            data = await resp.json();
+        }
+        
+        if (data.ok) {
+            alert('Giriş başarılı! Yeni token güncellendi.' + (data.credits !== null && data.credits !== undefined ? ` Kredi: ${data.credits}` : ''));
+            loadTokens();
+            if (typeof loadRights === 'function') loadRights();
+            if (typeof loadAllAccountsList === 'function') loadAllAccountsList();
+        } else {
+            alert('Hata: ' + (data.error || 'Bilinmeyen bir hata oluştu.'));
+            btn.innerHTML = origHtml;
+            btn.disabled = false;
+        }
+    } catch (e) {
+        alert('Hata: ' + e.message);
+        btn.innerHTML = origHtml;
+        btn.disabled = false;
+    }
 }
