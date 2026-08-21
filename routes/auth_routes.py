@@ -110,10 +110,68 @@ def api_tokens_toggle(tok_id):
     return jsonify({"error": "Token bulunamadı"}), 404
 
 
+def _relogin_worker(tok_id, email, password):
+    from core.account_manager import MusicfulBot
+    from core.config import ACCOUNTS_FILE
+    from core.tasks import sse_notify
+    import json
+    import os
+    
+    bot = MusicfulBot()
+    login_res = bot.login_api(email, password)
+    
+    if login_res.get("code") == 200:
+        new_token = login_res.get("data", {}).get("token")
+        actual_credits = bot.get_credits(new_token)
+        
+        # Update tokens.json
+        tokens = _read_tokens()
+        for t in tokens:
+            if t["id"] == tok_id:
+                t["token"] = new_token
+                t["active"] = True
+                break
+        _write_tokens(tokens)
+        
+        # Update accounts.json
+        if os.path.exists(ACCOUNTS_FILE):
+            try:
+                with open(ACCOUNTS_FILE, "r", encoding="utf-8") as f:
+                    acc_data = json.load(f)
+                updated = False
+                for c, accs in acc_data.items():
+                    for a in accs:
+                        if a.get("email") == email:
+                            a["token"] = new_token
+                            if actual_credits is not None:
+                                a["credits"] = actual_credits
+                            updated = True
+                if updated:
+                    with open(ACCOUNTS_FILE, "w", encoding="utf-8") as f:
+                        json.dump(acc_data, f, indent=4)
+            except Exception as e:
+                print(f"Error updating accounts.json in async relogin: {e}")
+                
+        # Send instant SSE notification to frontend
+        sse_notify("relogin_success", {
+            "id": tok_id,
+            "email": email,
+            "credits": actual_credits
+        })
+    else:
+        err_msg = login_res.get('msg', 'Bilinmeyen hata')
+        sse_notify("relogin_error", {
+            "id": tok_id,
+            "email": email,
+            "error": err_msg
+        })
+
+
 @auth_bp.route("/api/tokens/relogin/<tok_id>", methods=["POST"])
 def api_tokens_relogin(tok_id):
     import os
     import json
+    import threading
     from core.config import ACCOUNTS_FILE
     
     data = request.json or {}
@@ -150,41 +208,10 @@ def api_tokens_relogin(tok_id):
     if not password:
         return jsonify({"need_password": True, "email": email})
         
-    from core.account_manager import MusicfulBot
-    bot = MusicfulBot()
+    # Start the async worker thread to do the login and notify via SSE
+    threading.Thread(target=_relogin_worker, args=(tok_id, email, password), daemon=True).start()
     
-    login_res = bot.login_api(email, password)
-    if login_res.get("code") == 200:
-        new_token = login_res.get("data", {}).get("token")
-        actual_credits = bot.get_credits(new_token)
-        
-        # Update tokens.json
-        target_token["token"] = new_token
-        target_token["active"] = True
-        _write_tokens(tokens)
-        
-        # Update accounts.json
-        if os.path.exists(ACCOUNTS_FILE):
-            try:
-                with open(ACCOUNTS_FILE, "r", encoding="utf-8") as f:
-                    acc_data = json.load(f)
-                updated = False
-                for c, accs in acc_data.items():
-                    for a in accs:
-                        if a.get("email") == email:
-                            a["token"] = new_token
-                            if actual_credits is not None:
-                                a["credits"] = actual_credits
-                            updated = True
-                if updated:
-                    with open(ACCOUNTS_FILE, "w", encoding="utf-8") as f:
-                        json.dump(acc_data, f, indent=4)
-            except Exception as e:
-                print(f"Error updating accounts.json in relogin: {e}")
-                
-        return jsonify({"ok": True, "credits": actual_credits})
-        
-    return jsonify({"error": f"Giriş başarısız: {login_res.get('msg', 'Bilinmeyen hata')}"}), 400
+    return jsonify({"ok": True, "async": True})
 
 
 @auth_bp.route("/api/tokens/drision-sync", methods=["POST"])

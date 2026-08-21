@@ -624,10 +624,7 @@ async function reloginToken(btn, id, email) {
         }
         
         if (data.ok) {
-            alert('Giriş başarılı! Yeni token güncellendi.' + (data.credits !== null && data.credits !== undefined ? ` Kredi: ${data.credits}` : ''));
-            loadTokens();
-            if (typeof loadRights === 'function') loadRights();
-            if (typeof loadAllAccountsList === 'function') loadAllAccountsList();
+            // Processing in background thread. We wait for SSE relogin_success/error.
         } else {
             alert('Hata: ' + (data.error || 'Bilinmeyen bir hata oluştu.'));
             btn.innerHTML = origHtml;
@@ -638,4 +635,34 @@ async function reloginToken(btn, id, email) {
         btn.innerHTML = origHtml;
         btn.disabled = false;
     }
+}
+
+function handleReloginSuccess(data) {
+    openLoginSuccessModal(data.email, data.credits);
+    loadTokens();
+    if (typeof loadRights === 'function') loadRights();
+    if (typeof loadAllAccountsList === 'function') loadAllAccountsList();
+}
+
+function handleReloginError(data) {
+    if (typeof showNotification === 'function') {
+        showNotification('Oturum Açma Başarısız', `${data.email} için: ${data.error}`, 'error');
+    } else {
+        alert(`Hata: ${data.error}`);
+    }
+    loadTokens();
+}
+
+function openLoginSuccessModal(email, credits) {
+    const modal = document.getElementById('loginSuccessModal');
+    const emailEl = document.getElementById('loginSuccessEmail');
+    const creditsEl = document.getElementById('loginSuccessCredits');
+    if (emailEl) emailEl.innerText = email;
+    if (creditsEl) creditsEl.innerText = (credits !== null && credits !== undefined) ? `${credits} Kr` : 'Bilinmiyor';
+    if (modal) modal.classList.remove('hidden');
+}
+
+function closeLoginSuccessModal() {
+    const modal = document.getElementById('loginSuccessModal');
+    if (modal) modal.classList.add('hidden');
 }

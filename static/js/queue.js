@@ -239,6 +239,20 @@ async function initSSE() {
 
     const es = new EventSource('/api/events');
 
+    es.addEventListener('relogin_success', (e) => {
+        const data = JSON.parse(e.data);
+        if (typeof handleReloginSuccess === 'function') {
+            handleReloginSuccess(data);
+        }
+    });
+
+    es.addEventListener('relogin_error', (e) => {
+        const data = JSON.parse(e.data);
+        if (typeof handleReloginError === 'function') {
+            handleReloginError(data);
+        }
+    });
+
     es.addEventListener('task_update', (e) => {
         const data = JSON.parse(e.data);
         if(data.status === 'done' || data.status === 'error' || data.status === 'cancelled') {

@@ -1,0 +1,31 @@
+<div id="loginSuccessModal" class="modal-backdrop hidden">
+    <div class="modal-card fade-in" style="max-width:400px">
+        <div class="flex flex-col items-center text-center py-6">
+            <!-- Icon -->
+            <div class="w-16 h-16 bg-emerald-500/10 border border-emerald-500/20 rounded-full flex items-center justify-center mb-6 shadow-[0_0_20px_rgba(16,185,129,0.1)]">
+                <i class="fa-solid fa-circle-check text-emerald-500 text-3xl"></i>
+            </div>
+            
+            <!-- Title -->
+            <h3 class="text-xl font-bold tracking-tight text-white mb-2">Giriş Başarılı!</h3>
+            <p class="text-xs text-zinc-400 mb-6">Hesap bilgileri başarıyla güncellendi.</p>
+            
+            <!-- Details Card -->
+            <div class="w-full bg-[#0c0c14]/50 border border-white/[0.04] rounded-xl p-4 mb-6 space-y-3 text-left">
+                <div class="flex justify-between items-center text-xs">
+                    <span class="text-zinc-500 font-bold uppercase tracking-wider text-[10px]">Hesap:</span>
+                    <span id="loginSuccessEmail" class="text-zinc-200 font-medium">--</span>
+                </div>
+                <div class="flex justify-between items-center text-xs">
+                    <span class="text-zinc-500 font-bold uppercase tracking-wider text-[10px]">Güncel Kredi:</span>
+                    <span id="loginSuccessCredits" class="text-emerald-400 font-bold">-- Kr</span>
+                </div>
+            </div>
+            
+            <!-- Action Button -->
+            <button onclick="closeLoginSuccessModal()" class="shadcn-button-primary w-full py-2.5 text-sm font-bold">
+                Harika
+            </button>
+        </div>
+    </div>
+</div>
