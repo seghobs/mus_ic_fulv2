@@ -399,6 +399,7 @@ def api_accounts_refresh_bulk():
         try:
             from core.account_manager import MusicfulBot
             from core.config import ACCOUNTS_FILE, safe_read_json, safe_write_json
+            from concurrent.futures import ThreadPoolExecutor
             import os
             
             if not os.path.exists(ACCOUNTS_FILE):
@@ -418,29 +419,35 @@ def api_accounts_refresh_bulk():
             bulk_refresh_status["total"] = len(accounts_to_check)
             bulk_refresh_status["current"] = 0
             
-            bot = MusicfulBot()
+            lock = threading.Lock()
             
-            for g, a in accounts_to_check:
+            def check_single_account(item):
                 if not bulk_refresh_status["is_running"]:
-                    break
-                    
+                    return
+                g, a = item
                 email = a.get("email")
                 password = a.get("password")
                 
                 if password:
                     try:
+                        bot = MusicfulBot()
                         login_res = bot.login_api(email, password)
                         if login_res.get("code") == 200:
                             token = login_res.get("data", {}).get("token")
                             actual_credits = bot.get_credits(token)
                             if actual_credits is not None:
-                                a["credits"] = actual_credits
-                                a["token"] = token
+                                with lock:
+                                    a["credits"] = actual_credits
+                                    a["token"] = token
                     except Exception as e:
                         print(f"Bulk refresh error for {email}: {e}")
                         
-                bulk_refresh_status["current"] += 1
-                safe_write_json(ACCOUNTS_FILE, db)
+                with lock:
+                    bulk_refresh_status["current"] += 1
+                    safe_write_json(ACCOUNTS_FILE, db)
+
+            with ThreadPoolExecutor(max_workers=15) as executor:
+                executor.map(check_single_account, accounts_to_check)
                 
         except Exception as e:
             bulk_refresh_status["error"] = str(e)
