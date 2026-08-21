@@ -142,11 +142,105 @@ def obfuscate_text_filter(text):
 
 musicful_bp = Blueprint('musicful_bp', __name__)
 
+def _update_rights_async(token, email):
+    import requests
+    import json
+    import os
+    from core.config import BASE_URL, ACCOUNTS_FILE
+    from core.auth import api_headers
+    from core.tasks import sse_notify
+    
+    try:
+        resp = requests.get(f"{BASE_URL}/v1/user/rights", headers=api_headers(token), timeout=10)
+        if resp.status_code == 200:
+            data = resp.json()
+            result = data.get("data", {}).get("result", {})
+            left_credits = result.get("left", 0)
+            
+            # Update accounts.json
+            if os.path.exists(ACCOUNTS_FILE):
+                try:
+                    with open(ACCOUNTS_FILE, "r", encoding="utf-8") as f:
+                        acc_data = json.load(f)
+                    updated = False
+                    for c, accs in acc_data.items():
+                        for a in accs:
+                            if a.get("email") == email:
+                                a["credits"] = left_credits
+                                a["token"] = token
+                                updated = True
+                    if updated:
+                        with open(ACCOUNTS_FILE, "w", encoding="utf-8") as f:
+                            json.dump(acc_data, f, indent=4)
+                except Exception as e:
+                    print(f"Error updating accounts.json in async rights update: {e}")
+            
+            # Notify frontend via SSE
+            sse_notify("rights_update", data)
+    except Exception as e:
+        print(f"Error fetching async rights: {e}")
+
+
 @musicful_bp.route("/api/rights")
 def api_rights():
-    token = load_token()
-    resp = requests.get(f"{BASE_URL}/v1/user/rights", headers=api_headers(token))
-    return jsonify(resp.json())
+    import os
+    import json
+    import threading
+    from core.config import ACCOUNTS_FILE
+    from core.auth import load_token
+    
+    try:
+        # Get active token name
+        from core.auth import _read_tokens
+        tokens = _read_tokens()
+        active = [t for t in tokens if t.get("active", True)]
+        
+        if active:
+            token_obj = active[0]
+            token = token_obj["token"]
+            email = token_obj["name"]
+            
+            # Try to get cached credits from accounts.json
+            cached_credits = None
+            if os.path.exists(ACCOUNTS_FILE):
+                with open(ACCOUNTS_FILE, "r", encoding="utf-8") as f:
+                    try:
+                        acc_data = json.load(f)
+                        for c, accs in acc_data.items():
+                            for a in accs:
+                                if a.get("email") == email:
+                                    cached_credits = a.get("credits")
+                                    break
+                            if cached_credits is not None:
+                                break
+                    except:
+                        pass
+            
+            # Trigger background refresh
+            threading.Thread(target=_update_rights_async, args=(token, email), daemon=True).start()
+            
+            if cached_credits is not None:
+                cached_data = {
+                    "data": {
+                        "result": {
+                            "all": 2500,
+                            "left": cached_credits,
+                            "used": max(0.0, 2500 - cached_credits),
+                            "is_vip": 1
+                        }
+                    },
+                    "status": 200,
+                    "message": "Success"
+                }
+                return jsonify(cached_data)
+                
+        # If no active token or no cached credits, do it synchronously as fallback
+        token = load_token()
+        resp = requests.get(f"{BASE_URL}/v1/user/rights", headers=api_headers(token))
+        return jsonify(resp.json())
+        
+    except Exception as e:
+        return jsonify({"error": str(e)}), 500
 
 @musicful_bp.route("/api/songs")
 def api_songs():

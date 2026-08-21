@@ -1,6 +1,5 @@
-async function loadRights() {
+function updateRightsUI(r) {
     try {
-        const r = await fetch('/api/rights').then(r=>r.json());
         const d = r.data.result;
         const pct = Math.round((d.left/d.all)*100);
         document.getElementById('rights-bar').innerHTML = `
@@ -19,6 +18,15 @@ async function loadRights() {
                 ${d.is_vip ? '<span class="bg-white text-black text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded-md shadow-[0_0_15px_rgba(255,255,255,0.3)]">VIP</span>' : ''}
             </div>
         `;
+    } catch(e) {
+        document.getElementById('rights-bar').innerHTML = '<span class="text-red-400 font-bold text-[10px] uppercase tracking-widest"><i class="fa-solid fa-triangle-exclamation mr-2"></i>Hak bilgisi alınamadı</span>';
+    }
+}
+
+async function loadRights() {
+    try {
+        const r = await fetch('/api/rights').then(r=>r.json());
+        updateRightsUI(r);
     } catch(e) {
         document.getElementById('rights-bar').innerHTML = '<span class="text-red-400 font-bold text-[10px] uppercase tracking-widest"><i class="fa-solid fa-triangle-exclamation mr-2"></i>Hak bilgisi alınamadı</span>';
     }

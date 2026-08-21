@@ -253,6 +253,13 @@ async function initSSE() {
         }
     });
 
+    es.addEventListener('rights_update', (e) => {
+        const data = JSON.parse(e.data);
+        if (typeof updateRightsUI === 'function') {
+            updateRightsUI(data);
+        }
+    });
+
     es.addEventListener('task_update', (e) => {
         const data = JSON.parse(e.data);
         if(data.status === 'done' || data.status === 'error' || data.status === 'cancelled') {
