@@ -80,8 +80,14 @@ class AiohttpSyncClient:
                     except:
                         json_data = {}
                         
-                text_content = await response.text()
                 bytes_content = await response.read()
+                try:
+                    text_content = await response.text()
+                except Exception:
+                    try:
+                        text_content = bytes_content.decode('utf-8', errors='replace')
+                    except:
+                        text_content = ""
                 
                 return MockResponse(
                     status_code=response.status,
