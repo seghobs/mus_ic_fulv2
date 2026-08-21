@@ -130,7 +130,8 @@ def _relogin_worker(tok_id, email, password):
             if t["id"] == tok_id:
                 t["token"] = new_token
                 t["active"] = True
-                break
+            else:
+                t["active"] = False
         _write_tokens(tokens)
         
         # Update accounts.json
