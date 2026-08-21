@@ -260,6 +260,12 @@ async function initSSE() {
         }
     });
 
+    es.addEventListener('library_update', (e) => {
+        if (typeof loadAllSongs === 'function') {
+            loadAllSongs();
+        }
+    });
+
     es.addEventListener('task_update', (e) => {
         const data = JSON.parse(e.data);
         if(data.status === 'done' || data.status === 'error' || data.status === 'cancelled') {

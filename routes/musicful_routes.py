@@ -196,13 +196,81 @@ def api_rights():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
+def _update_library_cache_async(token, page, limit):
+    import os
+    import json
+    from core.config import BASE_URL
+    from core.auth import api_headers
+    from core.tasks import sse_notify
+    from routes.musicful_routes import decrypt_audio_url
+    from core.aiohttp_client import AiohttpSyncClient as requests
+    
+    LIBRARY_CACHE_FILE = "data/library_cache.json"
+    
+    try:
+        resp = requests.get(f"{BASE_URL}/v1/songs?page={page}&limit={limit}", headers=api_headers(token), timeout=15)
+        if resp.status_code == 200:
+            data = resp.json()
+            song_list = data.get("data", {}).get("list", [])
+            for song in song_list:
+                if song.get("audio_url"):
+                    song["audio_url"] = decrypt_audio_url(song["audio_url"])
+                if song.get("cover_url"):
+                    song["cover_url"] = decrypt_audio_url(song["cover_url"])
+            
+            # Compare with existing cache
+            cache_changed = True
+            if os.path.exists(LIBRARY_CACHE_FILE):
+                try:
+                    with open(LIBRARY_CACHE_FILE, "r", encoding="utf-8") as f:
+                        old_cache = json.load(f)
+                    old_ids = [s.get("id") for s in old_cache.get("data", {}).get("list", [])]
+                    new_ids = [s.get("id") for s in song_list]
+                    if old_ids == new_ids:
+                        cache_changed = False
+                except:
+                    pass
+            
+            if cache_changed:
+                os.makedirs(os.path.dirname(LIBRARY_CACHE_FILE), exist_ok=True)
+                with open(LIBRARY_CACHE_FILE, "w", encoding="utf-8") as f:
+                    json.dump(data, f, indent=4, ensure_ascii=False)
+                
+                # Notify frontend to refresh library
+                sse_notify("library_update", data)
+    except Exception as e:
+        print(f"Error in async library update: {e}")
+
+
 @musicful_bp.route("/api/songs")
 def api_songs():
-    token = load_token()
-    page = request.args.get("page", 1, type=int)
-    limit = request.args.get("limit", 20, type=int)
-    resp = requests.get(f"{BASE_URL}/v1/songs?page={page}&limit={limit}", headers=api_headers(token))
+    import os
+    import json
+    import threading
+    from core.auth import load_token
+    
+    LIBRARY_CACHE_FILE = "data/library_cache.json"
+    
     try:
+        token = load_token()
+        page = request.args.get("page", 1, type=int)
+        limit = request.args.get("limit", 20, type=int)
+        
+        if page == 1 and limit == 5:
+            # Trigger background refresh
+            threading.Thread(target=_update_library_cache_async, args=(token, page, limit), daemon=True).start()
+            
+            # If cache exists, return it instantly
+            if os.path.exists(LIBRARY_CACHE_FILE):
+                try:
+                    with open(LIBRARY_CACHE_FILE, "r", encoding="utf-8") as f:
+                        cached_data = json.load(f)
+                    return jsonify(cached_data)
+                except:
+                    pass
+                    
+        # Synchronous fallback for other pages or if cache is missing
+        resp = requests.get(f"{BASE_URL}/v1/songs?page={page}&limit={limit}", headers=api_headers(token))
         data = resp.json()
         song_list = data.get("data", {}).get("list", [])
         for song in song_list:
@@ -211,9 +279,10 @@ def api_songs():
             if song.get("cover_url"):
                 song["cover_url"] = decrypt_audio_url(song["cover_url"])
         return jsonify(data)
+        
     except Exception as e:
         print(f"[api_songs Error] {e}")
-        return jsonify(resp.json())
+        return jsonify({"error": str(e)}), 500
 
 @musicful_bp.route("/api/upload", methods=["POST"])
 def api_upload():
