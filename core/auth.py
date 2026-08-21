@@ -17,7 +17,29 @@ def _init_tokens():
 
 def _read_tokens():
     _init_tokens()
-    return safe_read_json(TOKENS_FILE) or []
+    tokens = safe_read_json(TOKENS_FILE) or []
+    
+    seen = {}
+    deduplicated = []
+    
+    for t in tokens:
+        name = t.get("name")
+        if not name:
+            deduplicated.append(t)
+            continue
+            
+        if name not in seen:
+            seen[name] = len(deduplicated)
+            deduplicated.append(t)
+        else:
+            idx = seen[name]
+            if t.get("active"):
+                deduplicated[idx] = t
+                
+    if len(deduplicated) != len(tokens):
+        safe_write_json(TOKENS_FILE, deduplicated)
+        
+    return deduplicated
 
 def _write_tokens(tokens):
     safe_write_json(TOKENS_FILE, tokens)

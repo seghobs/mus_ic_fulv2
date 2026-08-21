@@ -348,12 +348,21 @@ def api_accounts_switch_manual():
         for t in tokens:
             t["active"] = False
             
-        tokens.append({
-            "id": str(uuid.uuid4())[:8],
-            "name": email,
-            "token": token,
-            "active": True
-        })
+        found = False
+        for t in tokens:
+            if t.get("name") == email:
+                t["token"] = token
+                t["active"] = True
+                found = True
+                break
+                
+        if not found:
+            tokens.append({
+                "id": str(uuid.uuid4())[:8],
+                "name": email,
+                "token": token,
+                "active": True
+            })
         
         with open(TOKENS_FILE, "w", encoding="utf-8") as f:
             json.dump(tokens, f, indent=2, ensure_ascii=False)

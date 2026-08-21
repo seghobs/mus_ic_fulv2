@@ -146,10 +146,11 @@ def switch_to_next_account():
         for t in tokens:
             t["active"] = False
             
-        # Check if this token exists
+        # Check if a token for this email already exists to update it
         found = False
         for t in tokens:
-            if t.get("token") == new_token:
+            if email and t.get("name") == email:
+                t["token"] = new_token
                 t["active"] = True
                 found = True
                 break
