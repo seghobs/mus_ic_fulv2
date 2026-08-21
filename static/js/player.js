@@ -497,9 +497,11 @@ function updateLibraryPlayButtons(currentId) {
     }
     const card = document.querySelector(`.shadcn-card[data-sid="${songUuid}"]`);
     if (card) {
-        const btn = card.querySelector('button[onclick^="togglePlay"]');
-        if (btn) {
-            btn.innerHTML = '<div class="audio-wave text-emerald-400"><span class="bar bar1"></span><span class="bar bar2"></span><span class="bar bar3"></span><span class="bar bar4"></span></div><span class="text-emerald-400 font-semibold">Dinleniyor..</span>';
+        const overlay = card.querySelector('.play-btn-overlay');
+        if (overlay) {
+            overlay.innerHTML = `<div class="audio-wave text-emerald-400 scale-75"><span class="bar bar1"></span><span class="bar bar2"></span><span class="bar bar3"></span><span class="bar bar4"></span></div>`;
+            overlay.classList.remove('opacity-0');
+            overlay.classList.add('opacity-100');
         }
     }
 }

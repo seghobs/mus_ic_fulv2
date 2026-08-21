@@ -68,15 +68,7 @@ async function loadAllSongs(isNextPage = false) {
 
             let actions = '';
             if (isReady) {
-                const isPlayingThis = (fpAudio && !fpAudio.paused && fpCurrentId && fpCurrentId.includes(songUuid));
-                const btnContent = isPlayingThis 
-                    ? `<div class="audio-wave text-emerald-400"><span class="bar bar1"></span><span class="bar bar2"></span><span class="bar bar3"></span><span class="bar bar4"></span></div><span class="text-emerald-400 font-semibold">Dinleniyor..</span>` 
-                    : `<i class="fa-solid fa-play text-[10px]"></i> Dinle`;
-                    
                 actions = `
-                    <button onclick="togglePlay('${songUuid}',this)" class="shadcn-button-secondary px-3 py-1.5 text-xs flex items-center gap-2">
-                        ${btnContent}
-                    </button>
                     <a href="${url}" download class="shadcn-button-secondary px-3 py-1.5 text-xs flex items-center gap-2">
                         <i class="fa-solid fa-download text-[10px]"></i> İndir
                     </a>
@@ -87,13 +79,34 @@ async function loadAllSongs(isNextPage = false) {
 
             const animDelay = isNextPage ? 0 : idx * 0.05;
 
-            const coverHtml = song.cover_url 
-                ? `<div class="w-12 h-12 rounded-lg overflow-hidden border border-white/[0.06] flex-shrink-0 bg-zinc-900">
-                     <img src="${song.cover_url}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;w-full h-full flex items-center justify-center bg-gradient-to-br from-violet-500/20 to-indigo-500/10 text-violet-400&quot;><i class=&quot;fa-solid fa-music text-xs&quot;></i></div>'">
-                   </div>`
-                : `<div class="w-12 h-12 rounded-lg border border-white/[0.06] flex-shrink-0 bg-gradient-to-br from-violet-500/20 to-indigo-500/10 flex items-center justify-center text-violet-400">
-                     <i class="fa-solid fa-music text-xs"></i>
-                   </div>`;
+            let coverHtml = '';
+            if (isReady) {
+                const isPlayingThis = (fpAudio && !fpAudio.paused && fpCurrentId && fpCurrentId.includes(songUuid));
+                const overlayContent = isPlayingThis 
+                    ? `<div class="audio-wave text-emerald-400 scale-75"><span class="bar bar1"></span><span class="bar bar2"></span><span class="bar bar3"></span><span class="bar bar4"></span></div>` 
+                    : `<i class="fa-solid fa-play text-white text-sm"></i>`;
+                    
+                coverHtml = `
+                    <div onclick="togglePlay('${songUuid}', this.querySelector('.play-btn-overlay'))" class="relative w-12 h-12 rounded-lg overflow-hidden border border-white/[0.06] flex-shrink-0 bg-zinc-900 group cursor-pointer">
+                        ${song.cover_url 
+                            ? `<img src="${song.cover_url}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;w-full h-full flex items-center justify-center bg-gradient-to-br from-violet-500/20 to-indigo-500/10 text-violet-400&quot;><i class=&quot;fa-solid fa-music text-xs&quot;></i></div>'">`
+                            : `<div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-violet-500/20 to-indigo-500/10 text-violet-400"><i class="fa-solid fa-music text-xs"></i></div>`
+                        }
+                        <div class="play-btn-overlay absolute inset-0 bg-black/40 flex items-center justify-center ${isPlayingThis ? 'opacity-100' : 'opacity-0 group-hover:opacity-100'} transition-opacity duration-200">
+                            ${overlayContent}
+                        </div>
+                    </div>
+                `;
+            } else {
+                coverHtml = `
+                    <div class="relative w-12 h-12 rounded-lg overflow-hidden border border-white/[0.06] flex-shrink-0 bg-zinc-900">
+                        ${song.cover_url 
+                            ? `<img src="${song.cover_url}" class="w-full h-full object-cover" onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=&quot;w-full h-full flex items-center justify-center bg-gradient-to-br from-violet-500/20 to-indigo-500/10 text-violet-400&quot;><i class=&quot;fa-solid fa-music text-xs&quot;></i></div>'">`
+                            : `<div class="w-full h-full flex items-center justify-center bg-gradient-to-br from-violet-500/20 to-indigo-500/10 text-violet-400"><i class="fa-solid fa-music text-xs"></i></div>`
+                        }
+                    </div>
+                `;
+            }
 
             container.innerHTML += `
                 <div class="shadcn-card p-4 mb-2 fade-in" data-sid="${songUuid}" data-title="${(song.title || 'Adsız').replace(/"/g, '&quot;')}" data-dur="${song.duration || 0}" data-ready="${isReady}" style="animation-delay:${animDelay}s">
@@ -154,26 +167,32 @@ function syncLibraryPlayButtons() {
     
     document.querySelectorAll('.shadcn-card[data-sid]').forEach(card => {
         const uuid = card.dataset.sid;
-        const btn = card.querySelector('button[onclick*="togglePlay"]');
-        if (!btn) return;
+        const overlay = card.querySelector('.play-btn-overlay');
+        if (!overlay) return;
         
         if (uuid === activeUuid) {
             if (fpAudio && !fpAudio.paused) {
-                btn.innerHTML = `<div class="audio-wave text-emerald-400"><span class="bar bar1"></span><span class="bar bar2"></span><span class="bar bar3"></span><span class="bar bar4"></span></div><span class="text-emerald-400 font-semibold">Dinleniyor..</span>`;
+                overlay.innerHTML = `<div class="audio-wave text-emerald-400 scale-75"><span class="bar bar1"></span><span class="bar bar2"></span><span class="bar bar3"></span><span class="bar bar4"></span></div>`;
+                overlay.classList.remove('opacity-0');
+                overlay.classList.add('opacity-100');
             } else {
-                btn.innerHTML = `<i class="fa-solid fa-play text-[10px] text-zinc-400"></i> <span class="text-zinc-400">Devam Ettir</span>`;
+                overlay.innerHTML = `<i class="fa-solid fa-play text-white/70 text-sm"></i>`;
+                overlay.classList.remove('opacity-0');
+                overlay.classList.add('opacity-100');
             }
         } else {
-            btn.innerHTML = `<i class="fa-solid fa-play text-[10px]"></i> Dinle`;
+            overlay.innerHTML = `<i class="fa-solid fa-play text-white text-sm"></i>`;
+            overlay.classList.remove('opacity-100');
+            overlay.classList.add('opacity-0');
         }
     });
 }
 
 function resetLibraryPlayButtons() {
-    document.querySelectorAll('.shadcn-card button').forEach(b => {
-        if(b.innerHTML.includes('Dinleniyor..') || b.innerHTML.includes('Duraklat') || b.innerHTML.includes('Durduruldu') || b.innerHTML.includes('Devam Ettir')) {
-            b.innerHTML = '<i class="fa-solid fa-play text-[10px]"></i> Dinle';
-        }
+    document.querySelectorAll('.play-btn-overlay').forEach(overlay => {
+        overlay.innerHTML = `<i class="fa-solid fa-play text-white text-sm"></i>`;
+        overlay.classList.remove('opacity-100');
+        overlay.classList.add('opacity-0');
     });
 }
 function syncSongs(newSongs) {
