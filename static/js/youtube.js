@@ -29,21 +29,28 @@ function toggleYtVideosSidebar() {
     }
 }
 
+function ytSidebarState(icon, title, message, retry = false) {
+    return `<div class="studio-drawer-state" role="status"><div class="studio-state-icon"><i class="${icon}"></i></div><h4>${title}</h4><p>${message}</p>${retry ? '<button class="studio-state-retry" onclick="loadYtVideos()"><i class="fa-solid fa-rotate-right"></i> Tekrar dene</button>' : ''}</div>`;
+}
+
 async function loadYtVideos() {
     const container = document.getElementById('ytVideosList');
-    container.innerHTML = '<div class="flex items-center justify-center py-8"><i class="fa-solid fa-spinner fa-spin text-dark-500 mr-2"></i><span class="text-dark-500 text-sm">Videolar yükleniyor...</span></div>';
+    container.innerHTML = ytSidebarState('fa-solid fa-spinner fa-spin', 'Arşivin hazırlanıyor', 'Kanalındaki videolar getiriliyor.');
 
     try {
         const resp = await fetch('/api/yt-videos');
         const data = await resp.json();
 
         if(!data.ok) {
-            container.innerHTML = `<div class="text-center py-8"><i class="fa-solid fa-triangle-exclamation text-2xl text-red-400 mb-2"></i><p class="text-red-400 text-sm">${data.error || 'Videolar yüklenemedi'}</p></div>`;
+            const setupMissing = /client_secret|unauthorized|not authenticated/i.test(data.error || '');
+            container.innerHTML = setupMissing
+                ? ytSidebarState('fa-solid fa-link', 'Kanal bağlantısı gerekli', 'Videolarını görmek için YouTube bağlantı ayarlarının tamamlanması gerekiyor.', true)
+                : ytSidebarState('fa-solid fa-cloud', 'Arşive ulaşamadık', 'Videolar şu anda yüklenemiyor. Biraz sonra tekrar deneyebilirsin.', true);
             return;
         }
 
         if(!data.videos || !data.videos.length) {
-            container.innerHTML = '<div class="text-center py-8"><i class="fa-regular fa-folder-open text-3xl text-dark-600 mb-2"></i><p class="text-dark-500 text-sm">Kanalda video bulunamadı</p></div>';
+            container.innerHTML = ytSidebarState('fa-solid fa-film', 'İlk videona yer açtık', 'Kanalında yayınladığın videolar burada görünecek.');
             return;
         }
 
@@ -51,7 +58,7 @@ async function loadYtVideos() {
         ytSidebarLoaded = true;
         filterYtVideos('views_desc');
     } catch(e) {
-        container.innerHTML = `<div class="text-center py-8"><i class="fa-solid fa-triangle-exclamation text-2xl text-red-400 mb-2"></i><p class="text-red-400 text-sm">${e.message}</p></div>`;
+        container.innerHTML = ytSidebarState('fa-solid fa-cloud', 'Bağlantı kurulamadı', 'Bağlantını kontrol edip tekrar deneyebilirsin.', true);
     }
 }
 
@@ -90,8 +97,8 @@ function renderYtVideos(videos) {
                         ${date ? `<span class="yt-video-date"><i class="fa-regular fa-calendar"></i> ${date}</span>` : ''}
                     </div>
                 </div>
-                <button onclick="event.stopPropagation(); optimizeVideoSEO('${v.videoId}','${safeTitle}','yt-seo-${v.videoId}')" class="w-full mt-2 bg-amber-600/20 hover:bg-amber-600/30 border border-amber-500/30 text-amber-400 px-3 py-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
-                    <i class="fa-solid fa-wand-magic-sparkles"></i> Bu Video İçin Viral SEO Önerisi Al
+                <button onclick="event.stopPropagation(); optimizeVideoSEO('${v.videoId}','${safeTitle}','yt-seo-${v.videoId}')" class="yt-seo-action w-full mt-2 bg-amber-600/20 hover:bg-amber-600/30 border border-amber-500/30 text-amber-400 px-3 py-2 rounded-lg text-xs font-semibold flex items-center justify-center gap-1.5 transition-all">
+                    <i class="fa-solid fa-wand-magic-sparkles"></i> SEO önerileri al
                 </button>
                 <div id="yt-seo-${v.videoId}" class="hidden mt-2"></div>
             </div>

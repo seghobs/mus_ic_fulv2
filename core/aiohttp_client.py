@@ -6,6 +6,9 @@ import time
 _loop = None
 _session = None
 _thread = None
+_start_lock = threading.Lock()
+_ready = threading.Event()
+_startup_error = None
 
 def _start_background_loop():
     global _loop, _session
@@ -21,16 +24,26 @@ def _start_background_loop():
         )
         _session = aiohttp.ClientSession(connector=connector)
         
-    _loop.run_until_complete(create_session())
+    global _startup_error
+    try:
+        _loop.run_until_complete(create_session())
+    except Exception as exc:
+        _startup_error = exc
+        _ready.set()
+        return
+    _ready.set()
     _loop.run_forever()
 
 def get_session():
     global _thread, _loop, _session
-    if _thread is None:
-        _thread = threading.Thread(target=_start_background_loop, daemon=True)
-        _thread.start()
-        while _session is None:
-            time.sleep(0.01)
+    with _start_lock:
+        if _thread is None:
+            _thread = threading.Thread(target=_start_background_loop, daemon=True)
+            _thread.start()
+    if not _ready.wait(timeout=10):
+        raise TimeoutError("HTTP client startup timed out")
+    if _startup_error:
+        raise RuntimeError("HTTP client startup failed") from _startup_error
     return _loop, _session
 
 class MockResponse:
@@ -135,7 +148,11 @@ class AiohttpSyncClient:
         coro = cls._request_async(method, url, **kwargs)
         future = asyncio.run_coroutine_threadsafe(coro, loop)
         timeout_val = kwargs.get("timeout", 30)
-        return future.result(timeout=timeout_val)
+        try:
+            return future.result(timeout=timeout_val)
+        except TimeoutError:
+            future.cancel()
+            raise
 
     @classmethod
     def get(cls, url, *args, **kwargs):

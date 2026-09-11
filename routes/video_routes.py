@@ -36,17 +36,20 @@ def api_create_video():
     audio_path = os.path.join(task_dir, "audio.mp3")
     output_path = os.path.join(VIDEO_OUTPUT, f"{video_id}.mp4")
 
-    from routes.musicful_routes import get_song_url
-    mp3_url = get_song_url(audio_id)
-    resp = requests.get(mp3_url, timeout=120, verify=False)
-    if resp.status_code != 200:
-        shutil.rmtree(task_dir, ignore_errors=True)
-        return jsonify({"error": "Şarkı indirilemedi"}), 400
-    with open(audio_path, "wb") as f:
-        f.write(resp.content)
+    # Capture the account before queueing, but download in the worker.
+    from core.auth import load_token
+    token = load_token()
 
     def do_video():
         try:
+            from routes.musicful_routes import get_song_url
+            import requests as streaming_requests
+            mp3_url = get_song_url(audio_id, token=token)
+            with streaming_requests.get(mp3_url, stream=True, timeout=(10, 120)) as resp:
+                resp.raise_for_status()
+                with open(audio_path, "wb") as output:
+                    for chunk in resp.iter_content(chunk_size=64 * 1024):
+                        output.write(chunk)
             cmd = [
                 "ffmpeg", "-y",
                 "-loop", "1",

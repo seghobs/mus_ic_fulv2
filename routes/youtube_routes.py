@@ -7,7 +7,6 @@ from core.aiohttp_client import AiohttpSyncClient as requests
 from core.auth import load_token, get_headers
 from core.config import BASE_URL
 from core.tasks import submit_task, task_queue
-from routes.musicful_routes import obfuscate_text_filter
 
 try:
     import youtube_upload
@@ -69,35 +68,61 @@ def api_yt_search():
 
 @youtube_bp.route("/api/yt-play/<video_id>")
 def api_yt_play(video_id):
-    from flask import redirect
+    from flask import Response, stream_with_context
+    from core.youtube_media import resolve_audio
+    import requests as media_requests
+    import re
+    if not re.fullmatch(r'[A-Za-z0-9_-]{11}', video_id):
+        return jsonify(error="Geçersiz video kimliği"), 400
+    requested_range = request.headers.get('Range')
+    if requested_range and not re.fullmatch(r'bytes=(?:\d+-\d*|-\d+)', requested_range):
+        return jsonify(error="Geçersiz ses aralığı"), 416
+    upstream = None
     try:
-        ydl_opts = {
-            "format": "bestaudio/best",
-            "quiet": True,
-            "no_warnings": True,
-        }
-        url = f"https://www.youtube.com/watch?v={video_id}"
-        with yt_dlp.YoutubeDL(ydl_opts) as ydl:
-            info = ydl.extract_info(url, download=False)
-            audio_url = info.get("url")
-            
-        if not audio_url:
-            return jsonify({"error": "Akış adresi bulunamadı"}), 404
-            
-        return redirect(audio_url)
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        for attempt in range(2):
+            url, source_headers = resolve_audio(video_id, refresh=bool(attempt))
+            headers = {**source_headers, 'Accept-Encoding': 'identity'}
+            if requested_range:
+                headers['Range'] = requested_range
+            upstream = media_requests.get(url, headers=headers, stream=True, timeout=(5, 20))
+            if upstream.status_code not in (401, 403) or attempt:
+                break
+            upstream.close()
+        if upstream.status_code not in (200, 206):
+            status = upstream.status_code
+            content_range = upstream.headers.get('Content-Range')
+            upstream.close()
+            response = jsonify(error="YouTube ses akışına erişilemedi. Yeniden oynatmayı deneyin.")
+            response.status_code = 416 if status == 416 else 502
+            if status == 416 and content_range:
+                response.headers['Content-Range'] = content_range
+            return response
+        headers = {'Cache-Control': 'no-store', 'X-Accel-Buffering': 'no'}
+        for name in ('Content-Type', 'Content-Length', 'Content-Range', 'Accept-Ranges'):
+            if name in upstream.headers:
+                headers[name] = upstream.headers[name]
+        def chunks():
+            try:
+                yield from upstream.iter_content(chunk_size=16384)
+            finally:
+                upstream.close()
+        response = Response(stream_with_context(chunks()), status=upstream.status_code, headers=headers)
+        response.call_on_close(upstream.close)
+        return response
+    except Exception:
+        if upstream is not None:
+            upstream.close()
+        return jsonify(error="YouTube sesi hazırlanamadı. Lütfen tekrar deneyin."), 502
 
 
 @youtube_bp.route("/api/youtube", methods=["POST"])
 def api_youtube():
     data = request.json
     url = data.get("url", "").strip()
-    bypass_filter = data.get("bypass_filter", False)
     if not url:
         return jsonify({"error": "URL boş"}), 400
 
-    def do_youtube_download(url, bypass_filter=False):
+    def do_youtube_download(url):
         tmp_dir = tempfile.mkdtemp()
         try:
             out_tmpl = os.path.join(tmp_dir, "%(id)s.%(ext)s")
@@ -121,8 +146,6 @@ def api_youtube():
             if file_size > 50 * 1024 * 1024:
                 return {"error": "Dosya 50MB'dan büyük"}
 
-            if bypass_filter:
-                title = obfuscate_text_filter(title)
 
             token = load_token()
             upload_url = f"{BASE_URL}/v2/upload-to-song"
@@ -133,8 +156,6 @@ def api_youtube():
                 audio_data = f.read()
 
             filename = mp3_files[0]
-            if bypass_filter:
-                filename = obfuscate_text_filter(filename)
 
             files = {"audio": (filename, audio_data, "audio/mpeg")}
             resp = requests.post(upload_url, headers=headers, files=files)
@@ -144,7 +165,7 @@ def api_youtube():
         finally:
             shutil.rmtree(tmp_dir, ignore_errors=True)
 
-    task_id = submit_task("youtube", do_youtube_download, url, bypass_filter)
+    task_id = submit_task("youtube", do_youtube_download, url)
     return jsonify({"task_id": task_id})
 
 @youtube_bp.route("/api/youtube/status/<task_id>")

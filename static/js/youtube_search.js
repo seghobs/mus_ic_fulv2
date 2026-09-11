@@ -121,17 +121,10 @@ async function downloadYoutube() {
         <div class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest">Video işleniyor...</div>
     `;
     try {
-        const bypassCover = document.getElementById('bypassCoverFilter');
-        const bypassVal = bypassCover && bypassCover.checked;
-        if (bypassVal) {
-            const bypassLyrics = document.getElementById('bypassFilter');
-            if (bypassLyrics) bypassLyrics.checked = true;
-        }
-
         const resp = await fetch('/api/youtube', {
             method: 'POST',
             headers: {'Content-Type': 'application/json'},
-            body: JSON.stringify({url: url, bypass_filter: bypassVal})
+            body: JSON.stringify({url: url})
         });
         const data = await resp.json();
         if(data.error) {

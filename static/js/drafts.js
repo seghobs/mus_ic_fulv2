@@ -229,7 +229,7 @@ function updateDraftsUI() {
             }
 
             html += `
-                <div class="shadcn-card p-4 space-y-3 fade-in group relative overflow-hidden">
+                <div class="draft-card shadcn-card p-4 space-y-3 fade-in group relative overflow-hidden">
                     <div class="flex items-start justify-between gap-3">
                         <div class="flex items-start gap-3">
                             <div class="w-8 h-8 rounded-lg bg-zinc-900 border border-zinc-800 flex items-center justify-center flex-shrink-0">
@@ -240,13 +240,13 @@ function updateDraftsUI() {
                                 <div class="text-[10px] text-zinc-500 font-medium uppercase tracking-wider">${subtitle}</div>
                             </div>
                         </div>
-                        <button onclick="removeDraftState('${d.id}')" class="p-2 -mr-2 text-zinc-600 hover:text-white transition-colors">
+                        <button onclick="removeDraftState('${d.id}')" aria-label="Taslağı sil" class="draft-delete p-2 -mr-2 text-zinc-600 hover:text-white transition-colors">
                             <i class="fa-solid fa-trash-can text-xs"></i>
                         </button>
                     </div>
                     
-                    <div class="flex items-center justify-between text-[10px] text-zinc-600 font-mono">
-                        <span>SON GÜNCELLEME</span>
+                    <div class="draft-date flex items-center justify-between text-[10px] text-zinc-600 font-mono">
+                        <span>Son düzenleme</span>
                         <span>${dateStr}</span>
                     </div>
 
@@ -265,17 +265,7 @@ function updateDraftsUI() {
         }
     } else {
         toggleBtn.classList.add('hidden');
-        list.innerHTML = `
-            <div class="flex flex-col items-center justify-center py-20 text-center space-y-4">
-                <div class="w-16 h-16 rounded-full bg-zinc-900/50 border border-dashed border-zinc-800 flex items-center justify-center">
-                    <i class="fa-solid fa-check text-zinc-700 text-xl"></i>
-                </div>
-                <div class="space-y-1">
-                    <div class="text-white font-bold text-sm">Taslak Yok</div>
-                    <div class="text-zinc-600 text-xs">Şu an yarım kalmış bir projen bulunmuyor.</div>
-                </div>
-            </div>
-        `;
+        list.innerHTML = `<div class="studio-drawer-state"><div class="studio-state-icon"><i class="fa-regular fa-file-lines"></i></div><h4>Yeni fikirlere yer var</h4><p>Üzerinde çalıştığın projeler burada seni bekleyecek.</p></div>`;
     }
 }
 

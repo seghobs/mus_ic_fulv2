@@ -3,7 +3,18 @@ import json
 from google import genai
 from google.genai import types
 
-API_KEY = "AIzaSyD7px6ZJnX6oGV6WTDnz05SMZUqnNbM0F0"
+def _load_api_key():
+    key = os.environ.get("GEMINI_API_KEY", "")
+    if key:
+        return key
+    path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "gemini.local.json")
+    try:
+        with open(path, encoding="utf-8") as handle:
+            return json.load(handle).get("api_key", "")
+    except (OSError, ValueError):
+        return ""
+
+API_KEY = _load_api_key()
 
 def _load_models():
     config_path = os.path.join(os.path.dirname(os.path.dirname(__file__)), "models.json")

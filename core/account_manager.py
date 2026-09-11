@@ -135,38 +135,10 @@ def switch_to_next_account():
                         print(f"[AccountManager] {email} kredisi yetersiz ({actual_credits}), atlaniliyor.")
                         continue
             
-    if account_updated:
-        safe_write_json(DRISION_ACCOUNTS_FILE, accounts_data, indent=4)
-            
     if new_token:
-        # Update local tokens.json
-        tokens = safe_read_json(TOKENS_FILE) or []
-                
-        # Set all to inactive
-        for t in tokens:
-            t["active"] = False
-            
-        # Check if a token for this email already exists to update it
-        found = False
-        for t in tokens:
-            if email and t.get("name") == email:
-                t["token"] = new_token
-                t["active"] = True
-                found = True
-                break
-                
-        if not found:
-            import uuid
-            tokens.append({
-                "id": str(uuid.uuid4())[:8],
-                "name": email if email else "auto_switched",
-                "token": new_token,
-                "active": True
-            })
-            
-        safe_write_json(TOKENS_FILE, tokens)
-            
+        from .auth import save_account_login
+        save_account_login(email, new_token, actual_credits)
         return new_token
-        
+
     print("[AccountManager] Uygun kredi bakiyesine sahip hicbir hesap bulunamadi!")
     return None

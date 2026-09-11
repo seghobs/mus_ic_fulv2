@@ -1,11 +1,27 @@
 function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function waitForMusicfulSignal(ids, ms) {
+    return new Promise(resolve => {
+        const finish = () => {
+            clearTimeout(timer);
+            window.removeEventListener('musicful-song-ready', onReady);
+            resolve();
+        };
+        const onReady = event => {
+            const signalIds = [event.detail.song_id, ...(event.detail.ids || [])].map(String);
+            if (ids.some(id => signalIds.includes(String(id)))) finish();
+        };
+        const timer = setTimeout(finish, ms);
+        window.addEventListener('musicful-song-ready', onReady);
+    });
+}
 function formatTime(s) {
     if(!s || isNaN(s)) return '0:00';
     const m = Math.floor(s/60);
     const sec = Math.floor(s%60);
     return m + ':' + (sec<10?'0':'') + sec;
 }
-let state = { mode: 'cover', audioId: null, title: '', lyrics: '', style: 'Guitar,Piano', mv: 'v5.5', songIds: [], results: [], bypassFilter: false, weirdness: 0.50, styleInfluence: 0.50 };
+let state = { mode: 'cover', audioId: null, title: '', lyrics: '', style: 'Guitar,Piano', mv: 'v5.5', songIds: [], results: [], weirdness: 0.50, styleInfluence: 0.50 };
 let knownSongs = {};
 let activeTaskCounter = 0;
 const activeTasks = {};
@@ -103,11 +119,11 @@ function goToStep(n) {
         state.lyrics = document.getElementById('songLyrics').value;
         state.style = document.getElementById('songStyle').value;
         state.mv = document.getElementById('modelSelect').value;
-        state.bypassFilter = document.getElementById('bypassFilter') ? document.getElementById('bypassFilter').checked : false;
         state.weirdness = document.getElementById('songWeirdness') ? parseFloat(document.getElementById('songWeirdness').value) : 0.50;
         state.styleInfluence = document.getElementById('songStyleInfluence') ? parseFloat(document.getElementById('songStyleInfluence').value) : 0.50;
     }
     if(n===3) {
+        if (typeof setGenerationSubmitted === 'function') setGenerationSubmitted(false);
         document.getElementById('confirmTitle').textContent = state.title;
         document.getElementById('confirmStyle').textContent = state.style;
         document.getElementById('confirmLyrics').textContent = state.lyrics;

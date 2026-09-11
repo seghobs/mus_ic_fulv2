@@ -5,6 +5,16 @@ import time
 from playwright.sync_api import sync_playwright
 
 from core.auth import _read_tokens, _write_tokens
+from core.config import _file_lock, update_json
+from functools import wraps
+
+def token_transaction(fn):
+    @wraps(fn)
+    def wrapped(*args, **kwargs):
+        with _file_lock:
+            return fn(*args, **kwargs)
+    return wrapped
+
 
 auth_bp = Blueprint('auth_bp', __name__)
 
@@ -41,12 +51,13 @@ def _browser_token_worker():
                 break
 
         if captured["auth"]:
-            tokens = _read_tokens()
-            existing_count = len(tokens)
-            name = f"Token {existing_count + 1}"
-            new = {"id": str(uuid.uuid4())[:8], "name": name, "token": captured["auth"], "active": True}
-            tokens.append(new)
-            _write_tokens(tokens)
+            with _file_lock:
+                tokens = _read_tokens()
+                existing_count = len(tokens)
+                name = f"Token {existing_count + 1}"
+                new = {"id": str(uuid.uuid4())[:8], "name": name, "token": captured["auth"], "active": True}
+                tokens.append(new)
+                _write_tokens(tokens)
             browser_token_state["token"] = new
             browser_token_state["status"] = "done"
         else:
@@ -63,11 +74,22 @@ def _browser_token_worker():
         browser_instance["browser"] = None
 
 
+@auth_bp.route("/api/session/refresh", methods=["POST"])
+def api_session_refresh():
+    from core.auth import refresh_active_session
+    try:
+        result = refresh_active_session()
+        return jsonify(result), 200 if result["ok"] else 502
+    except Exception:
+        return jsonify({"ok": False, "error": "Oturum yenilenemedi. Lütfen tekrar deneyin."}), 503
+
+
 @auth_bp.route("/api/tokens", methods=["GET"])
 def api_tokens_list():
     return jsonify({"tokens": _read_tokens()})
 
 @auth_bp.route("/api/tokens", methods=["POST"])
+@token_transaction
 def api_tokens_add():
     data = request.json
     name = data.get("name", "").strip() or f"Token {_read_tokens().__len__()+1}"
@@ -81,6 +103,7 @@ def api_tokens_add():
     return jsonify({"ok": True, "token": new})
 
 @auth_bp.route("/api/tokens/<tok_id>", methods=["PUT"])
+@token_transaction
 def api_tokens_update(tok_id):
     data = request.json
     tokens = _read_tokens()
@@ -93,6 +116,7 @@ def api_tokens_update(tok_id):
     return jsonify({"error": "Token bulunamadı"}), 404
 
 @auth_bp.route("/api/tokens/<tok_id>", methods=["DELETE"])
+@token_transaction
 def api_tokens_delete(tok_id):
     tokens = _read_tokens()
     tokens = [t for t in tokens if t["id"] != tok_id]
@@ -100,11 +124,15 @@ def api_tokens_delete(tok_id):
     return jsonify({"ok": True})
 
 @auth_bp.route("/api/tokens/toggle/<tok_id>", methods=["POST"])
+@token_transaction
 def api_tokens_toggle(tok_id):
     tokens = _read_tokens()
     for t in tokens:
         if t["id"] == tok_id:
-            t["active"] = not t.get("active", True)
+            enabled = not t.get("active", True)
+            for other in tokens:
+                other["active"] = False
+            t["active"] = enabled
             _write_tokens(tokens)
             return jsonify({"ok": True, "token": t})
     return jsonify({"error": "Token bulunamadı"}), 404
@@ -124,35 +152,10 @@ def _relogin_worker(tok_id, email, password):
         new_token = login_res.get("data", {}).get("token")
         actual_credits = bot.get_credits(new_token)
         
-        # Update tokens.json
-        tokens = _read_tokens()
-        for t in tokens:
-            if t["id"] == tok_id:
-                t["token"] = new_token
-                t["active"] = True
-            else:
-                t["active"] = False
-        _write_tokens(tokens)
-        
-        # Update accounts.json
-        if os.path.exists(ACCOUNTS_FILE):
-            try:
-                with open(ACCOUNTS_FILE, "r", encoding="utf-8") as f:
-                    acc_data = json.load(f)
-                updated = False
-                for c, accs in acc_data.items():
-                    for a in accs:
-                        if a.get("email") == email:
-                            a["token"] = new_token
-                            if actual_credits is not None:
-                                a["credits"] = actual_credits
-                            updated = True
-                if updated:
-                    with open(ACCOUNTS_FILE, "w", encoding="utf-8") as f:
-                        json.dump(acc_data, f, indent=4)
-            except Exception as e:
-                print(f"Error updating accounts.json in async relogin: {e}")
-                
+        from core.auth import save_account_login
+        if not save_account_login(email, new_token, actual_credits, tok_id):
+            return
+
         # Send instant SSE notification to frontend
         sse_notify("relogin_success", {
             "id": tok_id,
@@ -338,51 +341,9 @@ def api_accounts_switch_manual():
         token = login_res.get("data", {}).get("token")
         actual_credits = bot.get_credits(token)
         
-        from core.config import TOKENS_FILE
-        import uuid
-        
-        tokens = []
-        if os.path.exists(TOKENS_FILE):
-            with open(TOKENS_FILE, "r", encoding="utf-8") as f:
-                tokens = json.load(f)
-                
-        for t in tokens:
-            t["active"] = False
-            
-        found = False
-        for t in tokens:
-            if t.get("name") == email:
-                t["token"] = token
-                t["active"] = True
-                found = True
-                break
-                
-        if not found:
-            tokens.append({
-                "id": str(uuid.uuid4())[:8],
-                "name": email,
-                "token": token,
-                "active": True
-            })
-        
-        with open(TOKENS_FILE, "w", encoding="utf-8") as f:
-            json.dump(tokens, f, indent=2, ensure_ascii=False)
-            
-        if os.path.exists(ACCOUNTS_FILE):
-            with open(ACCOUNTS_FILE, "r", encoding="utf-8") as f:
-                acc_data = json.load(f)
-            updated = False
-            for c, accs in acc_data.items():
-                for a in accs:
-                    if a.get("email") == email:
-                        a["token"] = token
-                        if actual_credits is not None:
-                            a["credits"] = actual_credits
-                        updated = True
-            if updated:
-                with open(ACCOUNTS_FILE, "w", encoding="utf-8") as f:
-                    json.dump(acc_data, f, indent=4)
-                    
+        from core.auth import save_account_login
+        save_account_login(email, token, actual_credits)
+
         return jsonify({"ok": True, "credits": actual_credits})
     
     return jsonify({"error": "Login basarisiz."}), 400
@@ -436,25 +397,22 @@ def api_accounts_refresh_bulk():
                     return
                 g, a = item
                 email = a.get("email")
-                password = a.get("password")
-                
-                if password:
-                    try:
-                        bot = MusicfulBot()
-                        login_res = bot.login_api(email, password)
-                        if login_res.get("code") == 200:
-                            token = login_res.get("data", {}).get("token")
-                            actual_credits = bot.get_credits(token)
-                            if actual_credits is not None:
-                                with lock:
-                                    a["credits"] = actual_credits
-                                    a["token"] = token
-                    except Exception as e:
-                        print(f"Bulk refresh error for {email}: {e}")
-                        
+                try:
+                    # A balance refresh must not replace an active login token.
+                    actual_credits = MusicfulBot().get_credits(a.get("token"))
+                    if actual_credits is not None:
+                        a["credits"] = actual_credits
+                except Exception as e:
+                    print(f"Bulk refresh error for {email}: {e}")
+
                 with lock:
                     bulk_refresh_status["current"] += 1
-                    safe_write_json(ACCOUNTS_FILE, db)
+                    def merge_credits(current):
+                        for group in current.values():
+                            for saved in group:
+                                if saved.get("email") == email and saved.get("token") == a.get("token"):
+                                    saved["credits"] = a.get("credits")
+                    update_json(ACCOUNTS_FILE, merge_credits, {})
 
             with ThreadPoolExecutor(max_workers=15) as executor:
                 executor.map(check_single_account, accounts_to_check)

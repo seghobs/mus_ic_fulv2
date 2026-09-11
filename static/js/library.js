@@ -3,18 +3,21 @@ function showResults(songs) {
 }
 let libraryPage = 1;
 let libraryLoading = false;
+let libraryRequest = 0;
 let libraryHasMore = true;
 const libraryLimit = 5;
 
-async function loadAllSongs(isNextPage = false) {
-    if (libraryLoading) return;
+async function loadAllSongs(isNextPage = false, fresh = false) {
+    if (libraryLoading && isNextPage) return;
     if (isNextPage && !libraryHasMore) return;
 
     libraryLoading = true;
+    const requestId = ++libraryRequest;
     
     if (!isNextPage) {
         libraryPage = 1;
         libraryHasMore = true;
+        knownSongs = {};
     }
 
     const container = document.getElementById('allSongsContainer');
@@ -33,8 +36,11 @@ async function loadAllSongs(isNextPage = false) {
     }
 
     try {
-        const resp = await fetch(`/api/songs?page=${libraryPage}&limit=${libraryLimit}`);
+        const query = document.getElementById('librarySearch')?.value.trim() || '';
+        const resp = await fetch(`/api/songs?page=${libraryPage}&limit=${libraryLimit}&q=${encodeURIComponent(query)}${fresh ? '&fresh=1' : ''}`);
         const data = await resp.json();
+        if (requestId !== libraryRequest) return;
+        if (!resp.ok) throw new Error(data.error || 'Şarkılar yüklenemedi.');
         const songs = data.data.list || [];
         
         if (loadingSpinner) {
@@ -72,6 +78,7 @@ async function loadAllSongs(isNextPage = false) {
                     <a href="${url}" download class="shadcn-button-secondary px-3 py-1.5 text-xs flex items-center gap-2">
                         <i class="fa-solid fa-download text-[10px]"></i> İndir
                     </a>
+                    <button data-song-id="${songUuid}" onclick="prepareWav(this.dataset.songId, this)" class="shadcn-button-secondary px-3 py-1.5 text-xs disabled:opacity-40">WAV</button>
                 `;
             } else {
                 actions = `<span class="text-zinc-500 text-[10px] font-bold uppercase tracking-widest flex items-center gap-2"><i class="fa-solid fa-spinner fa-spin"></i> Hazırlanıyor</span>`;
@@ -132,6 +139,7 @@ async function loadAllSongs(isNextPage = false) {
 
         libraryPage++;
     } catch (e) {
+        if (requestId !== libraryRequest) return;
         if (loadingSpinner) loadingSpinner.remove();
         if (!isNextPage) {
             container.innerHTML = `<div class="text-center py-12"><i class="fa-solid fa-triangle-exclamation text-2xl text-red-500 mb-3"></i><p class="text-red-500 text-xs font-bold uppercase tracking-widest">${e.message}</p></div>`;
@@ -139,7 +147,7 @@ async function loadAllSongs(isNextPage = false) {
             console.error(e);
         }
     } finally {
-        libraryLoading = false;
+        if (requestId === libraryRequest) libraryLoading = false;
         if(typeof syncLibraryPlayButtons === 'function') syncLibraryPlayButtons();
     }
 }

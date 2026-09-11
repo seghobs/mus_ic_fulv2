@@ -1,4 +1,26 @@
+let generationSubmitting = false;
+let generationSubmitted = false;
+
+function setGenerationSubmitted(submitted) {
+    generationSubmitted = submitted;
+    document.getElementById('generationConfirmation')?.classList.toggle('hidden', submitted);
+    const tracking = document.getElementById('generationTracking');
+    tracking?.classList.toggle('hidden', !submitted);
+    if (submitted && tracking) {
+        tracking.focus({preventScroll: true});
+        tracking.scrollIntoView({block: 'nearest'});
+    }
+}
+
 async function createSong() {
+    if (generationSubmitting || generationSubmitted) return;
+    generationSubmitting = true;
+    const button = document.getElementById('createBtn');
+    const buttonLabel = button?.innerHTML;
+    if (button) {
+        button.disabled = true;
+        button.textContent = 'Üretim başlatılıyor…';
+    }
     activeTaskCounter++;
     const taskId = 'task_' + activeTaskCounter;
     const taskList = document.getElementById('createTaskList');
@@ -25,7 +47,6 @@ async function createSong() {
     saveActiveTasks();
 
     try {
-        if(typeof removeDraftState === 'function') removeDraftState('active_cover');
         const endpoint = state.mode === 'text-to-song' ? '/api/text-to-song' : '/api/make-song';
         const bodyData = state.mode === 'text-to-song' 
             ? { 
@@ -33,7 +54,6 @@ async function createSong() {
                 lyrics: state.lyrics, 
                 style: state.style, 
                 mv: state.mv, 
-                bypass_filter: state.bypassFilter,
                 weirdness: state.weirdness,
                 style_influence: state.styleInfluence
               }
@@ -43,7 +63,6 @@ async function createSong() {
                 lyrics: state.lyrics, 
                 style: state.style, 
                 mv: state.mv, 
-                bypass_filter: state.bypassFilter,
                 weirdness: state.weirdness,
                 style_influence: state.styleInfluence
               };
@@ -54,7 +73,8 @@ async function createSong() {
             body: JSON.stringify(bodyData)
         });
         const data = await resp.json();
-        if(data.data && data.data.song_ids) {
+        if(resp.ok && Array.isArray(data.data?.song_ids) && data.data.song_ids.length > 0) {
+            if(typeof removeDraftState === 'function') removeDraftState('active_cover');
             const songIds = data.data.song_ids;
             const text = card.querySelector('.ct-text');
             const bar = card.querySelector('.ct-bar');
@@ -64,12 +84,19 @@ async function createSong() {
                 activeTasks[taskId].songIds = songIds;
                 saveActiveTasks();
             }
+            setGenerationSubmitted(true);
             pollForTask(taskId, songIds);
         } else {
-            taskError(card, 'Hata: ' + JSON.stringify(data));
+            taskError(card, data.error || data.message || data.msg || 'Üretim başlatılamadı. Lütfen tekrar deneyin.');
         }
     } catch(e) {
         taskError(card, e.message);
+    } finally {
+        generationSubmitting = false;
+        if (button) {
+            button.disabled = false;
+            button.innerHTML = buttonLabel;
+        }
     }
 }
 function taskError(card, msg) {
@@ -100,114 +127,97 @@ function taskError(card, msg) {
     if (typeof showNotification === 'function') {
         showNotification('İşlem Başarısız', msg, 'error');
     }
-    
-    // Tüm kutuları sıfırla
-    if (document.getElementById('songTitle')) document.getElementById('songTitle').value = '';
-    if (document.getElementById('songLyrics')) document.getElementById('songLyrics').value = '';
-    if (document.getElementById('songStyle')) document.getElementById('songStyle').value = '';
-    if (document.getElementById('ytUrl')) document.getElementById('ytUrl').value = '';
-    if (typeof goToStep === 'function') goToStep(1);
 }
+// Keep SSE progress even when a status request is still in flight.
+const generationTrackers = new Map();
+
+function finishGeneration(tracker) {
+    if (tracker.done) return;
+    tracker.done = true;
+    const card = document.getElementById(tracker.taskId);
+    if (card) {
+        const bar = card.querySelector('.ct-bar');
+        if (bar) { bar.style.transition = 'width 0.3s ease-out'; bar.style.width = '100%'; }
+        card.querySelector('.ct-text').textContent = 'Tamamlandı!';
+        const spinner = card.querySelector('.fa-spinner');
+        if (spinner) spinner.className = 'fa-solid fa-circle-check text-emerald-400 text-xs';
+        setTimeout(() => card.remove(), 5000);
+    }
+    delete activeTasks[tracker.taskId];
+    saveActiveTasks();
+    if (typeof updateQueueUI === 'function') updateQueueUI();
+    loadAllSongs();
+}
+
+// Called only after queue.js verifies the event belongs to the current account.
+function handleGenerationReady(signal) {
+    const signalIds = [signal.song_id, ...(signal.ids || [])].map(String);
+    for (const tracker of generationTrackers.values()) {
+        if (tracker.done) continue;
+        tracker.ids.filter(id => signalIds.includes(id)).forEach(id => tracker.ready.add(id));
+        if (tracker.ids.every(id => tracker.ready.has(id))) finishGeneration(tracker);
+    }
+}
+
 async function pollForTask(taskId, songIds) {
     const card = document.getElementById(taskId);
-    if(!card) return;
+    if (!card || generationTrackers.has(taskId)) return;
+    if (!Array.isArray(songIds) || songIds.length === 0) {
+        taskError(card, 'Takip edilecek şarkı bulunamadı. Lütfen tekrar deneyin.');
+        return;
+    }
+    const tracker = {taskId, ids: [...new Set(songIds.map(String))], ready: new Set(), done: false};
+    generationTrackers.set(taskId, tracker);
     const bar = card.querySelector('.ct-bar');
     const text = card.querySelector('.ct-text');
-    const ids = songIds.join(',');
-    let elapsed = 0;
-    
-    // Smooth transition settings
-    if(bar) bar.style.transition = 'width 2s linear';
-
-    while(elapsed < 300000) {
-        if(!document.getElementById(taskId)) return;
-        try {
-            const resp = await fetch(`/api/poll/${ids}`);
-            const data = await resp.json();
-            const songs = data.data.result;
-            const allDone = songs.every(s=>s.status===0);
-            const anyFailed = songs.some(s=>s.status===3);
-
-            if(anyFailed && !allDone) {
-                taskError(card, 'Üretilemedi! Farklı şarkı deneyin.');
-                return;
-            }
-
-            const doneCount = songs.filter(s=>s.status===0).length;
-            
-            // Calculate a fluid progress: Base (20%) + Per Done (35% each) + Time Crawl (up to 10%)
-            // This ensures it moves even when server hasn't finished a version
-            const base = 20 + (doneCount / songs.length) * 60;
-            const crawl = Math.min((elapsed / 120000) * 15, 15); // Add up to 15% crawl over 2 mins
-            const p = Math.min(base + crawl, 95);
-            
-            if(bar) bar.style.width = p + '%';
-
-            if(allDone) {
-                const allReady = await checkCDNReady(songs);
-                if(!allReady) {
-                    if(bar) bar.style.width = '98%';
-                } else {
-                    if(bar) {
-                        bar.style.transition = 'width 0.5s ease-out';
-                        bar.style.width = '100%';
-                        bar.className = "ct-bar bg-white h-full rounded-full transition-all duration-500";
-                    }
-                    text.innerHTML = '<span class="text-white">Tamamlandı!</span>';
-                    
-                    const spinner = card.querySelector('.fa-spinner');
-                    if (spinner) {
-                        spinner.className = 'fa-solid fa-circle-check text-emerald-400 text-xs';
-                    }
-
-                    loadAllSongs();
-                    if(activeTasks[taskId]) { delete activeTasks[taskId]; saveActiveTasks(); }
-                    
-                    setTimeout(() => {
-                        card.style.opacity = '0';
-                        card.style.transition = 'all 0.5s ease-out';
-                        card.style.transform = 'translateY(-10px)';
-                        setTimeout(() => {
-                            card.remove();
-                        }, 500);
-                    }, 5000);
-
+    try {
+        for (let elapsed = 0; elapsed < 300000; elapsed += 5000) {
+            if (tracker.done || !document.getElementById(taskId)) return;
+            try {
+                const resp = await fetch(`/api/poll/${tracker.ids.join(',')}`);
+                const data = await resp.json();
+                // An SSE completion must never be overwritten by an older response.
+                if (tracker.done) return;
+                if (!resp.ok) throw new Error(data.error || 'Durum kontrolü yeniden deneniyor…');
+                const results = Array.isArray(data.data?.result) ? data.data.result : [];
+                const songs = tracker.ids.map(id => results.find(song =>
+                    song && [String(song.song_id), String(song.id)].includes(id))).filter(Boolean);
+                if (songs.some(song => [3, 500227, 500235, 500233, 500234, 505262].includes(Number(song.status)))) {
+                    taskError(card, 'Üretim tamamlanamadı. Şarkının hata bilgisini kontrol edin.');
                     return;
                 }
+                songs.forEach(song => {
+                    if (Number(song.status) === 0) tracker.ids.filter(id =>
+                        [String(song.song_id), String(song.id)].includes(id)).forEach(id => tracker.ready.add(id));
+                });
+                if (tracker.ids.every(id => tracker.ready.has(id))) {
+                    finishGeneration(tracker);
+                    return;
+                }
+                if (bar) bar.style.width = Math.min(20 + tracker.ready.size / tracker.ids.length * 60 + elapsed / 120000 * 15, 95) + '%';
+            } catch (error) {
+                if (tracker.done) return;
+                text.textContent = 'Durum kontrolü yeniden deneniyor…';
             }
-        } catch(e) {
-            text.innerHTML = `<span class="text-red-500">${e.message}</span>`;
+            if (tracker.done) return;
+            if (typeof waitForMusicfulSignal === 'function') await waitForMusicfulSignal(tracker.ids, 5000);
+            else await sleep(5000);
         }
-        await sleep(5000);
-        elapsed += 5000;
+        if (!tracker.done) taskError(card, 'Durum takibi zaman aşımına uğradı. Kütüphaneyi kontrol edin.');
+    } finally {
+        generationTrackers.delete(taskId);
     }
-    
-    const spinner = card.querySelector('.fa-spinner');
-    if (spinner) {
-        spinner.className = 'fa-solid fa-circle-exclamation text-red-500 text-xs';
-    }
-    if (bar) {
-        bar.className = "ct-bar bg-red-600 h-full rounded-full transition-all duration-500";
-        bar.style.width = '100%';
-    }
-    text.innerHTML = '<span class="text-red-500 font-bold uppercase tracking-widest">Zaman aşımı</span>';
-    if(activeTasks[taskId]) { delete activeTasks[taskId]; saveActiveTasks(); }
-    
-    setTimeout(() => {
-        card.style.opacity = '0';
-        card.style.transition = 'all 0.5s ease-out';
-        card.style.transform = 'translateY(-10px)';
-        setTimeout(() => {
-            card.remove();
-        }, 500);
-    }, 8000);
 }
 async function checkCDNReady(songs) {
-    for(const song of songs) {
-        try { const r = await fetch(`/api/check-download/${song.song_id}`); const d = await r.json(); if(!d.ready) return false; }
+    if (!Array.isArray(songs) || songs.length === 0) return false;
+    const ready = await Promise.all(songs.map(async song => {
+        const id = song.song_id || song.id;
+        if (!id) return false;
+        try { const r = await fetch(`/api/check-download/${encodeURIComponent(id)}`); const d = await r.json(); if(!r.ok || !d.ready) return false; }
         catch(e) { return false; }
-    }
-    return true;
+        return true;
+    }));
+    return ready.every(Boolean);
 }
 
 async function restoreCoverTasks() {

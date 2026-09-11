@@ -1,7 +1,8 @@
-from flask import Blueprint, jsonify, request, send_file
+from flask import Blueprint, jsonify, request, send_file, redirect, Response, stream_with_context
+import requests as streaming_requests
+import threading
 import io
 import time
-import re
 import json
 from core.auth import load_token, api_headers, get_headers
 from core.config import BASE_URL, COMMUNITY_URL, FILES_URL
@@ -13,6 +14,24 @@ import urllib3
 from core.aiohttp_client import AiohttpSyncClient as requests
 
 urllib3.disable_warnings(urllib3.exceptions.InsecureRequestWarning)
+
+_song_urls = {}
+_song_urls_lock = threading.Lock()
+
+
+def remember_song_urls(token, songs):
+    with _song_urls_lock:
+        now = time.monotonic()
+        for key, (_, expires) in list(_song_urls.items()):
+            if expires <= now:
+                del _song_urls[key]
+        for song in songs:
+            song_id = song.get("song_id") or song.get("id")
+            url = decrypt_audio_url(song.get("audio_url", ""))
+            if song_id and url:
+                if len(_song_urls) >= 1000:
+                    _song_urls.pop(next(iter(_song_urls)))
+                _song_urls[(token, str(song_id))] = (url, now + 60)
 
 def decrypt_audio_url(encrypted_url):
     if not encrypted_url:
@@ -30,8 +49,12 @@ def decrypt_audio_url(encrypted_url):
         print(f"[Decryption Error] {e}")
         return ""
 
-def get_song_url(song_uuid):
-    token = load_token()
+def get_song_url(song_uuid, token=None):
+    token = token or load_token()
+    with _song_urls_lock:
+        cached = _song_urls.get((token, str(song_uuid)))
+        if cached and cached[1] > time.monotonic():
+            return cached[0]
     
     # 1. Try task results endpoint
     try:
@@ -42,6 +65,7 @@ def get_song_url(song_uuid):
                 enc_url = results[0].get("audio_url", "")
                 dec_url = decrypt_audio_url(enc_url)
                 if dec_url:
+                    remember_song_urls(token, [{"song_id": song_uuid, "audio_url": dec_url}])
                     return dec_url
     except Exception as e:
         print(f"[get_song_url task error] {e}")
@@ -56,6 +80,7 @@ def get_song_url(song_uuid):
                     enc_url = s.get("audio_url", "")
                     dec_url = decrypt_audio_url(enc_url)
                     if dec_url:
+                        remember_song_urls(token, [{"song_id": song_uuid, "audio_url": dec_url}])
                         return dec_url
     except Exception as e:
         print(f"[get_song_url songs list error] {e}")
@@ -63,226 +88,73 @@ def get_song_url(song_uuid):
     # 3. Fallback
     return f"{FILES_URL}/{song_uuid}/{song_uuid}.mp3"
 
-HOMOGLYPHS = {
-    'a': 'а',  # Cyrillic a
-    'e': 'е',  # Cyrillic ie
-    'o': 'о',  # Cyrillic o
-    'p': 'р',  # Cyrillic er
-    'c': 'с',  # Cyrillic es
-    'y': 'у',  # Cyrillic u
-    'x': 'х',  # Cyrillic ha
-    'A': 'А',
-    'E': 'Е',
-    'O': 'О',
-    'P': 'Р',
-    'C': 'С',
-    'Y': 'У',
-    'X': 'Х',
-}
-
-def obfuscate_text_filter(text):
-    if not text:
-        return ""
-    # Keep tags like [Chorus] or [Verse] intact to avoid confusing the AI voice generator
-    parts = re.split(r'(\[.*?\])', text)
-    result = []
-    for part in parts:
-        if part.startswith('[') and part.endswith(']'):
-            result.append(part)
-        else:
-            obfuscated = "".join(HOMOGLYPHS.get(char, char) for char in part)
-            result.append(obfuscated)
-    return "".join(result)
-
 musicful_bp = Blueprint('musicful_bp', __name__)
-
-def _update_rights_async(token, email):
-    import requests
-    import json
-    import os
-    from core.config import BASE_URL, ACCOUNTS_FILE
-    from core.auth import api_headers
-    from core.tasks import sse_notify
-    
-    try:
-        resp = requests.get(f"{BASE_URL}/v1/user/rights", headers=api_headers(token), timeout=10)
-        if resp.status_code == 200:
-            data = resp.json()
-            result = data.get("data", {}).get("result", {})
-            left_credits = result.get("left", 0)
-            
-            # Update accounts.json
-            if os.path.exists(ACCOUNTS_FILE):
-                try:
-                    with open(ACCOUNTS_FILE, "r", encoding="utf-8") as f:
-                        acc_data = json.load(f)
-                    updated = False
-                    for c, accs in acc_data.items():
-                        for a in accs:
-                            if a.get("email") == email:
-                                a["credits"] = left_credits
-                                a["token"] = token
-                                updated = True
-                    if updated:
-                        with open(ACCOUNTS_FILE, "w", encoding="utf-8") as f:
-                            json.dump(acc_data, f, indent=4)
-                except Exception as e:
-                    print(f"Error updating accounts.json in async rights update: {e}")
-            
-            # Notify frontend via SSE
-            sse_notify("rights_update", data)
-    except Exception as e:
-        print(f"Error fetching async rights: {e}")
-
 
 @musicful_bp.route("/api/rights")
 def api_rights():
-    import os
-    import json
-    import threading
-    from core.config import ACCOUNTS_FILE
-    from core.auth import load_token
-    
+    from core.config import ACCOUNTS_FILE, update_json
+    from core.auth import _read_tokens
     try:
-        # Get active token name
-        from core.auth import _read_tokens
-        tokens = _read_tokens()
-        active = [t for t in tokens if t.get("active", True)]
-        
-        if active:
-            token_obj = active[0]
-            token = token_obj["token"]
-            email = token_obj["name"]
-            
-            # Try to get cached credits from accounts.json
-            cached_credits = None
-            if os.path.exists(ACCOUNTS_FILE):
-                with open(ACCOUNTS_FILE, "r", encoding="utf-8") as f:
-                    try:
-                        acc_data = json.load(f)
-                        for c, accs in acc_data.items():
-                            for a in accs:
-                                if a.get("email") == email:
-                                    cached_credits = a.get("credits")
-                                    break
-                            if cached_credits is not None:
-                                break
-                    except:
-                        pass
-            
-            # Trigger background refresh
-            threading.Thread(target=_update_rights_async, args=(token, email), daemon=True).start()
-            
-            if cached_credits is not None:
-                cached_data = {
-                    "data": {
-                        "result": {
-                            "all": 2500,
-                            "left": cached_credits,
-                            "used": max(0.0, 2500 - cached_credits),
-                            "is_vip": 1
-                        }
-                    },
-                    "status": 200,
-                    "message": "Success"
-                }
-                return jsonify(cached_data)
-                
-        # If no active token or no cached credits, do it synchronously as fallback
         token = load_token()
         resp = requests.get(f"{BASE_URL}/v1/user/rights", headers=api_headers(token))
-        return jsonify(resp.json())
-        
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
-
-def _update_library_cache_async(token, page, limit):
-    import os
-    import json
-    from core.config import BASE_URL
-    from core.auth import api_headers
-    from core.tasks import sse_notify
-    from routes.musicful_routes import decrypt_audio_url
-    from core.aiohttp_client import AiohttpSyncClient as requests
-    
-    LIBRARY_CACHE_FILE = "data/library_cache.json"
-    
-    try:
-        resp = requests.get(f"{BASE_URL}/v1/songs?page={page}&limit={limit}", headers=api_headers(token), timeout=15)
-        if resp.status_code == 200:
-            data = resp.json()
-            song_list = data.get("data", {}).get("list", [])
-            for song in song_list:
-                if song.get("audio_url"):
-                    song["audio_url"] = decrypt_audio_url(song["audio_url"])
-                if song.get("cover_url"):
-                    song["cover_url"] = decrypt_audio_url(song["cover_url"])
-            
-            # Compare with existing cache
-            cache_changed = True
-            if os.path.exists(LIBRARY_CACHE_FILE):
-                try:
-                    with open(LIBRARY_CACHE_FILE, "r", encoding="utf-8") as f:
-                        old_cache = json.load(f)
-                    old_ids = [s.get("id") for s in old_cache.get("data", {}).get("list", [])]
-                    new_ids = [s.get("id") for s in song_list]
-                    if old_ids == new_ids:
-                        cache_changed = False
-                except:
-                    pass
-            
-            if cache_changed:
-                os.makedirs(os.path.dirname(LIBRARY_CACHE_FILE), exist_ok=True)
-                with open(LIBRARY_CACHE_FILE, "w", encoding="utf-8") as f:
-                    json.dump(data, f, indent=4, ensure_ascii=False)
-                
-                # Notify frontend to refresh library
-                sse_notify("library_update", data)
-    except Exception as e:
-        print(f"Error in async library update: {e}")
+        data = resp.json()
+        result = (data.get("data") or {}).get("result")
+        if resp.status_code != 200 or not isinstance(result, dict) or "left" not in result:
+            return jsonify({"error": "Hak bilgisi alınamadı. Oturumunuzu yenileyin."}), 502
+        def save_credits(accounts):
+            for group in accounts.values():
+                for account in group:
+                    if account.get("token") == token:
+                        account["credits"] = result["left"]
+        update_json(ACCOUNTS_FILE, save_credits, {})
+        if not any(t.get("active", True) and t.get("token") == token for t in _read_tokens()):
+            return jsonify({"error": "Hesap değişti. Bilgileri yeniden yükleyin."}), 409
+        return jsonify(data)
+    except Exception:
+        return jsonify({"error": "Hak bilgisi alınamadı."}), 502
 
 
 @musicful_bp.route("/api/songs")
 def api_songs():
     import os
-    import json
-    import threading
-    from core.auth import load_token
-    
-    LIBRARY_CACHE_FILE = "data/library_cache.json"
-    
+    import hashlib
+    from core.config import BASE_DIR, safe_read_json, safe_write_json
+    from core.auth import _read_tokens
     try:
         token = load_token()
         page = request.args.get("page", 1, type=int)
         limit = request.args.get("limit", 20, type=int)
-        
-        if page == 1 and limit == 5:
-            # Trigger background refresh
-            threading.Thread(target=_update_library_cache_async, args=(token, page, limit), daemon=True).start()
-            
-            # If cache exists, return it instantly
-            if os.path.exists(LIBRARY_CACHE_FILE):
-                try:
-                    with open(LIBRARY_CACHE_FILE, "r", encoding="utf-8") as f:
-                        cached_data = json.load(f)
-                    return jsonify(cached_data)
-                except:
-                    pass
-                    
-        # Synchronous fallback for other pages or if cache is missing
-        resp = requests.get(f"{BASE_URL}/v1/songs?page={page}&limit={limit}", headers=api_headers(token))
+        keyword = request.args.get("q", "").strip()[:200]
+        # Separate each session and page. Never use the legacy shared cache.
+        key = hashlib.sha256(f"{token}:{page}:{limit}:{keyword}".encode()).hexdigest()
+        cache_dir = os.path.join(BASE_DIR, "data", "library_cache")
+        cache_file = os.path.join(cache_dir, key + ".json")
+        cached = safe_read_json(cache_file)
+        if request.args.get('fresh') != '1' and cached and time.time() - cached.get("saved_at", 0) < 3:
+            remember_song_urls(token, cached["response"]["data"]["list"])
+            return jsonify(cached["response"])
+        if keyword:
+            resp = requests.get(f"{BASE_URL}/song/search", headers=api_headers(token), params={
+                'page': page, 'limit': limit, 'keyword': keyword, 'is_self': 1, 'search_type': 1})
+        else:
+            resp = requests.get(f"{BASE_URL}/v1/songs?page={page}&limit={limit}", headers=api_headers(token))
         data = resp.json()
-        song_list = data.get("data", {}).get("list", [])
+        song_list = (data.get("data") or {}).get("list")
+        if resp.status_code != 200 or not isinstance(song_list, list):
+            return jsonify({"error": "Şarkılar alınamadı. Oturumunuzu yenileyin."}), 502
         for song in song_list:
-            if song.get("audio_url"):
-                song["audio_url"] = decrypt_audio_url(song["audio_url"])
-            if song.get("cover_url"):
-                song["cover_url"] = decrypt_audio_url(song["cover_url"])
+            for field in ("audio_url", "cover_url"):
+                if song.get(field):
+                    song[field] = decrypt_audio_url(song[field])
+        if not any(t.get("active", True) and t.get("token") == token for t in _read_tokens()):
+            return jsonify({"error": "Hesap değişti. Şarkıları yeniden yükleyin."}), 409
+        os.makedirs(cache_dir, exist_ok=True)
+        remember_song_urls(token, song_list)
+        safe_write_json(cache_file, {"saved_at": time.time(), "response": data})
         return jsonify(data)
-        
-    except Exception as e:
-        print(f"[api_songs Error] {e}")
-        return jsonify({"error": str(e)}), 500
+    except Exception:
+        return jsonify({"error": "Şarkılar alınamadı."}), 502
+
 
 @musicful_bp.route("/api/upload", methods=["POST"])
 def api_upload():
@@ -291,10 +163,7 @@ def api_upload():
     if not file:
         return jsonify({"error": "Dosya seçilmedi"}), 400
 
-    bypass_filter = request.form.get("bypass_filter") == "true"
     filename = file.filename
-    if bypass_filter:
-        filename = obfuscate_text_filter(filename)
 
     url = f"{BASE_URL}/v2/upload-to-song"
     headers = get_headers(token)
@@ -329,23 +198,45 @@ def api_content_check():
     })
     return jsonify(resp.json())
 
+def is_auth_or_credit_error(resp_data):
+    if not isinstance(resp_data, dict):
+        return False
+    code = resp_data.get("code") or resp_data.get("status")
+    msg = str(resp_data.get("message") or resp_data.get("msg") or "").lower()
+    if code in [401, 403, 401000, 401001, 403000, 403001]:
+        return True
+    if any(k in msg for k in ["token", "unauthorized", "login", "auth", "credit", "insufficient", "kredi", "rights"]):
+        return True
+    return False
+
+def validate_song_input(data):
+    if not isinstance(data, dict):
+        return "Geçerli bir şarkı bilgisi nesnesi gönderin."
+    for field, label, limit in [("title", "Şarkı adı", 150),
+                                ("lyrics", "Şarkı sözleri", 3500),
+                                ("style", "Stil", 800)]:
+        value = str(data.get(field, "") or "")
+        if len(value) > limit:
+            return f"{label} en fazla {limit} karakter olabilir ({len(value)} karakter girdiniz). Metni kısaltıp tekrar deneyin."
+    return None
+
+
 @musicful_bp.route("/api/make-song", methods=["POST"])
 def api_make_song():
+    data = request.get_json(silent=True)
+    error = validate_song_input(data)
+    if error:
+        return jsonify({"error": error}), 400
     token = load_token()
-    data = request.json
     audio_id = data.get("audio_id", "")
-    title = data.get("title", "")
-    lyrics = data.get("lyrics", "")
-    style = data.get("style", "Guitar,Piano")
+    title = str(data.get("title", "") or "")
+    lyrics = str(data.get("lyrics", "") or "")
+    style = str(data.get("style", "Guitar,Piano") or "")
     mv = data.get("mv", "v5.5")
-    bypass_filter = data.get("bypass_filter", False)
     weirdness = data.get("weirdness", 0.50)
     style_influence = data.get("style_influence", 0.50)
     mp3t = data.get("MP3T", "D")
 
-    if bypass_filter:
-        title = obfuscate_text_filter(title)
-        lyrics = obfuscate_text_filter(lyrics)
 
     url = f"{BASE_URL}/v2/async/song_cover"
     headers = get_headers(token)
@@ -374,7 +265,7 @@ def api_make_song():
     resp = requests.post(url, headers=headers, files=form)
     resp_data = resp.json()
 
-    if resp_data.get("code") != 200 and resp_data.get("status") != 200:
+    if resp_data.get("code") != 200 and resp_data.get("status") != 200 and is_auth_or_credit_error(resp_data):
         from core.account_manager import switch_to_next_account
         new_token = switch_to_next_account()
         if new_token:
@@ -407,20 +298,19 @@ def api_make_song():
 
 @musicful_bp.route("/api/text-to-song", methods=["POST"])
 def api_text_to_song():
+    data = request.get_json(silent=True)
+    error = validate_song_input(data)
+    if error:
+        return jsonify({"error": error}), 400
     token = load_token()
-    data = request.json
-    title = data.get("title", "")
-    lyrics = data.get("lyrics", "")
-    style = data.get("style", "")
+    title = str(data.get("title", "") or "")
+    lyrics = str(data.get("lyrics", "") or "")
+    style = str(data.get("style", "") or "")
     mv = data.get("mv", "v5.5")
-    bypass_filter = data.get("bypass_filter", False)
     weirdness = data.get("weirdness", 0.50)
     style_influence = data.get("style_influence", 0.50)
     mp3t = data.get("MP3T", "D")
 
-    if bypass_filter:
-        title = obfuscate_text_filter(title)
-        lyrics = obfuscate_text_filter(lyrics)
 
     url = f"{BASE_URL}/v2/advanced/text-to-song"
     headers = get_headers(token)
@@ -445,8 +335,10 @@ def api_text_to_song():
 
     resp = requests.post(url, headers=headers, json=payload)
     resp_data = resp.json()
+    print(f"[Text-to-Song] İlk Yanıt: {resp_data.get('status') or resp_data.get('code')} - {resp_data.get('message') or resp_data.get('msg')}")
 
-    if resp_data.get("code") != 200 and resp_data.get("status") != 200:
+    if resp_data.get("code") != 200 and resp_data.get("status") != 200 and is_auth_or_credit_error(resp_data):
+        print(f"[Text-to-Song] Yetki/Kredi hatası ({resp_data}), hesap değiştirme tetikleniyor...")
         from core.account_manager import switch_to_next_account
         new_token = switch_to_next_account()
         if new_token:
@@ -454,6 +346,7 @@ def api_text_to_song():
             headers["terminal"] = "web"
             resp = requests.post(url, headers=headers, json=payload)
             resp_data = resp.json()
+            print(f"[Text-to-Song] Yeni Hesap Yanıtı: {resp_data.get('status') or resp_data.get('code')} - {resp_data.get('message') or resp_data.get('msg')}")
 
     return jsonify(resp_data)
 
@@ -476,20 +369,44 @@ def api_poll(task_ids):
             song["cover_url"] = decrypt_audio_url(song["cover_url"])
         if song.get("audio_url") and song.get("duration"):
             sse_notify("song_ready", song)
+    remember_song_urls(token, results)
     return jsonify(data)
+
+@musicful_bp.route("/api/stream/<song_uuid>")
+def api_stream(song_uuid):
+    # Let the browser stream and seek against the CDN directly.
+    # This fallback is only needed when the song URL is not already in the UI.
+    return redirect(get_song_url(song_uuid), code=302)
+
 
 @musicful_bp.route("/api/download/<song_uuid>")
 def api_download(song_uuid):
     url = get_song_url(song_uuid)
-    resp = requests.get(url, verify=False)
-    if resp.status_code == 200:
-        return send_file(
-            io.BytesIO(resp.content),
-            mimetype="audio/mpeg",
-            as_attachment=True,
-            download_name=f"{song_uuid}.mp3"
-        )
-    return jsonify({"error": "Dosya henüz hazır değil", "ready": False}), 202
+    headers = {"Accept-Encoding": "identity"}
+    if request.headers.get("Range"):
+        headers["Range"] = request.headers["Range"]
+    try:
+        upstream = streaming_requests.get(url, headers=headers, stream=True, timeout=(10, 30))
+    except streaming_requests.RequestException:
+        return jsonify({"error": "Dosyaya ulaşılamadı"}), 502
+    if upstream.status_code not in (200, 206):
+        status = upstream.status_code
+        upstream.close()
+        return jsonify({"error": "Dosya hazır değil", "ready": False}), 416 if status == 416 else 502
+
+    def chunks():
+        try:
+            yield from upstream.iter_content(chunk_size=64 * 1024)
+        finally:
+            upstream.close()
+
+    response = Response(stream_with_context(chunks()), status=upstream.status_code, mimetype="audio/mpeg")
+    response.headers.set("Content-Disposition", "attachment", filename=f"{song_uuid}.mp3")
+    for name in ("Content-Length", "Content-Range", "Accept-Ranges"):
+        if name in upstream.headers:
+            response.headers[name] = upstream.headers[name]
+    response.call_on_close(upstream.close)
+    return response
 
 @musicful_bp.route("/api/check-download/<song_uuid>")
 def api_check_download(song_uuid):
@@ -528,4 +445,5 @@ def api_task(task_id):
             s["cover_url"] = decrypt_audio_url(s["cover_url"])
         if s.get("audio_url") and s.get("duration"):
             sse_notify("song_ready", s)
+    remember_song_urls(token, results)
     return jsonify(data)

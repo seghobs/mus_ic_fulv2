@@ -27,12 +27,7 @@ let qsHasMore = true;
 
 function clearQuickSearch() {
     document.getElementById('qsInput').value = '';
-    document.getElementById('qsResults').innerHTML = `
-        <div class="py-12 text-center text-zinc-600 space-y-2">
-            <i class="fa-solid fa-magnifying-glass text-2xl opacity-20"></i>
-            <p class="text-xs font-medium uppercase tracking-widest">Aramak için yazmaya başlayın</p>
-        </div>
-    `;
+    document.getElementById('qsResults').innerHTML = `<div class="qs-empty"><span class="qs-empty-icon"><i class="fa-solid fa-music"></i></span><h3>Sıradaki ilhamını bul</h3><p>Şarkı veya sanatçı yaz, Enter'a bas.</p><span class="qs-empty-hint">Önce dinle, sonra stüdyona ekle.</span></div>`;
     qsResultsData = [];
     qsSelectedIndex = -1;
     qsCurrentPage = 1;
@@ -159,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 function renderQsResults(data, append = false, startIdx = 0) {
     const resultsDiv = document.getElementById('qsResults');
     if (!data.length && !append) {
-        resultsDiv.innerHTML = `<div class="p-8 text-center text-zinc-500 text-xs">Sonuç bulunamadı.</div>`;
+        resultsDiv.innerHTML = `<div class="qs-empty"><span class="qs-empty-icon"><i class="fa-solid fa-magnifying-glass"></i></span><h3>Henüz bir eşleşme yok</h3><p>Farklı bir şarkı veya sanatçı adı dene.</p></div>`;
         return;
     }
 
@@ -179,7 +174,7 @@ function renderQsResults(data, append = false, startIdx = 0) {
                     <div class="text-sm font-bold text-white truncate group-hover/item:text-zinc-300 transition-colors">${v.title}</div>
                     <div class="text-[10px] text-zinc-500 font-medium uppercase tracking-wider">${v.duration || 'Video'} • YouTube</div>
                 </div>
-                <div class="text-zinc-700 group-hover/item:text-white transition-colors pr-2">
+                <div class="qs-add text-zinc-700 group-hover/item:text-white transition-colors pr-2" title="Stüdyoya ekle">
                     <i class="fa-solid fa-plus text-xs"></i>
                 </div>
             </div>

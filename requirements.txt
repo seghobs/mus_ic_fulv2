@@ -1,8 +1,10 @@
 flask
 requests
-yt-dlp
+yt-dlp>=2026.8.19
+yt-dlp-ejs>=0.8.0
 playwright
 google-genai
 curl_cffi
 pycryptodome
 httpx
+aiohttp

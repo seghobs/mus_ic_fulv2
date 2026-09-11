@@ -1,14 +1,15 @@
 <div id="settingsModal" class="modal-backdrop hidden">
-        <div class="modal-card fade-in" style="max-width:560px">
-            <div class="flex items-center justify-between mb-8">
+        <div class="modal-card settings-card fade-in" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+            <div class="settings-heading flex items-center justify-between mb-8">
                 <div>
-                    <h3 class="text-xl font-bold tracking-tight">Ayarlar</h3>
-                    <p class="text-xs text-zinc-500 font-medium">Token Yönetimi</p>
+                    <span class="settings-eyebrow">STÜDYONU KİŞİSELLEŞTİR</span>
+                    <h3 id="settingsTitle" class="text-xl font-bold tracking-tight">Ayarlar</h3>
+                    <p class="settings-subtitle">Hesapların ve stüdyo tercihlerin, tek bir yerde.</p>
                 </div>
-                <button onclick="closeSettings()" class="text-zinc-500 hover:text-white transition"><i class="fa-solid fa-xmark text-sm"></i></button>
+                <button onclick="closeSettings()" class="settings-close" aria-label="Ayarları kapat"><i class="fa-solid fa-xmark text-sm"></i></button>
             </div>
 
-            <div class="flex items-center gap-2 mb-4">
+            <div class="settings-tabs flex items-center gap-2 mb-4">
                 <button onclick="switchTab('tokens')" id="tabTokens" class="flex-1 py-2 text-[10px] font-black rounded-lg tab-active transition-all duration-300">Tokenlar</button>
                 <button onclick="switchTab('accounts')" id="tabAccounts" class="flex-1 py-2 text-[10px] font-bold bg-[#0c0c14] border border-white/[0.04] text-zinc-500 hover:text-white hover:border-violet-500/20 rounded-lg transition-all duration-300">Hesaplar</button>
                 <button onclick="switchTab('bot')" id="tabBot" class="flex-1 py-2 text-[10px] font-bold bg-[#0c0c14] border border-white/[0.04] text-zinc-500 hover:text-white hover:border-violet-500/20 rounded-lg transition-all duration-300">Üretici</button>
@@ -17,7 +18,8 @@
 
             <!-- Tab: Tokens -->
             <div id="viewTokens" class="space-y-4">
-                <div id="tokenList" class="space-y-2 mb-4 max-h-72 overflow-y-auto pr-1"></div>
+                <div class="settings-list-heading"><div><h4>Bağlı oturumlar</h4><p>Kullanacağın hesabı buradan yönet.</p></div><span id="tokenSummary" class="settings-count" aria-live="polite"></span></div>
+                <div id="tokenList"></div>
             </div>
 
             <!-- Tab: Accounts -->

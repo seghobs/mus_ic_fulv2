@@ -1,5 +1,6 @@
 from flask import Flask, render_template, jsonify, Response, request
 import time
+import os
 
 from core.tasks import task_queue, sse_clients, sse_notify
 from routes.auth_routes import auth_bp
@@ -8,8 +9,13 @@ from routes.youtube_routes import youtube_bp
 from routes.video_routes import video_bp
 from routes.seo_routes import seo_bp
 from routes.style_routes import data_bp
+from routes.musicful_features import features_bp
 
 app = Flask(__name__)
+
+@app.route('/api/health')
+def health():
+    return jsonify(status='ready', instance=os.environ.get('MUSICFUL_INSTANCE', ''))
 
 # Disable browser cache for hot reload
 @app.after_request
@@ -28,6 +34,7 @@ app.register_blueprint(youtube_bp)
 app.register_blueprint(video_bp)
 app.register_blueprint(seo_bp)
 app.register_blueprint(data_bp)
+app.register_blueprint(features_bp)
 
 @app.route("/")
 def index():
@@ -63,6 +70,8 @@ def api_cancel_task(task_id):
 
 @app.route("/api/events")
 def api_events():
+    from core.musicful_events import musicful_events
+    musicful_events.start()
     def generate():
         import json
         q = []
@@ -85,4 +94,4 @@ def api_events():
     return Response(generate(), mimetype="text/event-stream", headers={"Cache-Control": "no-cache", "X-Accel-Buffering": "no"})
 
 if __name__ == "__main__":
-    app.run(debug=True, port=5000, use_reloader=True)
+    app.run(host='127.0.0.1', debug=False, port=5000, use_reloader=False)

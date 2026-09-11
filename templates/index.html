@@ -7,44 +7,6 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <!-- Context Menu -->
-    {% include 'components/context_menu.html' %}
-    <!-- Video Modal -->
-    {% include 'components/video_modal.html' %}
-    <!-- Settings Modal -->
-    {% include 'components/settings_modal.html' %}
-    <!-- Edit Token Modal -->
-    {% include 'components/edit_token_modal.html' %}
-    <!-- Quick Search Modal -->
-    {% include 'components/quick_search_modal.html' %}
-    <!-- YT Action Modal -->
-    {% include 'components/yt_action_modal.html' %}
-    <!-- AI Lyrics Modal -->
-    {% include 'components/ai_lyrics_modal.html' %}
-    <!-- Login Success Modal -->
-    {% include 'components/login_success_modal.html' %}
-
-    <!-- Custom Context Menu -->
-    <div id="contextMenu" class="fixed hidden z-[9999] w-52 bg-[#0c0c14]/95 backdrop-blur-xl border border-white/[0.06] rounded-xl shadow-2xl py-1.5 overflow-hidden">
-        <!-- Queue Section -->
-        <div id="ctxQueueSection">
-            <button id="ctxCancelTask" onclick="cancelQueueTask()" class="w-full px-3 py-2 text-left text-[11px] font-bold uppercase tracking-widest text-rose-400 hover:bg-rose-500/10 flex items-center gap-3 transition-colors">
-                <i class="fa-solid fa-circle-stop w-4"></i> İşlemi İptal Et
-            </button>
-            <button id="ctxShowTask" onclick="showQueueTask()" class="w-full px-3 py-2 text-left text-[11px] font-bold uppercase tracking-widest text-zinc-300 hover:bg-violet-500/10 flex items-center gap-3 transition-colors border-t border-white/[0.04] mt-1">
-                <i class="fa-solid fa-eye w-4"></i> İşlemi Göster
-            </button>
-        </div>
-        <!-- Upload Section -->
-        <div id="ctxUploadSection" class="hidden">
-            <button onclick="listenToUpload()" class="w-full px-3 py-2 text-left text-[11px] font-bold uppercase tracking-widest text-zinc-300 hover:bg-violet-500/10 flex items-center gap-3 transition-colors">
-                <i class="fa-solid fa-circle-play w-4"></i> Şarkıyı Dinle
-            </button>
-            <button onclick="clearUploadedFile()" class="w-full px-3 py-2 text-left text-[11px] font-bold uppercase tracking-widest text-rose-400 hover:bg-rose-500/10 flex items-center gap-3 transition-colors border-t border-white/[0.04] mt-1">
-                <i class="fa-solid fa-trash-can w-4"></i> Seçilen Şarkıyı Sil
-            </button>
-        </div>
-    </div>
     <script>
         tailwind.config = {
             theme: {
@@ -83,8 +45,48 @@
         }
     </script>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/studio.css') }}">
 </head>
 <body class="bg-background text-foreground min-h-screen font-sans">
+    <!-- Context Menu -->
+    {% include 'components/context_menu.html' %}
+    <!-- Video Modal -->
+    {% include 'components/video_modal.html' %}
+    <!-- Settings Modal -->
+    {% include 'components/settings_modal.html' %}
+    <!-- Edit Token Modal -->
+    {% include 'components/edit_token_modal.html' %}
+    <!-- Quick Search Modal -->
+    {% include 'components/quick_search_modal.html' %}
+    <!-- YT Action Modal -->
+    {% include 'components/yt_action_modal.html' %}
+    <!-- AI Lyrics Modal -->
+    {% include 'components/ai_lyrics_modal.html' %}
+    <!-- Login Success Modal -->
+    {% include 'components/login_success_modal.html' %}
+
+    <!-- Custom Context Menu -->
+    <div id="contextMenu" class="fixed hidden z-[9999] w-52 bg-[#0c0c14]/95 backdrop-blur-xl border border-white/[0.06] rounded-xl shadow-2xl py-1.5 overflow-hidden">
+        <!-- Queue Section -->
+        <div id="ctxQueueSection">
+            <button id="ctxCancelTask" onclick="cancelQueueTask()" class="w-full px-3 py-2 text-left text-[11px] font-bold uppercase tracking-widest text-rose-400 hover:bg-rose-500/10 flex items-center gap-3 transition-colors">
+                <i class="fa-solid fa-circle-stop w-4"></i> İşlemi İptal Et
+            </button>
+            <button id="ctxShowTask" onclick="showQueueTask()" class="w-full px-3 py-2 text-left text-[11px] font-bold uppercase tracking-widest text-zinc-300 hover:bg-violet-500/10 flex items-center gap-3 transition-colors border-t border-white/[0.04] mt-1">
+                <i class="fa-solid fa-eye w-4"></i> İşlemi Göster
+            </button>
+        </div>
+        <!-- Upload Section -->
+        <div id="ctxUploadSection" class="hidden">
+            <button onclick="listenToUpload()" class="w-full px-3 py-2 text-left text-[11px] font-bold uppercase tracking-widest text-zinc-300 hover:bg-violet-500/10 flex items-center gap-3 transition-colors">
+                <i class="fa-solid fa-circle-play w-4"></i> Şarkıyı Dinle
+            </button>
+            <button onclick="clearUploadedFile()" class="w-full px-3 py-2 text-left text-[11px] font-bold uppercase tracking-widest text-rose-400 hover:bg-rose-500/10 flex items-center gap-3 transition-colors border-t border-white/[0.04] mt-1">
+                <i class="fa-solid fa-trash-can w-4"></i> Seçilen Şarkıyı Sil
+            </button>
+        </div>
+    </div>
+
     <!-- Footer Player -->
     {% include 'components/footer_player.html' %}
     <!-- YouTube Videos Sidebar -->
@@ -92,7 +94,7 @@
     <!-- ── QUEUE SIDEBAR ───────────────── -->
     <div id="queueSidebar" class="queue-sidebar fixed left-4 top-36 bottom-2 z-40 flex flex-col transition-all duration-500 ease-in-out -translate-x-[calc(100%+1rem)] md:w-56 w-72 md:left-4 left-0 md:rounded-lg rounded-none overflow-hidden">
         <!-- Header -->
-        <div class="px-4 py-5 border-b border-white/[0.04] flex items-center gap-3 flex-shrink-0">
+        <div class="queue-heading px-4 py-5 border-b border-white/[0.04] flex items-center gap-3 flex-shrink-0">
             <div class="w-8 h-8 bg-gradient-to-br from-violet-500/20 to-indigo-500/10 border border-violet-500/20 rounded-lg flex items-center justify-center">
                 <i class="fa-solid fa-list-check text-violet-400 text-[10px]"></i>
             </div>
@@ -100,19 +102,14 @@
                 <span class="text-[11px] font-bold uppercase tracking-[0.2em] text-white">İşlem Kuyruğu</span>
                 <span id="queueStatusSub" class="text-[9px] text-violet-400/60 font-bold uppercase tracking-widest mt-0.5">Aktif Görevler</span>
             </div>
-            <button onclick="toggleQueuePanel()" class="md:hidden ml-auto w-8 h-8 rounded-full hover:bg-violet-500/10 flex items-center justify-center text-zinc-500 transition-colors">
+            <button aria-label="İşlem kuyruğunu kapat" onclick="toggleQueuePanel()" class="queue-close ml-auto w-8 h-8 rounded-full hover:bg-violet-500/10 flex items-center justify-center text-zinc-500 transition-colors">
                 <i class="fa-solid fa-chevron-left text-xs"></i>
             </button>
         </div>
         <!-- Task List -->
         <div id="queuePanelList" class="flex-1 overflow-y-auto p-3 custom-scrollbar space-y-2">
             <!-- Empty state -->
-            <div id="queueEmptyState" class="text-center py-20">
-                <div class="w-12 h-12 bg-gradient-to-br from-violet-500/10 to-indigo-500/5 rounded-full flex items-center justify-center mx-auto mb-4 border border-violet-500/10">
-                    <i class="fa-solid fa-check text-sm text-violet-500/30"></i>
-                </div>
-                <p class="text-[10px] font-bold uppercase tracking-widest text-zinc-600">Her Şey Hazır</p>
-            </div>
+            <div id="queueEmptyState" class="queue-empty"><div class="queue-empty-icon"><i class="fa-solid fa-check"></i></div><h3>Her şey tamam</h3><p>Yeni bir şeyler üretmeye ne dersin?</p><span>Başlattığın işlemler burada görünecek.</span></div>
         </div>
     </div>
 
@@ -120,35 +117,38 @@
 
     <div class="relative max-w-4xl mx-auto px-4 py-8 main-content">
         <!-- Header -->
-        <div class="text-center mb-12 fade-in">
-            <div class="inline-flex items-center gap-4 mb-4">
-                <div class="w-12 h-12 bg-gradient-to-br from-violet-500 to-indigo-600 rounded-xl flex items-center justify-center shadow-lg" style="box-shadow: 0 8px 25px rgba(139, 92, 246, 0.3);">
-                    <i class="fa-solid fa-music text-white text-lg"></i>
-                </div>
-                <h1 class="text-4xl font-extrabold tracking-tight bg-gradient-to-r from-white via-violet-200 to-violet-400 bg-clip-text text-transparent">Musicful AI</h1>
+        <header class="studio-header fade-in">
+            <a href="/" class="studio-brand"><span class="brand-icon"><i class="fa-solid fa-music" aria-hidden="true"></i></span> Musicful <span class="brand-ai">AI STUDIO</span></a>
+            <span class="studio-header-note">Bir fikir. Binlerce melodi.</span>
+        </header>
+        <section class="studio-hero fade-in" aria-labelledby="studioTitle">
+            <div class="hero-copy">
+                <span class="hero-eyebrow"><span></span> Yaratıcılığın için küçük bir stüdyo</span>
+                <h1 id="studioTitle">Aklındaki sesi<br><em>şarkıya dönüştür.</em></h1>
+                <p>Bir kayıt yükle ya da birkaç kelimeyle başla.<br>Gerisini birlikte müziğe dönüştürelim.</p>
+                <div class="hero-links"><a href="#panel1">Üretmeye başla <i class="fa-solid fa-arrow-down" aria-hidden="true"></i></a><a href="#musicLibrary">Kütüphanem <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i></a></div>
             </div>
-            <p class="text-zinc-500 text-sm font-medium tracking-wide">Yapay zeka ile şarkı cover oluştur</p>
-            <div class="w-24 h-1 bg-gradient-to-r from-violet-500/0 via-violet-500/40 to-violet-500/0 mx-auto mt-4 rounded-full"></div>
-        </div>
+            <div class="hero-art" aria-hidden="true"><div class="album-sleeve"><span>made of<br>little moments.</span><i class="fa-solid fa-sparkles"></i></div><div class="vinyl"><div class="vinyl-label"><i class="fa-solid fa-music"></i></div></div><span class="art-note">YOUR NEXT FAVORITE SONG</span></div>
+        </section>
 
         <!-- Right Sidebar Toolbar -->
-        <div class="fixed top-1/2 right-4 -translate-y-1/2 z-[55] fade-in flex flex-col gap-3 p-2.5 bg-[#0a0a0f]/80 backdrop-blur-2xl border border-white/[0.06] shadow-2xl rounded-2xl" style="box-shadow: 0 8px 40px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.03);">
+        <div class="studio-toolbar fixed top-1/2 right-4 -translate-y-1/2 z-[55] fade-in flex flex-col gap-3 p-2.5 bg-[#0a0a0f]/80 backdrop-blur-2xl border border-white/[0.06] shadow-2xl rounded-2xl" aria-label="Stüdyo araçları">
             
-            <button onclick="openQuickSearch()" class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group hover:bg-emerald-500/20 hover:border-emerald-500/30 transition-all relative">
+            <button aria-label="Hızlı arama" onclick="openQuickSearch()" class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group hover:bg-emerald-500/20 hover:border-emerald-500/30 transition-all relative">
                 <i class="fa-solid fa-magnifying-glass text-zinc-500 group-hover:text-emerald-400 transition"></i>
                 <div class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-[#0c0c14] border border-white/[0.08] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap shadow-xl">
                     Hızlı Arama
                 </div>
             </button>
 
-            <button onclick="toggleYtVideosSidebar()" class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group hover:bg-red-500/20 hover:border-red-500/30 transition-all relative">
+            <button aria-label="YouTube arşivi" onclick="toggleYtVideosSidebar()" class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group hover:bg-red-500/20 hover:border-red-500/30 transition-all relative">
                 <i class="fa-brands fa-youtube text-zinc-500 group-hover:text-red-400 transition"></i>
                 <div class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-[#0c0c14] border border-white/[0.08] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap shadow-xl">
                     YouTube Arşivi
                 </div>
             </button>
             
-            <button onclick="toggleQueuePanel()" class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group hover:bg-indigo-500/20 hover:border-indigo-500/30 transition-all relative">
+            <button aria-label="İşlem kuyruğu" onclick="toggleQueuePanel()" class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group hover:bg-indigo-500/20 hover:border-indigo-500/30 transition-all relative">
                 <i class="fa-solid fa-server text-zinc-500 group-hover:text-indigo-400 transition"></i>
                 <span id="queueMobileBadge" class="absolute -top-1 -right-1 badge-glow text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full hidden"></span>
                 <div class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-[#0c0c14] border border-white/[0.08] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap shadow-xl">
@@ -156,7 +156,7 @@
                 </div>
             </button>
             
-            <button id="draftsToggleBtn" onclick="toggleDraftsPanel()" class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group hover:bg-amber-500/20 hover:border-amber-500/30 transition-all relative hidden">
+            <button id="draftsToggleBtn" aria-label="Taslaklar" onclick="toggleDraftsPanel()" class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group hover:bg-amber-500/20 hover:border-amber-500/30 transition-all relative hidden">
                 <i class="fa-solid fa-list-check text-zinc-500 group-hover:text-amber-400 transition"></i>
                 <span id="draftsCountBadge" class="absolute -top-1 -right-1 badge-glow text-white text-[9px] font-black w-4 h-4 flex items-center justify-center rounded-full hidden"></span>
                 <div class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-[#0c0c14] border border-white/[0.08] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap shadow-xl">
@@ -166,7 +166,7 @@
             
             <div class="w-full h-px bg-gradient-to-r from-transparent via-white/[0.06] to-transparent my-1"></div>
 
-            <button onclick="openSettings()" class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group hover:bg-violet-500/20 hover:border-violet-500/30 transition-all relative">
+            <button aria-label="Ayarlar" onclick="openSettings()" class="w-10 h-10 rounded-xl bg-white/[0.03] border border-white/[0.06] flex items-center justify-center group hover:bg-violet-500/20 hover:border-violet-500/30 transition-all relative">
                 <i class="fa-solid fa-gear text-zinc-500 group-hover:text-violet-400 group-hover:rotate-90 transition-all duration-300"></i>
                 <div class="absolute right-full mr-3 top-1/2 -translate-y-1/2 bg-[#0c0c14] border border-white/[0.08] text-white text-[10px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-lg opacity-0 group-hover:opacity-100 translate-x-2 group-hover:translate-x-0 transition-all pointer-events-none whitespace-nowrap shadow-xl">
                     Sistem Ayarları
@@ -184,7 +184,7 @@
         </div>
 
         <!-- Steps -->
-        <div class="flex gap-3 mb-8 fade-in">
+        <div class="studio-steps flex gap-3 mb-8 fade-in">
             <div id="step1" class="step flex-1 shadcn-card p-4 text-center cursor-pointer transition-all step-active">
                 <i class="fa-solid fa-cloud-arrow-up text-lg mb-1 text-violet-400"></i>
                 <div class="text-[10px] font-bold uppercase tracking-widest mt-1">Yükle</div>
@@ -219,10 +219,6 @@
             <div id="modeCoverSection" class="space-y-6">
                 <div class="flex items-center justify-between">
                     <h2 class="text-xl font-bold tracking-tight">MP3 Dosyası Yükle</h2>
-                    <div class="flex items-center gap-2 select-none">
-                        <input type="checkbox" id="bypassCoverFilter" class="w-4 h-4 rounded border-white/[0.08] bg-[#0c0c14] text-violet-500 focus:ring-violet-500 cursor-pointer">
-                        <label for="bypassCoverFilter" class="text-xs font-semibold text-zinc-400 cursor-pointer">Telif / Filtre Bypass</label>
-                    </div>
                 </div>
                 <div class="border-2 border-dashed border-white/[0.08] rounded-xl p-12 text-center hover:border-violet-500/30 hover:bg-violet-500/[0.02] transition-all duration-500 cursor-pointer group" id="dropzone">
                     <input type="file" id="fileInput" accept=".mp3,audio/mpeg" class="hidden">
@@ -316,6 +312,7 @@
                     <div class="flex items-center justify-between mb-2">
                         <label class="block text-xs font-bold uppercase tracking-widest text-violet-400/60">Stil</label>
                         <div class="flex gap-3">
+                            <button type="button" onclick="optimizeMusicStyle(this)" class="text-[9px] font-black uppercase text-violet-400 disabled:opacity-40">Stili iyileştir</button>
                             <button onclick="openStyleManager()" class="text-[9px] font-black uppercase text-indigo-400 hover:text-indigo-300 transition-colors flex items-center gap-1">
                                 <i class="fa-solid fa-layer-group"></i> Stil Kitaplığı
                             </button>
@@ -326,6 +323,13 @@
                     </div>
                     <div class="relative group">
                         <textarea id="songStyle" class="shadcn-input w-full px-4 py-3 text-sm font-mono resize-y min-h-[80px]" placeholder="60 BPM, Emotional Acoustic Ballad, Slow Melancholic Turkish Vocals..."></textarea>
+                        <p class="text-[10px] text-zinc-500 mt-2">Stil iyileştirme hesap planına göre kredi kullanabilir.</p>
+                        <div id="styleSuggestion" class="hidden mt-3 p-3 border border-violet-500/20 rounded-lg">
+                            <label for="suggestedStyle" class="text-xs text-violet-300">Önerilen stil — uygulamadan önce düzenleyebilirsin</label>
+                            <textarea id="suggestedStyle" class="shadcn-input w-full p-3 mt-2 text-xs" rows="4"></textarea>
+                            <button type="button" onclick="applySuggestedStyle()" class="shadcn-button-secondary px-3 py-2 text-xs">Stili uygula</button>
+                            <button type="button" onclick="document.getElementById('styleSuggestion').classList.add('hidden')" class="px-3 py-2 text-xs text-zinc-500">Vazgeç</button>
+                        </div>
                     </div>
                     <div class="flex flex-wrap gap-2 mt-3" id="quickStyles">
                         <button onclick="setStyle('Guitar,Piano')" class="text-[9px] font-bold bg-white/[0.03] hover:bg-violet-500/10 border border-white/[0.06] hover:border-violet-500/20 px-3 py-1.5 rounded-lg transition-all uppercase tracking-tighter hover:text-violet-300">Acoustic</button>
@@ -339,10 +343,6 @@
                         <option value="v5.0">v2 versiyon (Standart)</option>
                         <option value="v5.5" selected>v3 versiyon (Yüksek Kalite)</option>
                     </select>
-                    <div class="flex items-center gap-2 mt-4 select-none">
-                        <input type="checkbox" id="bypassFilter" class="w-4 h-4 rounded border-white/[0.08] bg-[#0c0c14] text-violet-500 focus:ring-violet-500 cursor-pointer">
-                        <label for="bypassFilter" class="text-xs font-semibold text-zinc-400 cursor-pointer">Telif / İçerik Filtresini Atla (Bypass)</label>
-                    </div>
                 </div>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-5 bg-white/[0.02] border border-white/[0.04] rounded-xl pt-4">
                     <div>
@@ -376,6 +376,7 @@
 
         <!-- PANEL 3: Create -->
         <div id="panel3" class="shadcn-card p-8 mb-6 hidden">
+            <div id="generationConfirmation">
             <div class="flex items-center gap-3 mb-6">
                 <h2 class="text-xl font-bold tracking-tight">Onay ve Oluştur</h2>
             </div>
@@ -408,19 +409,34 @@
             <button id="createBtn" onclick="createSong()" class="shadcn-button-primary py-4 text-sm w-full flex items-center justify-center gap-3">
                 <i class="fa-solid fa-wand-magic-sparkles text-xs"></i> Şarkıyı Oluştur
             </button>
+            </div>
+            <div id="generationTracking" class="hidden" tabindex="-1">
+                <div class="flex flex-wrap items-center justify-between gap-4">
+                    <div>
+                        <h2 class="text-xl font-bold tracking-tight">Üretim takibi</h2>
+                        <p class="text-sm text-zinc-400 mt-2">İlerlemeyi burada, tamamlanan şarkılarını kütüphanende görebilirsin.</p>
+                    </div>
+                    <button type="button" onclick="goToStep(2)" class="shadcn-button-secondary px-4 py-3 text-sm">Yeni şarkı hazırla</button>
+                </div>
+            </div>
             <div id="createTaskList" class="mt-5 space-y-3"></div>
         </div>
 
 
         <!-- All Songs -->
-        <div class="shadcn-card p-8 mb-6 fade-in">
+        <div id="musicLibrary" class="library-section shadcn-card p-8 mb-6 fade-in">
             <div class="flex items-center justify-between mb-6">
                 <div class="flex items-center gap-3">
-                    <h2 class="text-xl font-bold tracking-tight">Tüm Şarkılar</h2>
+                    <div><span class="section-eyebrow">SANA AİT SESLER</span><h2 class="text-xl font-bold tracking-tight">Müzik kütüphanen</h2></div>
                 </div>
                 <button onclick="loadAllSongs()" class="shadcn-button-secondary px-3 py-1.5 text-xs flex items-center gap-2 mr-4">
                     <i class="fa-solid fa-arrows-rotate text-[10px]"></i> Yenile
                 </button>
+            </div>
+            <div class="flex flex-wrap gap-2 mb-4">
+                <input id="librarySearch" aria-label="Şarkılarımda ara" oninput="searchMusicLibrary()" placeholder="Şarkılarımda ara…" class="shadcn-input flex-1 min-w-[160px] px-3 py-2 text-sm">
+                <button type="button" onclick="openProductionTools()" class="shadcn-button-secondary px-3 py-2 text-xs">Müzik üretimi ve görevler</button>
+                <button onclick="openAccountRecords()" class="shadcn-button-secondary px-3 py-2 text-xs">Hesap kayıtları</button>
             </div>
             <div id="allSongsContainer">
                 <div class="flex items-center justify-center py-12">
@@ -441,20 +457,16 @@
     <!-- Drafts Panel Toggle Button (Moved to Right Sidebar) -->
 
     <!-- Drafts Backdrop -->
-    <div id="draftsBackdrop" onclick="toggleDraftsPanel()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[45] hidden transition-opacity duration-300 opacity-0"></div>
+    <div id="draftsBackdrop" aria-label="Taslaklar" onclick="toggleDraftsPanel()" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-[45] hidden transition-opacity duration-300 opacity-0"></div>
 
     <!-- Drafts Panel (Drawer) -->
     <div id="draftsPanel" class="fixed left-4 top-36 bottom-2 z-50 flex flex-col transition-all duration-500 ease-in-out -translate-x-[calc(100%+1rem)] md:w-56 w-72 md:left-4 left-0 md:rounded-lg rounded-none bg-[#0a0a0f]/95 backdrop-blur-xl border border-white/[0.06] shadow-2xl overflow-hidden">
-        <div class="px-6 py-8 flex items-center justify-between border-b border-white/[0.04]">
-            <div class="flex items-center gap-3">
-                <div class="w-2 h-2 rounded-full bg-violet-400 animate-pulse"></div>
-                <h3 class="font-bold text-white text-sm uppercase tracking-[0.2em]">Taslaklar</h3>
-            </div>
-            <button onclick="toggleDraftsPanel()" class="w-8 h-8 flex items-center justify-center rounded-full bg-white/[0.03] border border-white/[0.06] text-zinc-500 hover:text-white hover:border-violet-500/30 transition-all">
-                <i class="fa-solid fa-xmark text-sm"></i>
-            </button>
+        <div class="studio-drawer-heading">
+            <div class="studio-drawer-icon"><i class="fa-solid fa-file-pen"></i></div>
+            <div class="studio-drawer-title"><h3>Taslaklar</h3><p>İlhamın kaldığı yerden</p></div>
+            <button class="studio-drawer-close" aria-label="Taslakları kapat" onclick="toggleDraftsPanel()"><i class="fa-solid fa-xmark"></i></button>
         </div>
-        <div id="draftsList" class="p-6 space-y-4 overflow-y-auto custom-scrollbar" style="height: calc(100vh - 100px);"></div>
+        <div id="draftsList" class="studio-drawer-list space-y-3 overflow-y-auto custom-scrollbar"></div>
     </div>
     
     <!-- Style Manager Modal -->
@@ -505,6 +517,10 @@
         </div>
     </div>
 
+    {% include 'components/musicful_features.html' %}
+    {% include 'components/production_tools.html' %}
+    <script src="{{ url_for('static', filename='js/production_tools.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/musicful_features.js') }}"></script>
     <script src="{{ url_for('static', filename='js/globals.js') }}"></script>
     <script src="{{ url_for('static', filename='js/style_manager.js') }}"></script>
     <script src="{{ url_for('static', filename='js/video.js') }}"></script>

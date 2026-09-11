@@ -1,0 +1,65 @@
+<dialog aria-labelledby="productionToolsTitle" id="productionTools" class="bg-[#0c0c14] text-zinc-200 border border-zinc-800 rounded-xl p-5 w-full max-w-2xl max-h-[90vh] overflow-y-auto backdrop:bg-black/70">
+    <header class="feature-modal-header">
+        <div class="feature-modal-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+        <div><h2 id="productionToolsTitle">Müzik üretimi ve görevler</h2><p>Fikrini seç, sesine hayat ver.</p></div>
+        <button type="button" class="feature-modal-close" onclick="document.getElementById('productionTools').close()" aria-label="Pencereyi kapat"><i class="fa-solid fa-xmark"></i></button>
+    </header>
+    <form id="productionForm" onsubmit="submitProduction(event)" class="space-y-3">
+        <label class="block text-xs">İşlem
+            <select id="productionKind" onchange="changeProductionKind()" class="shadcn-input w-full p-2 mt-1">
+                <option value="basic">Açıklamadan şarkı üret</option>
+                <option value="sounds">Ses efekti / döngü üret</option>
+                <option value="mashup">İki şarkının sözlerini harmanla</option>
+                <option value="replace">Şarkının bir bölümünü değiştir</option>
+                <option value="merge">Uzatılmış şarkıyı birleştir</option>
+                <option value="soundtrack">Videoya müzik üret</option>
+            </select>
+        </label>
+        <div data-production-kinds="basic sounds soundtrack">
+            <label class="block text-xs">Nasıl bir müzik veya ses istiyorsun?
+                <textarea name="description" maxlength="500" rows="3" class="shadcn-input w-full p-2 mt-1" placeholder="Sakin bir ormanda kuş sesleri…"></textarea>
+            </label>
+        </div>
+        <div data-production-kinds="basic" class="flex gap-3 items-center">
+            <label class="instrumental-option"><input name="instrumental" type="checkbox"> Enstrümantal</label>
+        </div>
+        <label data-production-kinds="basic replace merge" class="block text-xs">Model
+            <select name="mv" class="shadcn-input w-full p-2 mt-1"><option value="v5.5">V3 — Yüksek kalite</option><option value="v5.0">V2 — Standart</option></select>
+        </label>
+        <div data-production-kinds="sounds" class="flex gap-3">
+            <label class="text-xs flex-1">Ses türü<select name="sound_type" class="shadcn-input w-full p-2 mt-1"><option value="one_shot">Tek ses</option><option value="loop">Döngü</option></select></label>
+            <label class="text-xs flex-1">Tempo (0: otomatik)<input name="bpm" type="number" min="0" max="300" value="0" class="shadcn-input w-full p-2 mt-1"></label>
+        </div>
+        <div data-production-kinds="replace merge">
+            <label class="block text-xs">Kaynak şarkı<select name="song_id" id="productionSong" onchange="selectProductionSong()" class="shadcn-input w-full p-2 mt-1"></select></label>
+            <p class="text-xs text-zinc-500 mt-1">Kütüphanede yüklenen şarkılar gösterilir. Birleştirme için daha önce uzatılmış bir şarkı seç.</p>
+        </div>
+        <div data-production-kinds="replace" class="space-y-3">
+            <label class="block text-xs">Yeni başlık<input name="title" maxlength="150" class="shadcn-input w-full p-2 mt-1"></label>
+            <div class="flex gap-3">
+                <label class="text-xs flex-1">Başlangıç (saniye)<input name="start" type="number" min="0" step="0.1" value="0" class="shadcn-input w-full p-2 mt-1"></label>
+                <label class="text-xs flex-1">Bitiş (saniye)<input name="end" type="number" min="0.1" step="0.1" value="30" class="shadcn-input w-full p-2 mt-1"></label>
+            </div>
+            <label class="block text-xs">Bu bölümün yeni sözleri<textarea name="lyrics" maxlength="3500" rows="3" class="shadcn-input w-full p-2 mt-1"></textarea></label>
+            <label class="block text-xs">Değişiklik sonrası şarkının tüm sözleri<textarea name="full_lyrics" maxlength="3500" rows="5" class="shadcn-input w-full p-2 mt-1"></textarea></label>
+        </div>
+        <div data-production-kinds="mashup" class="space-y-3">
+            <label class="block text-xs">Birinci sözler<textarea name="lyrics_a" maxlength="3500" rows="4" class="shadcn-input w-full p-2 mt-1"></textarea></label>
+            <label class="block text-xs">İkinci sözler<textarea name="lyrics_b" maxlength="3500" rows="4" class="shadcn-input w-full p-2 mt-1"></textarea></label>
+        </div>
+        <label data-production-kinds="soundtrack" class="block text-xs">Video dosyası bağlantısı (HTTPS)
+            <input name="video_url" type="url" class="shadcn-input w-full p-2 mt-1" placeholder="https://…/video.mp4">
+            <span class="block text-zinc-500 mt-1">Doğrudan erişilebilir video dosyası gerekir. YouTube sayfa bağlantısı kullanılamaz.</span>
+        </label>
+        <p class="production-credit-note"><i class="fa-regular fa-circle-check"></i> İşlemler planına göre kredi kullanabilir. Sonuçlar bu hesaba bağlı olarak takip edilir.</p>
+        <button id="productionSubmit" type="submit" class="shadcn-button-primary px-4 py-2 disabled:opacity-40">Üretimi başlat</button>
+    </form>
+    <p id="productionMessage" class="text-sm mt-3" role="status"></p>
+    <div id="productionLyricsResult" class="hidden mt-3">
+        <label class="text-xs">Harmanlanan sözler<textarea id="productionOutput" readonly rows="7" class="shadcn-input w-full p-2 mt-1"></textarea></label>
+        <button onclick="navigator.clipboard.writeText(document.getElementById('productionOutput').value).catch(()=>{document.getElementById('productionOutput').select()})" class="shadcn-button-secondary p-2 text-xs">Sözleri kopyala</button>
+    </div>
+    <div class="production-jobs-heading"><div><h3>Üretim görevleri</h3><p>Başlattığın işlerin durumunu takip et.</p></div>
+    <button type="button" onclick="refreshProductionJobs()" class="shadcn-button-secondary px-3 py-2 text-xs mb-3"><i class="fa-solid fa-rotate-right"></i> Güncelle</button></div>
+    <div id="productionJobs" class="space-y-2 text-sm" aria-live="polite"></div>
+</dialog>

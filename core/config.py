@@ -4,7 +4,18 @@ import threading
 import time
 import random
 
-_file_lock = threading.Lock()
+_file_lock = threading.RLock()
+
+
+def update_json(filepath, updater, default=None):
+    """Keep read/modify/write together within this application process."""
+    with _file_lock:
+        data = safe_read_json(filepath)
+        if data is None:
+            data = default
+        result = updater(data)
+        safe_write_json(filepath, data)
+        return result
 
 def safe_read_json(filepath):
     for i in range(15):
@@ -28,11 +39,6 @@ def safe_write_json(filepath, data, indent=2):
                 temp_filepath = filepath + ".tmp"
                 with open(temp_filepath, "w", encoding="utf-8") as f:
                     json.dump(data, f, indent=indent, ensure_ascii=False)
-                if os.path.exists(filepath):
-                    try:
-                        os.remove(filepath)
-                    except PermissionError:
-                        pass
                 os.replace(temp_filepath, filepath)
                 return
         except PermissionError:

@@ -170,8 +170,8 @@ function updateQueueUI() {
             const emptyEl = document.createElement('div');
             emptyEl.id = 'queueEmptyState';
             emptyEl.style.display = 'none';
-            emptyEl.className = 'text-center py-20 text-zinc-700';
-            emptyEl.innerHTML = '<div class="w-12 h-12 bg-zinc-900/50 rounded-full flex items-center justify-center mx-auto mb-4 border border-zinc-800/50"><i class="fa-solid fa-check text-sm opacity-20"></i></div><p class="text-[10px] font-bold uppercase tracking-widest opacity-40">Her Şey Hazır</p>';
+            emptyEl.className = 'queue-empty';
+            emptyEl.innerHTML = '<div class="queue-empty-icon"><i class="fa-solid fa-check"></i></div><h3>Her şey tamam</h3><p>Yeni bir şeyler üretmeye ne dersin?</p><span>Başlattığın işlemler burada görünecek.</span>';
             list.appendChild(emptyEl);
         }
     } else {
@@ -238,6 +238,23 @@ async function initSSE() {
     await _verifyRestoredTasks();
 
     const es = new EventSource('/api/events');
+
+    es.addEventListener('musicful_song_ready', async (e) => {
+        try {
+            const signal = JSON.parse(e.data);
+            const response = await fetch('/api/features/production/account');
+            if (!response.ok) return;
+            const current = await response.json();
+            if (current.account !== signal.account) return;
+            if (typeof handleGenerationReady === 'function') handleGenerationReady(signal);
+            if (typeof handleProductionReady === 'function') handleProductionReady(signal);
+            window.dispatchEvent(new CustomEvent('musicful-song-ready', {detail: signal}));
+            if (typeof productionAccount !== 'undefined' && productionAccount === signal.account) refreshProductionJobs();
+            loadAllSongs(false, true);
+            if (typeof loadRights === 'function') loadRights();
+            showNotification('Şarkı hazır', 'Yeni üretim tamamlandı. Kütüphaneden dinleyebilirsin.');
+        } catch (_) { /* Polling continues if a notification cannot be processed. */ }
+    });
 
     es.addEventListener('relogin_success', (e) => {
         const data = JSON.parse(e.data);
@@ -330,8 +347,6 @@ async function initSSE() {
         if(typeof syncSongs === 'function') syncSongs([song]);
     });
 
-    es.onerror = () => {
-        setTimeout(initSSE, 5000);
-        es.close();
-    };
+    // EventSource reconnects automatically; do not create another subscription.
+    es.onerror = () => {};
 }

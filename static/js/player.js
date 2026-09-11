@@ -118,11 +118,21 @@ function fpClose() {
 function stopYtPlayer() { fpClose(); }
 
 // --- Player Core ---
+function playbackSource(src) {
+    const match = src.match(/^(?:https?:\/\/[^/]+)?\/api\/download\/([^/?#]+)$/);
+    if (!match) return src;
+    const songId = decodeURIComponent(match[1]);
+    const song = typeof knownSongs !== 'undefined' ? knownSongs[songId] : null;
+    return song && /^https?:\/\//i.test(song.audio_url || '')
+        ? song.audio_url
+        : '/api/stream/' + encodeURIComponent(songId);
+}
+
 function playSong(src, title, coverUrl = null) {
     if(fpAudio) { fpAudio.pause(); fpAudio.src = ''; }
     fpAudio = new Audio();
     fpAudio.preload = 'auto';
-    fpAudio.src = src;
+    fpAudio.src = playbackSource(src);
     fpAudio.coverUrl = coverUrl;
     fpCurrentId = src;
     
@@ -170,18 +180,24 @@ function playSong(src, title, coverUrl = null) {
 
     fpBind();
 
-    fpAudio.addEventListener('canplay', function() {
-        if(!fpAudio._started) {
-            fpAudio._started = true;
-            fpAudio.play().catch(() => {
-                if(iconEl) iconEl.className = 'fa-solid fa-play';
-            });
-        }
-    }, {once: true});
-    fpAudio.load();
+    // Start during the user's click; the browser buffers only what it needs.
+    const audio = fpAudio;
+    audio.play().catch(error => reportPlaybackError(audio, error));
+}
+
+function reportPlaybackError(audio, error) {
+    if (fpAudio !== audio || error?.name === 'AbortError' || audio._errorReported) return;
+    audio._errorReported = true;
+    const icon = document.getElementById('fpPlayIcon');
+    if (icon) icon.className = 'fa-solid fa-play';
+    document.getElementById('fpArt')?.classList.remove('playing');
+    if (typeof showNotification === 'function') showNotification('Ses oynatılamadı',
+        error?.name === 'NotAllowedError' ? 'Oynat düğmesine tekrar basın.' :
+        'Ses kaynağına erişilemiyor. Oynat düğmesiyle tekrar deneyin.', 'error');
 }
 
 function playYtVideo(videoId, title) {
+    if (!/^[A-Za-z0-9_-]{11}$/.test(videoId)) return;
     playSong('/api/yt-play/' + videoId, title, `https://i.ytimg.com/vi/${videoId}/hqdefault.jpg`);
 }
 
@@ -208,6 +224,8 @@ function savePlayerState() {
 
 function fpBind() {
     if(!fpAudio) return;
+    const boundAudio = fpAudio;
+    boundAudio.onerror = () => reportPlaybackError(boundAudio, boundAudio.error);
     const bar = document.getElementById('fpBar');
     const cur = document.getElementById('fpCur');
     const dur = document.getElementById('fpDur');
@@ -255,7 +273,10 @@ function fpBind() {
 function fpToggle() {
     if(!fpAudio) return;
     if(fpAudio.paused) {
-        fpAudio.play().catch(e => console.warn('Oynatma hatası:', e));
+        const audio = fpAudio;
+        audio._errorReported = false;
+        if (audio.error) audio.load();
+        audio.play().catch(error => reportPlaybackError(audio, error));
     } else {
         fpAudio.pause();
     }
@@ -417,7 +438,7 @@ function restorePlayerState() {
             
             fpAudio = new Audio();
             fpAudio.preload = 'auto';
-            fpAudio.src = stateObj.src;
+            fpAudio.src = playbackSource(stateObj.src);
             fpAudio.coverUrl = stateObj.coverUrl || '';
             fpCurrentId = stateObj.currentId || stateObj.src;
             

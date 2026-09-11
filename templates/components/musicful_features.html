@@ -1,0 +1,22 @@
+<dialog aria-labelledby="accountRecordsTitle" id="accountRecords" class="bg-[#0c0c14] text-zinc-200 border border-zinc-800 rounded-xl p-5 w-full max-w-2xl backdrop:bg-black/70">
+    <header class="feature-modal-header">
+        <div class="feature-modal-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+        <div><h2 id="accountRecordsTitle">Hesap kayıtları</h2><p>Stüdyondaki tüm hareketler, tek bir yerde.</p></div>
+        <button type="button" class="feature-modal-close" onclick="document.getElementById('accountRecords').close()" aria-label="Pencereyi kapat"><i class="fa-solid fa-xmark"></i></button>
+    </header>
+    <label for="recordKind" class="text-xs text-zinc-400">Gösterilecek liste</label>
+    <select id="recordKind" onchange="loadAccountRecords(1)" class="shadcn-input w-full p-3 mt-2 mb-4">
+        <option value="credits">Kredi hareketleri</option>
+        <option value="personas">Persona listesi</option>
+        <option value="playlists">Çalma listeleri</option>
+        <option value="trash">Geri dönüşüm kutusu</option>
+        <option value="notifications">Bildirimler</option>
+        <option value="covers">AI Cover geçmişi</option>
+    </select>
+    <div id="recordItems" class="space-y-3 max-h-[55vh] overflow-y-auto" aria-live="polite"></div>
+    <div class="records-pagination flex items-center justify-between gap-3 mt-4">
+        <button id="recordsPrev" onclick="loadAccountRecords(recordPage-1)" class="shadcn-button-secondary px-3 py-2 disabled:opacity-40">Önceki</button>
+        <span id="recordPageLabel" class="text-xs text-zinc-500"></span>
+        <button id="recordsNext" onclick="loadAccountRecords(recordPage+1)" class="shadcn-button-secondary px-3 py-2 disabled:opacity-40">Sonraki</button>
+    </div>
+</dialog>

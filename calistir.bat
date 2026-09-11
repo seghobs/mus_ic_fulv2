@@ -1,4 +1,7 @@
 @echo off
-title Musicful AI
+setlocal
+title Musicful AI Studio
+cd /d "%~dp0"
+cls
 python calistir.py
-pause
+if errorlevel 1 pause

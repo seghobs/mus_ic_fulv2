@@ -374,56 +374,52 @@ async function checkBrowserTokenStatus() {
 
 async function loadTokens() {
     const container = document.getElementById('tokenList');
-    container.innerHTML = '<div class="flex items-center justify-center py-4"><i class="fa-solid fa-spinner fa-spin text-dark-500"></i></div>';
+    const summary = document.getElementById('tokenSummary');
+    container.innerHTML = '<div class="settings-empty"><i class="fa-solid fa-spinner fa-spin"></i> Oturumlar yükleniyor…</div>';
+    if (summary) summary.textContent = '';
     try {
         const resp = await fetch('/api/tokens');
+        if (!resp.ok) throw new Error('Oturumlar yüklenemedi. Lütfen tekrar deneyin.');
         const data = await resp.json();
-        if(!data.tokens.length) {
-            container.innerHTML = '<div class="text-center py-4 text-dark-500 text-sm">Henüz token eklenmemiş</div>';
+        const tokens = data.tokens || [];
+        if (summary) summary.textContent = `${tokens.length} oturum`;
+        container.replaceChildren();
+        if (!tokens.length) {
+            container.innerHTML = '<div class="settings-empty"><i class="fa-solid fa-key"></i> Henüz bağlı oturum bulunmuyor.</div>';
             return;
         }
-        container.innerHTML = '';
-        
-        // Aktif olani en uste getirme siralama
-        data.tokens.sort((a, b) => (b.active === true ? 1 : 0) - (a.active === true ? 1 : 0));
-        
-        data.tokens.forEach((t) => {
-            const isActive = t.active !== false;
-            container.innerHTML += `
-                <div class="bg-zinc-900/50 rounded-xl p-4 border ${isActive ? 'border-white shadow-[0_0_15px_rgba(255,255,255,0.05)]' : 'border-zinc-800 opacity-50'} transition">
-                    <div class="flex items-center gap-4">
-                        <div class="w-10 h-10 ${isActive ? 'bg-zinc-800 border-zinc-500' : 'bg-zinc-950 border-zinc-700'} border rounded-lg flex items-center justify-center flex-shrink-0">
-                            <i class="fa-solid ${isActive ? 'fa-check text-white' : 'fa-pause text-zinc-600'} text-xs"></i>
-                        </div>
-                        <div class="flex-1 min-w-0">
-                            <div class="text-sm font-bold tracking-tight flex items-center gap-2">
-                                ${t.name}
-                                ${isActive ? '<span class="bg-white text-black text-[9px] px-1.5 py-0.5 rounded-sm font-bold uppercase tracking-widest">Aktif</span>' : '<span class="bg-zinc-800 text-zinc-500 text-[9px] px-1.5 py-0.5 rounded-sm font-bold uppercase tracking-widest">Pasif</span>'}
-                            </div>
-                        </div>
-                        <div class="flex gap-2 flex-shrink-0">
-                            <button onclick="reloginToken(this, '${t.id}', '${t.name}')" class="w-9 h-9 rounded-lg border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 flex items-center justify-center transition" title="Yeniden Giriş Yap">
-                                <i class="fa-solid fa-right-to-bracket text-xs text-zinc-500 hover:text-white"></i>
-                            </button>
-                            <button onclick="toggleToken('${t.id}')" class="w-9 h-9 rounded-lg border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 flex items-center justify-center transition" title="${isActive ? 'Pasif Yap' : 'Aktif Yap'}">
-                                <i class="fa-solid fa-power-off text-xs ${isActive ? 'text-white' : 'text-zinc-600'}"></i>
-                            </button>
-                            <button onclick="deleteToken('${t.id}')" class="w-9 h-9 rounded-lg border border-zinc-800 bg-zinc-900 hover:bg-red-900/20 flex items-center justify-center transition" title="Sil">
-                                <i class="fa-solid fa-trash text-xs text-zinc-500 hover:text-red-500"></i>
-                            </button>
-                        </div>
-                    </div>
+        tokens.sort((a, b) => Number(b.active !== false) - Number(a.active !== false));
+        tokens.forEach(t => {
+            const active = t.active !== false;
+            const card = document.createElement('div');
+            card.className = 'token-card' + (active ? ' is-active' : '');
+            card.innerHTML = `
+                <div class="token-avatar"><i class="fa-solid ${active ? 'fa-check' : 'fa-user'}"></i></div>
+                <div class="token-details"><div class="token-name"></div>
+                    <span class="token-status"><span></span>${active ? 'Aktif oturum' : 'Pasif oturum'}</span>
                 </div>
-            `;
+                <div class="token-actions">
+                    <button type="button" class="token-refresh" title="Yeniden giriş yap" aria-label="Yeniden giriş yap"><i class="fa-solid fa-arrow-rotate-right"></i><span>Yenile</span></button>
+                    <button type="button" class="token-toggle" title="${active ? 'Pasif yap' : 'Aktif yap'}" aria-label="${active ? 'Pasif yap' : 'Aktif yap'}"><i class="fa-solid fa-power-off"></i></button>
+                    <button type="button" class="token-delete" title="Oturumu sil" aria-label="Oturumu sil"><i class="fa-regular fa-trash-can"></i></button>
+                </div>`;
+            const name = card.querySelector('.token-name');
+            name.textContent = t.name || 'İsimsiz oturum';
+            name.title = name.textContent;
+            card.querySelector('.token-refresh').addEventListener('click', event => reloginToken(event.currentTarget, t.id, t.name));
+            card.querySelector('.token-toggle').addEventListener('click', () => toggleToken(t.id));
+            card.querySelector('.token-delete').addEventListener('click', () => deleteToken(t.id));
+            container.appendChild(card);
         });
-    } catch(e) {
-        container.innerHTML = `<div class="text-red-400 text-sm text-center py-4">${e.message}</div>`;
+    } catch (error) {
+        container.textContent = error.message;
     }
 }
 async function toggleToken(id) {
     await fetch('/api/tokens/toggle/'+id, {method:'POST'});
     loadTokens();
     if(typeof loadRights === 'function') loadRights();
+    if(typeof loadAllSongs === 'function') loadAllSongs();
 }
 function openEditModal(id) {
     editingTokenId = id;

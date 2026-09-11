@@ -1,16 +1,17 @@
 <div id="quickSearchModal" class="modal-backdrop hidden transition-all duration-300">
-    <div class="modal-card w-full max-w-2xl bg-[#0c0c14] border border-white/[0.06] shadow-2xl p-0 overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="quickSearchCard">
+    <div class="modal-card w-full max-w-2xl bg-[#0c0c14] border border-white/[0.06] shadow-2xl p-0 overflow-hidden transform scale-95 opacity-0 transition-all duration-300" id="quickSearchCard" role="dialog" aria-modal="true" aria-label="Müzik keşfet">
+        <div class="qs-intro"><span class="section-eyebrow">YENİ SESLER KEŞFET</span><h2>Müzik ara</h2><p>Bir şarkı, bir sanatçı, yeni bir ilham.</p></div>
         <!-- Header -->
-        <div class="px-6 py-4 border-b border-white/[0.04] flex items-center gap-3">
+        <div class="qs-searchbar px-6 py-4 border-b border-white/[0.04] flex items-center gap-3">
             <div class="w-8 h-8 bg-white/10 rounded-lg flex items-center justify-center">
                 <i class="fa-brands fa-youtube text-white"></i>
             </div>
             <div class="flex-1">
-                <input type="text" id="qsInput" class="w-full bg-transparent border-none text-white text-lg font-medium focus:ring-0 placeholder-zinc-700" placeholder="Hızlı YouTube araması..." autocomplete="off">
+                <input type="text" id="qsInput" class="w-full bg-transparent border-none text-white text-lg font-medium focus:ring-0 placeholder-zinc-700" aria-label="Şarkı veya sanatçı ara" placeholder="Şarkı veya sanatçı ara…" autocomplete="off">
             </div>
             <div class="flex items-center gap-2">
                 <span class="text-[10px] font-bold text-zinc-500 bg-white/[0.03] px-1.5 py-0.5 rounded border border-white/[0.06]">ESC</span>
-                <button onclick="clearQuickSearch(); closeQuickSearch();" class="text-zinc-500 hover:text-white transition p-1">
+                <button aria-label="Aramayı kapat" onclick="clearQuickSearch(); closeQuickSearch();" class="text-zinc-500 hover:text-white transition p-1">
                     <i class="fa-solid fa-xmark"></i>
                 </button>
             </div>
@@ -18,19 +19,16 @@
 
         <!-- Results Area -->
         <div id="qsResults" class="max-h-[450px] overflow-y-auto p-2 space-y-1 custom-scrollbar">
-            <div class="py-12 text-center text-zinc-600 space-y-2">
-                <i class="fa-solid fa-magnifying-glass text-2xl opacity-20"></i>
-                <p class="text-xs font-medium uppercase tracking-widest">Aramak için yazmaya başlayın</p>
-            </div>
+            <div class="qs-empty"><span class="qs-empty-icon"><i class="fa-solid fa-music"></i></span><h3>Sıradaki ilhamını bul</h3><p>Şarkı veya sanatçı yaz, Enter'a bas.</p><span class="qs-empty-hint">Önce dinle, sonra stüdyona ekle.</span></div>
         </div>
 
         <!-- Footer -->
-        <div class="px-6 py-3 bg-white/[0.01] border-t border-white/[0.04] flex items-center justify-between text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
+        <div class="qs-footer px-6 py-3 bg-white/[0.01] border-t border-white/[0.04] flex items-center justify-between text-[10px] font-bold text-zinc-500 uppercase tracking-widest">
             <div class="flex items-center gap-4">
                 <span class="flex items-center gap-1.5"><i class="fa-solid fa-arrow-turn-down rotate-90 text-[8px]"></i> Seç</span>
                 <span class="flex items-center gap-1.5"><i class="fa-solid fa-arrow-up text-[8px]"></i><i class="fa-solid fa-arrow-down text-[8px]"></i> Gezin</span>
             </div>
-            <span>QuickSearch v1.0</span>
+            <span>YouTube’da keşfet</span>
         </div>
     </div>
 </div>

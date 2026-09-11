@@ -38,17 +38,31 @@ def add_log(msg):
         state.logs = state.logs[-50:]
 
 async def load_db():
-    if not os.path.exists(ACCOUNTS_FILE):
-        return {}
-    with open(ACCOUNTS_FILE, "r", encoding="utf-8") as f:
-        try:
-            return json.load(f)
-        except:
-            return {}
+    from .config import safe_read_json
+    return safe_read_json(ACCOUNTS_FILE) or {}
 
-async def save_db(db_data):
-    with open(ACCOUNTS_FILE, "w", encoding="utf-8") as f:
-        json.dump(db_data, f, indent=4)
+
+async def save_db(db_data, email, expected_token=None):
+    from .config import update_json, _file_lock, TOKENS_FILE
+    def merge(current):
+        for code, entries in db_data.items():
+            for entry in entries:
+                if entry.get("email") != email:
+                    continue
+                saved = next((a for group in current.values() for a in group
+                              if a.get("email") == email), None)
+                if saved is None:
+                    current.setdefault(code, []).append(entry)
+                elif expected_token is not None and saved.get("token") in (expected_token, entry.get("token")):
+                    saved.update(entry)
+                    def refresh_tokens(tokens):
+                        for token in tokens:
+                            if token.get("name") == email and token.get("token") == expected_token:
+                                token["token"] = entry.get("token")
+                    update_json(TOKENS_FILE, refresh_tokens, [])
+    with _file_lock:
+        update_json(ACCOUNTS_FILE, merge, {})
+
 
 async def add_account_to_db(invite_code, email, password, new_invite_code, token):
     db = await load_db()
@@ -65,7 +79,7 @@ async def add_account_to_db(invite_code, email, password, new_invite_code, token
         "credits": 0,
         "total_invites": 0
     })
-    await save_db(db)
+    await save_db(db, email)
 
 
 class AsyncMusicfulBot:
@@ -390,6 +404,7 @@ async def refresh_parent_via_api(parent_invite_code: str):
         return False
 
     parent_token = parent_acc.get("token")
+    original_token = parent_token
     parent_email = parent_acc.get("email", "")
     parent_password = parent_acc.get("password", "")
     old_credits = parent_acc.get("credits", 0) or 0
@@ -435,7 +450,7 @@ async def refresh_parent_via_api(parent_invite_code: str):
             parent_acc["credits"] = new_credits
             parent_acc["total_invites"] = total_invites
             parent_acc["token"] = parent_token
-            await save_db(db)
+            await save_db(db, parent_email, original_token)
 
             if credit_delta == 0:
                 add_log(f"🎭 Kredi yansimadi, Playwright ile tarayici refresh deneniyor...")
@@ -445,7 +460,7 @@ async def refresh_parent_via_api(parent_invite_code: str):
                     post_pw_credits = await bot.get_credits(parent_token)
                     if post_pw_credits is not None:
                         parent_acc["credits"] = post_pw_credits
-                        await save_db(db)
+                        await save_db(db, parent_email, original_token)
                         add_log(f"🎉 Playwright sonrasi kredi guncellendi: {post_pw_credits}")
             else:
                 add_log(f"🎉 Kredi guncellendi: {new_credits}")
