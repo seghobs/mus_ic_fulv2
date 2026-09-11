@@ -1,0 +1,22 @@
+[
+    {
+        "title": "Duygusal Akustik (Gitar)",
+        "prompt": "60 BPM, Emotional Acoustic Ballad, Intimate Studio Hall Ambience, Slow Melancholic Turkish Vocals, Deep Melismatic Performance, Raw Soulful Soul, Solo Classical Guitar Only, No Other Instruments, No Crowd, No Applause, 432Hz Tuning, Very Slow Tempo"
+    },
+    {
+        "title": "Modern Pop (Enerjik)",
+        "prompt": "124 BPM, Modern Dance Pop, Groovy Bassline, Bright Synthesisers, Clear Pop Vocals, Energetic Rhythm, Professional Studio Mixing, Catchy Hook, Uplifting Vibe"
+    },
+    {
+        "title": "Anadolu Rock",
+        "prompt": "90 BPM, Anatolian Rock Style, Overdriven Electric Guitar, Traditional Psychedelic Rock, Groovy Drum Kit, Turkish Male Rock Vocals, Vintage 70s Warmth, Wah-Wah Effects"
+    },
+    {
+        "title": "Lo-Fi Beats (Sakin)",
+        "prompt": "80 BPM, Lo-Fi Hip Hop, Chill Lullaby Vibe, Soft Muted Piano, Dusty Vinyl Crackle, Relaxed Atmospheric Vocals, Urban Night Mood, Jazzy Chords"
+    },
+    {
+        "title": "Sinematik Yaylılar",
+        "prompt": "Cinematic Orchestral Strings, Grand Piano, Emotional Cello Solo, Epic Dramatic Atmosphere, Intense Melancholy, High Production Value, Large Reverb, Slow Build-up"
+    }
+]

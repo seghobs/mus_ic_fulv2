@@ -12,7 +12,7 @@ Hesapları uygulamanın Ayarlar bölümünden ekleyin. Gemini özellikleri için
 {"api_key": "YOUR_GEMINI_API_KEY"}
 ```
 
-YouTube kanal işlemleri ayrıca yerel OAuth yapılandırması gerektirir. Hesaplar, tokenler, taslaklar, ayarlar ve oluşturulan dosyalar depoya dahil edilmez.
+YouTube kanal işlemleri ayrıca yerel OAuth yapılandırması gerektirir. Hesaplar, Musicful tokenleri, taslaklar, ayarlar ve kütüphane kayıtları depoya dahildir. Bu dosyalar özel hesap bilgileri içerir. Gemini anahtarı, YouTube OAuth dosyaları ve oluşturulan medya dosyaları yerelde tutulur.
 
 ## Bu sürüm
 

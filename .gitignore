@@ -18,10 +18,7 @@ static/videos/
 .idea/
 
 # Private local state and investigation artifacts
-accounts.json
-tokens.json
 gemini.local.json
-data/
 scratch/
 research/
 MUSICFUL_FILTER_RESEARCH.md
